@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+Thumbs.db
+
+# Claude
+.claude/
+
+# Original prototype files (reference only, not deployed)
+home.html
+manao-glove.html
+psp-bowling.html
+selector-180.html
+
+# Original composite image (cropped versions are in images/)
+images/studio-services.png
+
+# Planning and handoff docs
+CLAUDE_CODE_STARTER_PROMPT.md
+SITE_BRIEF.md
+TRANSITION_GUIDE.md
+
+# Original PDFs in root (deployed copies are in pdf/)
+Pranav_Gawde_CV.pdf
+Pranav_Gawde_Consultant_Profile.pdf
+Pranav_Gawde_Portfolio.pdf

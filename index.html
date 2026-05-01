@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pranav Gawde — Product Designer, Mechanical Engineer, Startup Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="wordmark"><span class="accent-bracket">[</span>pranavgawde</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="work.html" data-hover="what I make">Work</a></li>
+      <li><a href="notes.html" data-hover="what I think">Notes</a></li>
+      <li><a href="studio.html" data-hover="how I help">Studio</a></li>
+      <li><a href="about.html" data-hover="the longer story">About</a></li>
+      <li><a href="contact.html" data-hover="let's connect">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-portrait">
+    <img src="images/portrait.jpg" alt="Pranav Gawde — portrait sketch">
+  </div>
+  <div class="hero-text">
+    <span class="hero-greeting">Namaste</span>
+    <h1 class="hero-name"><span class="hero-name-prefix">I'm</span>Pranav Gawde</h1>
+    <p class="hero-roles">Product Designer<span class="role-sep">·</span>Mechanical Engineer<span class="role-sep">·</span>Startup Consultant</p>
+    <p class="hero-location">Mumbai, India</p>
+    <blockquote class="hero-tagline">
+      <span>Designing products,</span>
+      <span>designing programmes,</span>
+      <span>and designing designers who design better.</span>
+    </blockquote>
+  </div>
+</section>
+
+<section class="prose-section">
+  <p>Two ideologies anchor my work. The first: <strong>design is a long-term responsibility</strong> — products and services should hold up not just on the day they ship, but for everything that comes after. The second: <strong>less is more</strong> — the strongest solutions come from clarity and restraint, not from adding features.</p>
+  <p>Across nine years of building, those ideas show up in three different ways. <strong>As a designer and engineer</strong>, I work on the thing itself — sketches to CAD, prototypes to production. <strong>As a consultant and liaison</strong>, I sit alongside founders and institutions, helping ventures find their footing. <strong>As a researcher</strong>, I explore the problems before they have products.</p>
+</section>
+
+<section class="featured">
+  <div class="category-grid">
+    <a href="work.html" class="category-card">
+      <div class="category-card-image">image placeholder</div>
+      <h3>Design &amp; Engineer</h3>
+    </a>
+    <a href="work.html" class="category-card">
+      <div class="category-card-image">image placeholder</div>
+      <h3>Consult &amp; Liaison</h3>
+    </a>
+    <a href="work.html" class="category-card">
+      <div class="category-card-image">image placeholder</div>
+      <h3>Research &amp; Design</h3>
+    </a>
+  </div>
+</section>
+
+<section class="closing">
+  <p class="closing-question">Building something meaningful, manufacturable, scalable?</p>
+</section>
+
+<section class="signoff-band">
+  <p class="signoff-text">Let's make it happen.</p>
+</section>
+
+<footer>
+  <div class="wordmark"><span class="accent-bracket">[</span>pranavgawde</div>
+  <ul class="footer-nav">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="notes.html">Notes</a></li>
+    <li><a href="studio.html">Studio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="footer-socials">
+    <a href="https://linkedin.com/in/pranavgawde" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://behance.net/pranavgawde" target="_blank" rel="noopener">Behance</a>
+  </div>
+  <div class="copyright">© 2026 Pranav Gawde · Designed and built in Mumbai, India</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  const toggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+</script>
+</body>
+</html>

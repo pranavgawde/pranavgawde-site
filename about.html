@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Pranav Gawde</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ---- Photo + story ---- */
+    .about-body {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-bottom: 5rem;
+    }
+    .about-photo { position: sticky; top: 6rem; }
+    .about-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 3px;
+    }
+    .about-story p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1.75rem;
+    }
+    .about-story p:last-child { margin-bottom: 0; }
+    .about-story strong { font-weight: 600; }
+
+    /* ---- Design philosophy ---- */
+    .philosophy {
+      border-top: 1px solid var(--rule);
+      padding: 4rem 0;
+      margin-bottom: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .philosophy-item h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+    .philosophy-item h3 span { color: var(--accent); }
+    .philosophy-item p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-soft);
+    }
+
+    /* ---- Scrolling achievements ticker ---- */
+    .ticker-band {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 2.5rem 0;
+      overflow: hidden;
+      margin: 0;
+    }
+    .ticker-track {
+      display: flex;
+      gap: 1.5rem;
+      width: max-content;
+      animation: ticker-scroll 28s linear infinite;
+    }
+    .ticker-band:hover .ticker-track { animation-play-state: paused; }
+
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .ticker-card {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1.25rem 1.75rem;
+      min-width: 200px;
+      flex-shrink: 0;
+      text-align: center;
+    }
+    .ticker-card .num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      display: block;
+    }
+    .ticker-card .label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      margin-top: 0.3rem;
+      display: block;
+    }
+
+    /* ---- CV section ---- */
+    .cv-section {
+      padding: 5rem 0 0;
+    }
+    .cv-section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--text);
+      gap: 2rem;
+    }
+    .cv-section-header h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+    }
+    .cv-download-link {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+      white-space: nowrap;
+    }
+    .cv-download-link:hover { border-bottom-color: var(--accent); color: var(--accent); }
+
+    /* CV layout */
+    .cv-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0 3rem;
+    }
+
+    /* CV blocks */
+    .cv-block {
+      display: contents;
+    }
+    .cv-block-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      padding-top: 0.2rem;
+      padding-bottom: 3rem;
+      border-top: 1px solid var(--rule);
+    }
+    .cv-block-content {
+      padding-bottom: 3rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* Education entries */
+    .edu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .edu-item {}
+    .edu-degree {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+    .edu-school {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+    }
+    .edu-year {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--text-quiet);
+      margin-top: 0.15rem;
+    }
+
+    /* Experience entries */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+    .exp-item {}
+    .exp-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.3rem;
+      flex-wrap: wrap;
+    }
+    .exp-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .exp-period {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--text-quiet);
+      white-space: nowrap;
+    }
+    .exp-org {
+      font-size: 0.88rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .exp-bullets li {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text-soft);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--rule);
+      font-weight: 600;
+    }
+
+    /* Skills */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: var(--text-soft);
+      border: 1px solid var(--rule);
+      padding: 0.35rem 0.8rem;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 900px) {
+      .about-body { grid-template-columns: 1fr; gap: 3rem; }
+      .about-photo { position: static; max-width: 260px; }
+      .philosophy { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cv-grid { grid-template-columns: 1fr; }
+      .cv-block-label { border-top: none; padding-bottom: 0.5rem; padding-top: 2rem; }
+      .cv-block-content { border-top: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="wordmark"><span class="accent-bracket">[</span>pranavgawde</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="work.html" data-hover="what I make">Work</a></li>
+      <li><a href="notes.html" data-hover="what I think">Notes</a></li>
+      <li><a href="studio.html" data-hover="how I help">Studio</a></li>
+      <li><a href="about.html" data-hover="the longer story">About</a></li>
+      <li><a href="contact.html" data-hover="let's connect">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>About</h1>
+  <p class="page-subtitle">Namaste — here's the longer story.</p>
+</div>
+
+<div class="page-content">
+
+  <!-- Story -->
+  <div class="about-body">
+    <div class="about-photo">
+      <img src="images/about-sketch.png" alt="Pranav Gawde">
+    </div>
+    <div class="about-story">
+      <p>I'm based in Mumbai, working at the intersection of product design, mechanical engineering, and early-stage startups. Most of my days are split between hands-on design and engineering work — sketches, CAD, prototypes — and the consulting and mentorship work I do through riidl, one of India's leading design and innovation labs. It's a combination I didn't plan for, but one I've grown to think is exactly right for where Indian product-building is today.</p>
+
+      <p>I grew up in Mumbai and studied mechanical engineering here before leaving for Delft to do my master's in Industrial Design Engineering at TU Delft. The Netherlands years changed how I think — Delft has a particular rigour about design process that I absorbed deeply, and the exposure to European product culture gave me a reference point I still use constantly. I came back to Mumbai by choice. The problems here are harder, the constraints are real, and the opportunity to build things that matter to a billion people is not something you walk away from.</p>
+
+      <p>The most formative work I've done has been with early-stage hardware founders — people building physical products who are figuring out manufacturing, user fit, and investor narrative all at once. PSP Bowling Machines taught me that the gap between a working prototype and a shippable product is enormous, and that most founders don't know what they don't know until they're already in that gap. That's where I've learned to be useful — not as someone who knows all the answers, but as someone who's seen enough of the terrain to help teams avoid the expensive mistakes.</p>
+
+      <p>I care about building a culture of real-world product thinking in India — hardware, deep-tech, things you can hold. The startup ecosystem here is still heavily SaaS-oriented, and there's a generation of founders who want to build physical products but don't have enough experienced people around them who've actually done it. A big part of what I do through teaching, through Fab Academy, through the work at riidl, is trying to close that gap — one founder, one programme, one cohort at a time.</p>
+    </div>
+  </div>
+
+  <!-- Design philosophy -->
+  <div class="philosophy">
+    <div class="philosophy-item">
+      <h3><span>Meaningful</span> Design</h3>
+      <p>Design is a long-term responsibility. The products and services I work on should hold up not just on the day they ship, but for everything that comes after — the repairs, the edge cases, the five-years-later version of the user who bought it. Good design anticipates that. It's not just about solving the brief in front of you; it's about solving it in a way that doesn't create new problems downstream.</p>
+    </div>
+    <div class="philosophy-item">
+      <h3><span>Minimalist</span> Design</h3>
+      <p>Less is more — not as an aesthetic preference, but as a design principle. The strongest solutions come from clarity and restraint, not from adding features. Every time I add something to a design, I ask whether it's earning its place: does it solve a real problem, or does it just make the thing look more complete? The designs I'm most proud of are the ones where I figured out what to leave out.</p>
+    </div>
+  </div>
+
+</div><!-- end page-content -->
+
+<!-- Scrolling achievements ticker -->
+<div class="ticker-band">
+  <div class="ticker-track" id="tickerTrack">
+    <!-- items duplicated for seamless loop -->
+    <div class="ticker-card"><span class="num">100+</span><span class="label">Ventures Supported</span></div>
+    <div class="ticker-card"><span class="num">€500K+</span><span class="label">Raised by Mentees</span></div>
+    <div class="ticker-card"><span class="num">2022</span><span class="label">Red Dot Design Award</span></div>
+    <div class="ticker-card"><span class="num">10+</span><span class="label">Institutions Lectured</span></div>
+    <div class="ticker-card"><span class="num">9 yrs</span><span class="label">Building</span></div>
+    <div class="ticker-card"><span class="num">7 yrs</span><span class="label">Designing</span></div>
+    <div class="ticker-card"><span class="num">4 yrs</span><span class="label">Consulting</span></div>
+    <div class="ticker-card"><span class="num">27 yrs</span><span class="label">Learning</span></div>
+    <!-- duplicate for seamless scroll -->
+    <div class="ticker-card"><span class="num">100+</span><span class="label">Ventures Supported</span></div>
+    <div class="ticker-card"><span class="num">€500K+</span><span class="label">Raised by Mentees</span></div>
+    <div class="ticker-card"><span class="num">2022</span><span class="label">Red Dot Design Award</span></div>
+    <div class="ticker-card"><span class="num">10+</span><span class="label">Institutions Lectured</span></div>
+    <div class="ticker-card"><span class="num">9 yrs</span><span class="label">Building</span></div>
+    <div class="ticker-card"><span class="num">7 yrs</span><span class="label">Designing</span></div>
+    <div class="ticker-card"><span class="num">4 yrs</span><span class="label">Consulting</span></div>
+    <div class="ticker-card"><span class="num">27 yrs</span><span class="label">Learning</span></div>
+  </div>
+</div>
+
+<!-- HTML CV -->
+<div class="page-content">
+  <div class="cv-section">
+    <div class="cv-section-header">
+      <h2>Curriculum Vitae</h2>
+      <a href="pdf/pranav-cv.pdf" download class="cv-download-link">↓ Download PDF</a>
+    </div>
+
+    <div class="cv-grid">
+
+      <!-- Education -->
+      <div class="cv-block">
+        <div class="cv-block-label">Education</div>
+        <div class="cv-block-content">
+          <div class="edu-list">
+            <div class="edu-item">
+              <div class="edu-degree">Fab Academy Diploma — Digital Fabrication</div>
+              <div class="edu-school">Fab Foundation / MIT, USA</div>
+              <div class="edu-year">2023</div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-degree">Master of Science — Product Design</div>
+              <div class="edu-school">TU Delft, The Netherlands</div>
+              <div class="edu-year">2019 – 2021</div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-degree">Bachelor of Technology — Mechanical Engineering</div>
+              <div class="edu-school">Mumbai University, India</div>
+              <div class="edu-year">2015 – 2019</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div class="cv-block">
+        <div class="cv-block-label">Experience</div>
+        <div class="cv-block-content">
+          <div class="exp-list">
+
+            <div class="exp-item">
+              <div class="exp-header">
+                <span class="exp-title">Design &amp; Innovation Lead</span>
+                <span class="exp-period">Aug '22 – Present</span>
+              </div>
+              <div class="exp-org">riidl, Somaiya Vidyavihar — Mumbai, India</div>
+              <ul class="exp-bullets">
+                <li>Directed an annual pre-incubation pipeline of 500+ applicants, enabled 100+ early-stage ventures, and administered a €6,000 innovation fund with 3–5 flagship demonstrations per year.</li>
+                <li>Provided end-to-end design consultancy to startups, leading industrial design, manufacturing readiness, and product-market fit validation, supported by prototyping, user research, packaging, and investment pitch refinement.</li>
+                <li>Led FabLab operations and acted as Mumbai Node Manager and Instructor for the Fab Academy Diploma (Fab Foundation, MIT, USA), delivering advanced digital fabrication training and coordinating with the global academic network.</li>
+              </ul>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-header">
+                <span class="exp-title">Production Manager</span>
+                <span class="exp-period">Aug '20 – Jul '22</span>
+              </div>
+              <div class="exp-org">H2L Robotics B.V. — The Netherlands</div>
+              <ul class="exp-bullets">
+                <li>Contributed to the development and seasonal production of Selector 180, the world's first autonomous tulip selection robot, leading CAD design, electronic cabinet layouts, wiring systems, 3D printing, assembly, testing, and field repairs.</li>
+                <li>Planned and executed production for the 2021–2022 tulip seasons, managing inventory, assembly workflows, technical documentation, and deployment readiness.</li>
+              </ul>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-header">
+                <span class="exp-title">Industrial Product Designer</span>
+                <span class="exp-period">Jan '20 – Jun '20</span>
+              </div>
+              <div class="exp-org">SenseGlove B.V. — The Netherlands</div>
+              <ul class="exp-bullets">
+                <li>Developed and validated embodiment designs for a next-generation wearable haptic device, integrating user comfort, mechanical performance, and system constraints.</li>
+              </ul>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-header">
+                <span class="exp-title">Co-founder &amp; Design Engineer</span>
+                <span class="exp-period">Jun '17 – May '19</span>
+              </div>
+              <div class="exp-org">PSP Bowling Machines — Mumbai, India</div>
+              <ul class="exp-bullets">
+                <li>Co-founded PSP Bowling Machines and engineered a precision 3-DOF cricket training system, overseeing mechanical design, CAD prototyping, fabrication, testing, and field validation.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="cv-block">
+        <div class="cv-block-label">Top Skills</div>
+        <div class="cv-block-content">
+          <div class="skills-list">
+            <span class="skill-tag">Rapid Prototyping</span>
+            <span class="skill-tag">CAD — SolidWorks</span>
+            <span class="skill-tag">Design Research</span>
+            <span class="skill-tag">Project Management</span>
+            <span class="skill-tag">Operational Execution</span>
+            <span class="skill-tag">Industrial Design</span>
+            <span class="skill-tag">Manufacturing Readiness</span>
+            <span class="skill-tag">Fab Academy Instruction</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<section class="signoff-band">
+  <p class="signoff-text">Let's make it happen.</p>
+</section>
+
+<footer>
+  <div class="wordmark"><span class="accent-bracket">[</span>pranavgawde</div>
+  <ul class="footer-nav">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="notes.html">Notes</a></li>
+    <li><a href="studio.html">Studio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="footer-socials">
+    <a href="https://linkedin.com/in/pranavgawde" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://behance.net/pranavgawde" target="_blank" rel="noopener">Behance</a>
+  </div>
+  <div class="copyright">© 2026 Pranav Gawde · Designed and built in Mumbai, India</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  const toggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+</script>
+</body>
+</html>

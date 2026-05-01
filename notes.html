@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes — Pranav Gawde</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .notes-header {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .notes-header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .notes-header .notes-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      line-height: 1.65;
+      max-width: 56ch;
+    }
+
+    .notes-content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .notes-search-wrap { margin-bottom: 3rem; }
+    .notes-search {
+      width: 100%;
+      max-width: 480px;
+      background: var(--bg-soft);
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      padding: 0.75rem 1.1rem;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .notes-search::placeholder { color: var(--text-quiet); }
+    .notes-search:focus { border-color: var(--accent); }
+
+    .notes-section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      margin-bottom: 1.25rem;
+    }
+
+    .notes-cards {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 5rem;
+    }
+    .note-card {
+      border-bottom: 1px solid var(--rule);
+      padding: 2rem 0;
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 2rem;
+      align-items: start;
+      text-decoration: none;
+      transition: background 0.15s ease;
+      color: var(--text);
+    }
+    .note-card:first-child { border-top: 1px solid var(--rule); }
+    .note-card:hover {
+      background: var(--bg-soft);
+      margin: 0 -1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    .note-card-date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: var(--text-quiet);
+      padding-top: 0.2rem;
+    }
+    .note-card-tag {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      margin-top: 0.4rem;
+    }
+    .note-card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .note-card-preview {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .notes-archive { display: none; }
+    .notes-archive.has-notes { display: block; }
+
+    .archive-list { display: flex; flex-direction: column; }
+    .archive-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed var(--rule);
+      text-decoration: none;
+    }
+    .archive-item:hover .archive-title { color: var(--accent); }
+    .archive-date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: var(--text-quiet);
+      white-space: nowrap;
+      min-width: 90px;
+    }
+    .archive-title {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      transition: color 0.15s ease;
+    }
+
+    @media (max-width: 700px) {
+      .notes-header { padding: 3.5rem 1.5rem 3rem; }
+      .notes-content { padding: 3rem 1.5rem 4rem; }
+      .note-card { grid-template-columns: 1fr; gap: 0.5rem; }
+      .note-card-date { display: flex; align-items: center; gap: 0.75rem; }
+      .note-card-tag { margin-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="wordmark"><span class="accent-bracket">[</span>pranavgawde</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="work.html" data-hover="what I make">Work</a></li>
+      <li><a href="notes.html" data-hover="what I think">Notes</a></li>
+      <li><a href="studio.html" data-hover="how I help">Studio</a></li>
+      <li><a href="about.html" data-hover="the longer story">About</a></li>
+      <li><a href="contact.html" data-hover="let's connect">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="notes-header">
+  <h1>Notes</h1>
+  <p class="notes-subtitle">Sometimes a designer's perspective. Sometimes an engineer's. Sometimes a manager's. Always mine.</p>
+</div>
+
+<div class="notes-content">
+
+  <div class="notes-search-wrap">
+    <input type="search" class="notes-search" id="notesSearch" placeholder="Search notes…" aria-label="Search notes">
+  </div>
+
+  <p class="notes-section-label">Recent</p>
+
+  <div class="notes-cards" id="notesCards">
+    <a href="notes/why-do-engineering.html" class="note-card">
+      <div>
+        <div class="note-card-date">13 Nov 2019</div>
+        <div class="note-card-tag">Engineering</div>
+      </div>
+      <div>
+        <div class="note-card-title">Why do Engineering?!</div>
+        <div class="note-card-preview">For the last 4 years, people ask me Why Engineering? and I had no answer. Until recently while traveling and having absolutely nothing to do, I found the answer.</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="notes-archive" id="notesArchive">
+    <p class="notes-section-label">Archive</p>
+    <div class="archive-list" id="archiveList"></div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wordmark"><span class="accent-bracket">[</span>pranavgawde</div>
+  <ul class="footer-nav">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="notes.html">Notes</a></li>
+    <li><a href="studio.html">Studio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="footer-socials">
+    <a href="https://linkedin.com/in/pranavgawde" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://behance.net/pranavgawde" target="_blank" rel="noopener">Behance</a>
+  </div>
+  <div class="copyright">© 2026 Pranav Gawde · Designed and built in Mumbai, India</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  const toggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+  document.getElementById('notesSearch').addEventListener('input', function() {
+    const q = this.value.toLowerCase();
+    document.querySelectorAll('.note-card').forEach(card => {
+      card.style.display = card.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+    document.querySelectorAll('.archive-item').forEach(item => {
+      item.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+</script>
+</body>
+</html>

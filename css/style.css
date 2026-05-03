@@ -21,6 +21,14 @@
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    isolation: isolate;
+  }
+
+  .bg-waves {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
   }
 
   a {
@@ -56,8 +64,20 @@
     font-size: 1rem;
     letter-spacing: -0.01em;
     color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
   }
   .wordmark .accent-bracket { color: var(--accent); margin-right: 2px; }
+  .site-logo { height: 28px; width: auto; display: block; }
+  .wordmark-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  a.wordmark:hover .wordmark-name { color: var(--accent); }
 
   .nav-links {
     display: flex;
@@ -76,8 +96,7 @@
   }
   .nav-links a:hover { color: var(--text); }
 
-  .nav-links a[data-hover]:hover::after {
-    content: attr(data-hover);
+  .nav-tooltip {
     position: absolute;
     top: calc(100% + 8px);
     left: 50%;
@@ -92,6 +111,7 @@
     white-space: nowrap;
     pointer-events: none;
     font-family: 'Open Sans', sans-serif;
+    min-width: 1ch;
   }
 
   .menu-toggle {
@@ -231,7 +251,7 @@
     text-align: center;
   }
   .category-card-image {
-    aspect-ratio: 4/5;
+    aspect-ratio: 3/2;
     background: var(--bg-soft);
     overflow: hidden;
     margin-bottom: 1rem;
@@ -250,6 +270,14 @@
     opacity: 0.92;
     border-color: var(--accent);
   }
+  .category-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .category-card:hover .category-card-image img { transform: scale(1.04); }
   .category-card h3 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
@@ -264,22 +292,20 @@
   .closing {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 6rem 2rem 5rem;
+    padding: 6rem 2rem 1.75rem;
     text-align: center;
   }
   .closing-question {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
     color: var(--text);
-    line-height: 1.45;
-    max-width: 36ch;
-    margin: 0 auto;
+    white-space: nowrap;
   }
 
   .signoff-band {
     background: var(--accent);
-    padding: 4rem 2rem;
+    padding: 2rem;
     text-align: center;
     transition: background 0.4s ease;
   }
@@ -351,8 +377,9 @@
     .featured { padding: 1.5rem 1.5rem 3rem; }
     .category-grid { grid-template-columns: 1fr; gap: 2rem; max-width: 320px; margin: 0 auto; }
 
-    .closing { padding: 4rem 1.5rem 3rem; }
-    .signoff-band { padding: 3rem 1.5rem; }
+    .closing { padding: 4rem 1.5rem 1.5rem; }
+    .closing-question { white-space: normal; }
+    .signoff-band { padding: 1.5rem; }
 
     .nav-links { display: none; }
     .nav-links.open {
@@ -377,14 +404,60 @@
     .footer-nav, .footer-socials { justify-content: center; }
   }
 
-  /* Subtle fade-in on load */
-  .hero, .prose-section, .featured { opacity: 0; animation: fadeIn 0.6s ease forwards; }
-  .prose-section { animation-delay: 0.1s; }
-  .featured { animation-delay: 0.2s; }
+  /* Fade-in on load */
+  .hero, .prose-section, .mosaic-section { opacity: 0; animation: fadeIn 0.6s ease forwards; }
+  .prose-section  { animation-delay: 0.1s; }
+  .mosaic-section { animation-delay: 0.2s; }
 
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ NAV UNDERLINE DRAW ============ */
+  /* ::after is used for tooltips, so underline uses ::before */
+  .nav-links a::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--accent);
+    transition: width 0.25s ease;
+  }
+  .nav-links a:hover::before,
+  .nav-links a.active::before { width: 100%; }
+  .nav-links a.active { color: var(--accent); }
+
+  /* ============ SIGNOFF TEXT NUDGE ============ */
+  .signoff-text { transition: transform 0.35s ease; display: block; }
+  .signoff-band:hover .signoff-text { transform: scale(1.025); }
+
+  /* ============ CUSTOM CURSOR ============ */
+  .has-custom-cursor,
+  .has-custom-cursor a,
+  .has-custom-cursor button { cursor: none; }
+
+  .cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease,
+                background 0.2s ease, border 0.2s ease,
+                opacity 0.15s ease;
+    will-change: left, top;
+  }
+  .cursor-dot.cursor-hidden { opacity: 0; }
+  .cursor-dot.is-link {
+    width: 28px; height: 28px;
+    background: transparent;
+    border: 1.5px solid var(--accent);
   }
 
   /* ============ INNER PAGE SHARED ============ */
@@ -405,9 +478,12 @@
   }
   .page-header .page-subtitle {
     font-size: 1.05rem;
-    color: var(--text-soft);
+    color: var(--accent);
     line-height: 1.6;
-    max-width: 56ch;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    margin-top: 0.25rem;
+    white-space: nowrap;
   }
 
   .page-content {
@@ -419,4 +495,5 @@
   @media (max-width: 900px) {
     .page-header { padding: 3.5rem 1.5rem 2.5rem; }
     .page-content { padding: 3rem 1.5rem 4rem; }
+    .page-header .page-subtitle { white-space: normal; }
   }

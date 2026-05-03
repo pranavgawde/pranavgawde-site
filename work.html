@@ -8,7 +8,113 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/site.js" defer></script>
   <style>
+    /* ---- Sector cards ---- */
+    .sector-section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    .sector-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .sector-card {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      text-decoration: none;
+      background: var(--bg-soft);
+    }
+
+    .sector-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%);
+      transition: filter 0.45s ease, transform 0.5s ease;
+    }
+    .sector-card:hover .sector-card-img {
+      filter: grayscale(0%);
+      transform: scale(1.04);
+    }
+
+    .sector-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.35) 50%, transparent 100%);
+    }
+
+    /* code + name only — height stays small so text sits at the bottom */
+    .sector-card-body {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem 1.5rem 0.75rem;
+      color: #fff;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .sector-card:hover .sector-card-body {
+      transform: translateY(-4.75rem);
+    }
+
+    .sector-card-code {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+
+    .sector-card-name {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.7;
+      margin-bottom: 0;
+    }
+
+    /* reveal panel — sibling of body, starts below card edge, slides up on hover */
+    .sector-card-reveal {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0 1.5rem 1.5rem;
+      color: #fff;
+      transform: translateY(100%);
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .sector-card:hover .sector-card-reveal {
+      transform: translateY(0);
+    }
+
+    .sector-card-desc {
+      font-size: 0.82rem;
+      line-height: 1.5;
+      opacity: 0.88;
+      margin-bottom: 0.85rem;
+    }
+
+    .sector-card-cta {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      padding-bottom: 1px;
+    }
+
+    /* ---- Work header row ---- */
     .work-header-row {
       display: flex;
       align-items: flex-end;
@@ -29,7 +135,6 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       padding: 0.6rem 1.1rem;
-      border-radius: 3px;
       border: 1.5px solid var(--rule);
       transition: border-color 0.2s ease, color 0.2s ease;
       text-decoration: none;
@@ -41,11 +146,36 @@
       color: var(--accent);
     }
 
-    /* ---- PDF viewer ---- */
-    .pdf-viewer {
-      background: #E8E6DF;
-      padding: 3rem 2rem;
-      margin: 0 -2rem;
+    /* ---- PDF section ---- */
+    .pdf-section {
+      background: #EDEBE4;
+      border-top: 1px solid var(--rule);
+    }
+
+    .pdf-section-header {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.5rem 2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .pdf-section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .pdf-section-note {
+      font-size: 0.9rem;
+      color: var(--text-quiet);
     }
 
     .pdf-pages {
@@ -55,6 +185,7 @@
       gap: 1.5rem;
       max-width: 900px;
       margin: 0 auto;
+      padding: 0 2rem 4rem;
     }
 
     .pdf-page-wrap {
@@ -88,8 +219,13 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    @media (max-width: 700px) {
-      .pdf-viewer { padding: 2rem 1rem; margin: 0 -1.5rem; }
+    @media (max-width: 900px) {
+      .sector-grid { grid-template-columns: repeat(2, 1fr); }
+      .sector-section { padding: 2rem 1.5rem 3rem; }
+    }
+    @media (max-width: 500px) {
+      .sector-grid { gap: 0.75rem; }
+      .sector-card-code { font-size: 1.5rem; }
       .work-header-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
     }
   </style>
@@ -98,7 +234,7 @@
 
 <nav class="site-nav" id="siteNav">
   <div class="nav-inner">
-    <a href="index.html" class="wordmark"><span class="accent-bracket">[</span>pranavgawde</a>
+    <a href="index.html" class="wordmark"><img src="images/pg-logo.png" alt="PG" class="site-logo"><span class="wordmark-name">pranavgawde</span></a>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="work.html" data-hover="what I make">Work</a></li>
@@ -114,14 +250,79 @@
   <div class="work-header-row">
     <div>
       <h1>Work</h1>
-      <p class="page-subtitle">My current portfolio — design, engineering, and consulting work.</p>
+      <p class="page-subtitle">Everything I've built, designed, and shipped — nine years of work.</p>
     </div>
     <a href="pdf/pranav-portfolio.pdf" download class="btn-download">↓ Download PDF</a>
   </div>
 </div>
 
-<div class="page-content" style="padding-bottom: 0; padding-left: 2rem; padding-right: 2rem;">
-  <div class="pdf-viewer" id="pdfViewer">
+<section class="sector-section">
+  <div class="sector-grid">
+
+    <a href="work-de.html" class="sector-card">
+      <img src="images/DE2.png" alt="Design & Engineering" class="sector-card-img">
+      <div class="sector-card-overlay"></div>
+      <div class="sector-card-body">
+        <div class="sector-card-code">DE</div>
+        <div class="sector-card-name">Design &amp; Engineering</div>
+      </div>
+      <div class="sector-card-reveal">
+        <p class="sector-card-desc">From concept to manufactured product. Industrial design, mechanical engineering, and production management.</p>
+        <span class="sector-card-cta">Explore →</span>
+      </div>
+    </a>
+
+    <a href="work-rd.html" class="sector-card">
+      <img src="images/RD2.png" alt="Research & Design" class="sector-card-img">
+      <div class="sector-card-overlay"></div>
+      <div class="sector-card-body">
+        <div class="sector-card-code">RD</div>
+        <div class="sector-card-name">Research &amp; Design</div>
+      </div>
+      <div class="sector-card-reveal">
+        <p class="sector-card-desc">Design research that investigates problems before reaching for solutions. Methods, systems, and futures.</p>
+        <span class="sector-card-cta">Explore →</span>
+      </div>
+    </a>
+
+    <a href="work-cl.html" class="sector-card">
+      <img src="images/CL2.png" alt="Consult & Liaison" class="sector-card-img">
+      <div class="sector-card-overlay"></div>
+      <div class="sector-card-body">
+        <div class="sector-card-code">CL</div>
+        <div class="sector-card-name">Consult &amp; Liaison</div>
+      </div>
+      <div class="sector-card-reveal">
+        <p class="sector-card-desc">Advising startups and institutions on product strategy, design programmes, and venture building.</p>
+        <span class="sector-card-cta">Explore →</span>
+      </div>
+    </a>
+
+    <a href="work-teaching.html" class="sector-card">
+      <img src="images/studio-teaching.jpg" alt="Teaching & Lectures" class="sector-card-img">
+      <div class="sector-card-overlay"></div>
+      <div class="sector-card-body">
+        <div class="sector-card-code">EDU</div>
+        <div class="sector-card-name">Teaching &amp; Lectures</div>
+      </div>
+      <div class="sector-card-reveal">
+        <p class="sector-card-desc">Design education through lectures, workshops, and mentorship at institutions across India and the Netherlands.</p>
+        <span class="sector-card-cta">Explore →</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="pdf-section">
+  <div class="pdf-section-header">
+    <div>
+      <p class="pdf-section-label">Full Portfolio PDF</p>
+      <p class="pdf-section-note">Scroll to browse all work, or download for offline viewing.</p>
+    </div>
+  </div>
+
+  <div id="pdfViewer">
     <div class="pdf-loading" id="pdfLoading">
       <div class="spinner"></div>
       Loading portfolio…
@@ -130,10 +331,8 @@
   </div>
 </div>
 
-<div style="padding: 5rem 0 0;"></div>
-
 <footer>
-  <div class="wordmark"><span class="accent-bracket">[</span>pranavgawde</div>
+  <a href="index.html" class="wordmark"><img src="images/pg-logo.png" alt="PG" class="site-logo"><span class="wordmark-name">pranavgawde</span></a>
   <ul class="footer-nav">
     <li><a href="work.html">Work</a></li>
     <li><a href="notes.html">Notes</a></li>
@@ -159,40 +358,32 @@
   const navLinks = document.getElementById('navLinks');
   toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
 
-  // PDF viewer
   pdfjsLib.GlobalWorkerOptions.workerSrc =
     'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
   const pagesContainer = document.getElementById('pdfPages');
-  const loadingEl = document.getElementById('pdfLoading');
-
-  const scale = window.devicePixelRatio >= 2 ? 3 : 2;
+  const loadingEl      = document.getElementById('pdfLoading');
+  const scale = window.devicePixelRatio >= 2 ? 2.5 : 1.8;
 
   pdfjsLib.getDocument('pdf/pranav-portfolio.pdf').promise.then(pdf => {
     loadingEl.style.display = 'none';
-
     const renders = [];
-    for (let i = 1; i <= pdf.numPages; i++) {
-      renders.push(renderPage(pdf, i));
-    }
+    for (let i = 1; i <= pdf.numPages; i++) renders.push(renderPage(pdf, i));
     return Promise.all(renders);
   }).catch(() => {
-    loadingEl.innerHTML = 'Could not load portfolio PDF.';
+    loadingEl.innerHTML = 'Could not load portfolio PDF. <a href="pdf/pranav-portfolio.pdf" style="color:var(--accent)">Download instead →</a>';
   });
 
   async function renderPage(pdf, num) {
-    const page = await pdf.getPage(num);
+    const page     = await pdf.getPage(num);
     const viewport = page.getViewport({ scale });
-
-    const wrap = document.createElement('div');
+    const wrap     = document.createElement('div');
     wrap.className = 'pdf-page-wrap';
-
-    const canvas = document.createElement('canvas');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
+    const canvas   = document.createElement('canvas');
+    canvas.width   = viewport.width;
+    canvas.height  = viewport.height;
     wrap.appendChild(canvas);
     pagesContainer.appendChild(wrap);
-
     await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
   }
 </script>

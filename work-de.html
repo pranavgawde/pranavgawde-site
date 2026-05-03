@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design &amp; Engineering — Pranav Gawde</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/site.js" defer></script>
+  <style>
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      margin-bottom: 1.5rem;
+      transition: color 0.2s ease;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    .sector-tag {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(0,117,93,0.08);
+      padding: 0.25rem 0.65rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .project-row:first-child { padding-top: 0; }
+    .project-row:last-child { border-bottom: none; }
+
+    .project-row-image {
+      overflow: hidden;
+      background: var(--bg-soft);
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+    .project-row-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(10%);
+      transition: transform 0.5s ease, filter 0.4s ease;
+    }
+    .project-row:hover .project-row-image img {
+      transform: scale(1.03);
+      filter: grayscale(0%);
+    }
+
+    .award-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #B8860B;
+      background: #FFF8E1;
+      border: 1px solid #F0D060;
+      padding: 0.22rem 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-row-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-row-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-row-meta {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      color: var(--text-quiet);
+      letter-spacing: 0.01em;
+      margin-bottom: 1.25rem;
+    }
+    .project-row-meta .sep { margin: 0 0.5em; color: var(--rule); }
+
+    .project-row-desc {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-soft);
+      margin-bottom: 2rem;
+    }
+
+    .project-row-links { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+
+    .btn-view {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.2rem;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .btn-view:hover { background: var(--accent-dark); color: #fff; }
+
+    .btn-behance {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1px;
+      text-decoration: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .btn-behance:hover { color: var(--accent); border-color: var(--accent); }
+
+    @media (max-width: 800px) {
+      .project-row { grid-template-columns: 1fr; gap: 1.75rem; padding: 3rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="wordmark"><img src="images/pg-logo.png" alt="PG" class="site-logo"><span class="wordmark-name">pranavgawde</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="work.html" data-hover="what I make">Work</a></li>
+      <li><a href="notes.html" data-hover="what I think">Notes</a></li>
+      <li><a href="studio.html" data-hover="how I help">Studio</a></li>
+      <li><a href="about.html" data-hover="the longer story">About</a></li>
+      <li><a href="contact.html" data-hover="let's connect">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <a href="work.html" class="back-link">← Work</a>
+  <div class="sector-tag">DE</div>
+  <h1>Design &amp; Engineering</h1>
+  <p class="page-subtitle">Engineering and robotics projects for real companies and startups — from concept and prototyping to commercialisation.</p>
+</div>
+
+<div class="page-content">
+  <div class="projects-list">
+
+    <div class="project-row">
+      <div class="project-row-image">
+        <img src="images/DE1.png" alt="Selector 180 — H2L Robotics">
+      </div>
+      <div>
+        <div class="award-pill">★ Red Dot Design Award 2022</div>
+        <p class="project-row-tag">Industrial Design · Robotics · Production</p>
+        <h2 class="project-row-title">Selector 180</h2>
+        <p class="project-row-meta">
+          H2L Robotics B.V.<span class="sep">·</span>Designer &amp; Production Manager<span class="sep">·</span>Jul 2020 – Jun 2022<span class="sep">·</span>Schagen, Netherlands
+        </p>
+        <p class="project-row-desc">Co-designed, manufactured, and commercialised the Selector 180 — an autonomous tulip selection robot. Responsible for product and systems design, CAD development, production workflows, assembly, wiring integration, BOM management using Philips' 12NC system, and field deployment across 16 customers over two consecutive years.</p>
+        <div class="project-row-links">
+          <a href="selector-180.html" class="btn-view">View project →</a>
+          <a href="https://www.behance.net/gallery/196730461/Selector-180-H2L-Robotics-BV" target="_blank" rel="noopener" class="btn-behance">Behance ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <div class="project-row-image">
+        <img src="images/DE2.png" alt="Manao Glove — SenseGlove">
+      </div>
+      <div>
+        <p class="project-row-tag">Product Design · Haptics · VR</p>
+        <h2 class="project-row-title">Manao Glove</h2>
+        <p class="project-row-meta">
+          SenseGlove B.V.<span class="sep">·</span>Product Designer<span class="sep">·</span>Jan – Jun 2020<span class="sep">·</span>Delft, Netherlands
+        </p>
+        <p class="project-row-desc">Embodiment design for SenseGlove's next-generation haptic VR glove — translating functional principles into a validated working prototype. Structured through design sprints across subsystems: thimble and cable guides, force feedback mechanism, and soft glove design. Validated using Blender Game Engine simulations for Industry 4.0 tasks.</p>
+        <div class="project-row-links">
+          <a href="manao-glove.html" class="btn-view">View project →</a>
+          <a href="https://www.behance.net/gallery/110115049/SENSEGLOVE-Manao-VR" target="_blank" rel="noopener" class="btn-behance">Behance ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <div class="project-row-image">
+        <img src="images/DE3.png" alt="PSP Bowling Machines">
+      </div>
+      <div>
+        <p class="project-row-tag">Mechanical Design · Venture · Sports Tech</p>
+        <h2 class="project-row-title">PSP Bowling Machines</h2>
+        <p class="project-row-meta">
+          PSP Bowling Machines<span class="sep">·</span>Co-founder &amp; Design Engineer<span class="sep">·</span>Jul 2017 – Jun 2019<span class="sep">·</span>Mumbai, India
+        </p>
+        <p class="project-row-desc">Co-founded and designed an autonomous cricket bowling system — patent-oriented mechanism with 3 rotational and 1 translational degrees of freedom, capable of replicating pace, swing, spin, and varying release heights. Achieved bowling speeds up to 140 km/h. Led the full product journey from concept through manufacturing and commercial launch.</p>
+        <div class="project-row-links">
+          <a href="psp-bowling.html" class="btn-view">View project →</a>
+          <a href="https://www.behance.net/gallery/103898099/PSP-Bowling-Machine" target="_blank" rel="noopener" class="btn-behance">Behance ↗</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <a href="index.html" class="wordmark"><img src="images/pg-logo.png" alt="PG" class="site-logo"><span class="wordmark-name">pranavgawde</span></a>
+  <ul class="footer-nav">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="notes.html">Notes</a></li>
+    <li><a href="studio.html">Studio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="footer-socials">
+    <a href="https://linkedin.com/in/pranavgawde" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://behance.net/pranavgawde" target="_blank" rel="noopener">Behance</a>
+  </div>
+  <div class="copyright">© 2026 Pranav Gawde · Designed and built in Mumbai, India</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+  const toggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+</script>
+</body>
+</html>

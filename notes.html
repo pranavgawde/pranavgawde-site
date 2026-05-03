@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/site.js" defer></script>
   <style>
     .notes-header {
       max-width: var(--max-width);
@@ -24,11 +25,17 @@
       color: var(--text);
       margin-bottom: 0.75rem;
     }
-    .notes-header .notes-subtitle {
+    .notes-subtitle {
       font-size: 1.05rem;
-      color: var(--text-soft);
-      line-height: 1.65;
-      max-width: 56ch;
+      color: var(--accent);
+      line-height: 1.6;
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+      margin-top: 0.25rem;
+      white-space: nowrap;
+    }
+    @media (max-width: 700px) {
+      .notes-subtitle { white-space: normal; }
     }
 
     .notes-content {
@@ -60,7 +67,7 @@
       font-size: 0.7rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-quiet);
+      color: var(--accent);
       margin-bottom: 1.25rem;
     }
 
@@ -166,7 +173,7 @@
 
 <nav class="site-nav" id="siteNav">
   <div class="nav-inner">
-    <a href="index.html" class="wordmark"><span class="accent-bracket">[</span>pranavgawde</a>
+    <a href="index.html" class="wordmark"><img src="images/pg-logo.png" alt="PG" class="site-logo"><span class="wordmark-name">pranavgawde</span></a>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="work.html" data-hover="what I make">Work</a></li>
@@ -212,7 +219,7 @@
 </div>
 
 <footer>
-  <div class="wordmark"><span class="accent-bracket">[</span>pranavgawde</div>
+  <a href="index.html" class="wordmark"><img src="images/pg-logo.png" alt="PG" class="site-logo"><span class="wordmark-name">pranavgawde</span></a>
   <ul class="footer-nav">
     <li><a href="work.html">Work</a></li>
     <li><a href="notes.html">Notes</a></li>

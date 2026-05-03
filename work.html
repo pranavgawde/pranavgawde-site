@@ -10,111 +10,7 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/site.js" defer></script>
   <style>
-    /* ---- Sector cards ---- */
-    .sector-section {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 3rem 2rem 5rem;
-    }
-
-    .sector-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-    }
-
-    .sector-card {
-      display: block;
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 3/4;
-      text-decoration: none;
-      background: var(--bg-soft);
-    }
-
-    .sector-card-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: grayscale(20%);
-      transition: filter 0.45s ease, transform 0.5s ease;
-    }
-    .sector-card:hover .sector-card-img {
-      filter: grayscale(0%);
-      transform: scale(1.04);
-    }
-
-    .sector-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.35) 50%, transparent 100%);
-    }
-
-    /* code + name only — height stays small so text sits at the bottom */
-    .sector-card-body {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 1.5rem 1.5rem 0.75rem;
-      color: #fff;
-      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .sector-card:hover .sector-card-body {
-      transform: translateY(-4.75rem);
-    }
-
-    .sector-card-code {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 2rem;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      margin-bottom: 0.2rem;
-    }
-
-    .sector-card-name {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      opacity: 0.7;
-      margin-bottom: 0;
-    }
-
-    /* reveal panel — sibling of body, starts below card edge, slides up on hover */
-    .sector-card-reveal {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 0 1.5rem 1.5rem;
-      color: #fff;
-      transform: translateY(100%);
-      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .sector-card:hover .sector-card-reveal {
-      transform: translateY(0);
-    }
-
-    .sector-card-desc {
-      font-size: 0.82rem;
-      line-height: 1.5;
-      opacity: 0.88;
-      margin-bottom: 0.85rem;
-    }
-
-    .sector-card-cta {
-      display: inline-block;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #fff;
-      border-bottom: 1px solid rgba(255,255,255,0.5);
-      padding-bottom: 1px;
-    }
-
-    /* ---- Work header row ---- */
+    /* ---- page header ---- */
     .work-header-row {
       display: flex;
       align-items: flex-end;
@@ -122,7 +18,6 @@
       gap: 2rem;
       flex-wrap: wrap;
     }
-
     .btn-download {
       display: inline-flex;
       align-items: center;
@@ -141,92 +36,578 @@
       white-space: nowrap;
       margin-bottom: 0.25rem;
     }
-    .btn-download:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    .btn-download:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ---- PDF section ---- */
-    .pdf-section {
-      background: #EDEBE4;
-      border-top: 1px solid var(--rule);
-    }
-
-    .pdf-section-header {
+    /* ===================================================
+       TIMELINE
+    =================================================== */
+    .timeline {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 2.5rem 2rem 2rem;
+      padding: 2rem 2rem 6rem;
+    }
+
+    /* Each era: left border is the spine line, offset so dots sit on it */
+    .tl-era {
+      border-left: 1px solid var(--rule);
+      margin-left: 10px;
+      padding-left: 2.25rem;
+      position: relative;
+    }
+    /* Last era's line fades out */
+    .tl-era:last-child {
+      border-left: 1px solid transparent;
+    }
+
+    /* ---- Era header ---- */
+    .era-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
+      gap: 0.75rem;
+      padding: 1.75rem 0 0.9rem;
+      position: relative;
       flex-wrap: wrap;
     }
-
-    .pdf-section-label {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.25rem;
+    /* Dot on the spine line */
+    .era-header::before {
+      content: '';
+      position: absolute;
+      left: calc(-2.25rem - 5px);   /* -padding-left - half-dot */
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent);
+      background: var(--bg);
+      z-index: 1;
     }
-
-    .pdf-section-note {
-      font-size: 0.9rem;
+    .era-year {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .era-sep {
+      color: var(--rule);
+      font-size: 0.8rem;
+    }
+    .era-context {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
       color: var(--text-quiet);
     }
+    /* Rule below era header */
+    .era-rule {
+      height: 1px;
+      background: var(--rule);
+      margin-bottom: 0;
+    }
 
-    .pdf-pages {
+    /* ===================================================
+       COMPACT PROJECT ROWS
+    =================================================== */
+    .proj-entry { border-bottom: 1px solid var(--rule); }
+
+    .proj-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      min-height: 160px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .proj-thumb {
+      width: 180px;
+      height: 160px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .proj-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(15%);
+      transition: filter 0.4s ease, transform 0.5s ease;
+    }
+    .proj-entry:hover .proj-thumb img { filter: grayscale(0%); transform: scale(1.05); }
+
+    .proj-info {
+      padding: 1rem 1.25rem 1rem 1.5rem;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2rem 4rem;
+      justify-content: space-between;
+    }
+    .proj-info-main { display: flex; flex-direction: column; gap: 0.28rem; }
+    .proj-info-foot {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding-top: 0.5rem;
     }
 
-    .pdf-page-wrap {
-      width: 100%;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.13);
-      background: #fff;
-      line-height: 0;
-    }
-    .pdf-page-wrap canvas {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .pdf-loading {
-      text-align: center;
-      padding: 4rem 2rem;
+    .proj-cat {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(0,117,93,0.08);
+      padding: 0.16rem 0.5rem;
+      display: inline-block;
+      align-self: flex-start;
+    }
+    .proj-award {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #B8860B;
+      background: #FFF8E1;
+      border: 1px solid #F0D060;
+      padding: 0.14rem 0.46rem;
+      align-self: flex-start;
+    }
+    .proj-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.92rem, 1.5vw, 1.1rem);
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+    .proj-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      color: var(--text-quiet);
+      letter-spacing: 0.01em;
+    }
+    .proj-teaser {
+      font-size: 0.8rem;
+      line-height: 1.55;
+      color: var(--text-soft);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .proj-disciplines {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
       color: var(--text-quiet);
     }
-    .pdf-loading .spinner {
+    .proj-toggle-btn {
       width: 28px;
       height: 28px;
-      border: 2.5px solid var(--rule);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      margin: 0 auto 1rem;
+      background: none;
+      border: 1.5px solid var(--rule);
+      cursor: pointer;
+      color: var(--text-quiet);
+      font-size: 1.1rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.3s ease;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    .proj-entry:hover .proj-toggle-btn { border-color: var(--accent); color: var(--accent); }
+    .proj-entry.is-open .proj-toggle-btn { transform: rotate(45deg); border-color: var(--accent); color: var(--accent); }
 
-    @media (max-width: 900px) {
-      .sector-grid { grid-template-columns: repeat(2, 1fr); }
-      .sector-section { padding: 2rem 1.5rem 3rem; }
+    /* ---- Detail panel ---- */
+    .proj-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    @media (max-width: 500px) {
-      .sector-grid { gap: 0.75rem; }
-      .sector-card-code { font-size: 1.5rem; }
-      .work-header-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .proj-detail-inner {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      border-top: 1px solid var(--rule);
+      background: var(--bg-soft);
+    }
+    .proj-detail-spacer { grid-column: 1; }
+    .proj-detail-body {
+      grid-column: 2;
+      padding: 2rem 2rem 2.5rem 1.75rem;
+    }
+    .pdl {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.65rem;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--rule);
+    }
+    .pdl:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+    .pdd {
+      font-size: 0.88rem;
+      line-height: 1.78;
+      color: var(--text-soft);
+    }
+    .pdlist {
+      list-style: none;
+      margin: 0; padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .pdlist li {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text-soft);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .pdlist li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+    .pdf {
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .link-behance {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--accent);
+      padding-bottom: 1px;
+      transition: opacity 0.2s ease;
+    }
+    .link-behance:hover { opacity: 0.65; color: var(--accent); }
+    .btn-collapse {
+      background: none; border: none;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text-quiet);
+      transition: color 0.2s ease;
+      padding: 0;
+    }
+    .btn-collapse:hover { color: var(--text); }
+
+    /* ===================================================
+       RIIDL STARTUP ROWS
+    =================================================== */
+    .riidl-intro {
+      font-size: 0.87rem;
+      line-height: 1.72;
+      color: var(--text-soft);
+      max-width: 58ch;
+      padding: 1.25rem 0 0.25rem;
+    }
+    .riidl-stat-row {
+      display: flex;
+      gap: 2.5rem;
+      padding: 1rem 0 1.5rem;
+    }
+    .riidl-stat { display: flex; flex-direction: column; gap: 0.1rem; }
+    .riidl-stat-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .riidl-stat-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+    }
+    .startups-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      padding: 0.5rem 0 1rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .startup-entry { border-bottom: 1px solid var(--rule); }
+
+    .startup-row {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      padding: 1.15rem 0;
+      cursor: pointer;
+      user-select: none;
+      align-items: start;
+    }
+    .startup-logo {
+      width: 44px;
+      height: 44px;
+      background: var(--bg-soft);
+      border: 1.5px solid var(--rule);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      color: var(--text-quiet);
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: border-color 0.2s ease;
+    }
+    .startup-entry:hover .startup-logo { border-color: var(--accent); }
+    .startup-entry.is-open .startup-logo { border-color: var(--accent); background: rgba(0,117,93,0.05); }
+
+    .startup-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.28rem;
+      padding-right: 1.25rem;
+    }
+    .startup-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .startup-one-liner {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      line-height: 1.45;
+    }
+    .startup-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.1rem;
+    }
+    .stag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.56rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(0,117,93,0.08);
+      padding: 0.14rem 0.46rem;
+    }
+    .stag-shark {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.56rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #B8860B;
+      background: #FFF8E1;
+      border: 1px solid #F0D060;
+      padding: 0.14rem 0.46rem;
+    }
+    .startup-toggle-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.6rem;
+      padding-top: 1px;
+    }
+    .startup-year {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      color: var(--text-quiet);
+      white-space: nowrap;
+    }
+    .startup-toggle-btn {
+      width: 26px;
+      height: 26px;
+      background: none;
+      border: 1.5px solid var(--rule);
+      cursor: pointer;
+      color: var(--text-quiet);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.3s ease;
+    }
+    .startup-entry:hover .startup-toggle-btn { border-color: var(--accent); color: var(--accent); }
+    .startup-entry.is-open .startup-toggle-btn { transform: rotate(45deg); border-color: var(--accent); color: var(--accent); }
+
+    .startup-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .startup-detail-inner {
+      padding: 0 0 1.5rem 56px;
+      border-top: 1px solid var(--rule);
+      background: var(--bg-soft);
+    }
+    .sdl {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.55rem;
+      margin-top: 1.25rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--rule);
+    }
+    .sdl:first-child { border-top: none; padding-top: 1.25rem; margin-top: 0; }
+    .sdd {
+      font-size: 0.84rem;
+      line-height: 1.75;
+      color: var(--text-soft);
+      max-width: 60ch;
+    }
+    .sdt { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .sdt-chip {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.56rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      padding: 0.13rem 0.46rem;
+    }
+    .sdf {
+      margin-top: 1.25rem;
+    }
+    .btn-startup-collapse {
+      background: none; border: none;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text-quiet);
+      transition: color 0.2s ease;
+      padding: 0;
+    }
+    .btn-startup-collapse:hover { color: var(--text); }
+
+    /* ===================================================
+       MORE STARTUPS GRID
+    =================================================== */
+    .more-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      padding-top: 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .more-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-left: 1px solid var(--rule);
+      border-top: 1px solid var(--rule);
+    }
+    .more-card {
+      padding: 1.1rem 1rem;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .more-logo {
+      width: 30px;
+      height: 30px;
+      background: var(--bg-soft);
+      border: 1px solid var(--rule);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.52rem;
+      letter-spacing: 0.05em;
+      color: var(--text-quiet);
+      margin-bottom: 0.15rem;
+    }
+    .more-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .more-one-liner {
+      font-size: 0.73rem;
+      color: var(--text-soft);
+      line-height: 1.45;
+    }
+    .more-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.28rem;
+      margin-top: 0.15rem;
+    }
+    .more-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.52rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      background: var(--bg-soft);
+      padding: 0.1rem 0.38rem;
+    }
+
+    /* ===================================================
+       RESPONSIVE
+    =================================================== */
+    @media (max-width: 860px) {
+      .proj-row { grid-template-columns: 1fr; min-height: auto; }
+      .proj-thumb { width: 100%; height: 200px; }
+      .proj-detail-inner { grid-template-columns: 1fr; }
+      .proj-detail-spacer { display: none; }
+      .proj-detail-body { grid-column: 1; padding: 1.5rem; }
+      .more-grid { grid-template-columns: repeat(2, 1fr); }
+      .tl-era { padding-left: 1.5rem; }
+      .era-header::before { left: calc(-1.5rem - 5px); }
+    }
+    @media (max-width: 560px) {
+      .timeline { padding: 1.5rem 1.25rem 4rem; }
+      .tl-era { margin-left: 8px; }
+      .more-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -256,80 +637,712 @@
   </div>
 </div>
 
-<section class="sector-section">
-  <div class="sector-grid">
+<div class="timeline">
 
-    <a href="work-de.html" class="sector-card">
-      <img src="images/DE2.png" alt="Design & Engineering" class="sector-card-img">
-      <div class="sector-card-overlay"></div>
-      <div class="sector-card-body">
-        <div class="sector-card-code">DE</div>
-        <div class="sector-card-name">Design &amp; Engineering</div>
-      </div>
-      <div class="sector-card-reveal">
-        <p class="sector-card-desc">From concept to manufactured product. Industrial design, mechanical engineering, and production management.</p>
-        <span class="sector-card-cta">Explore →</span>
-      </div>
-    </a>
-
-    <a href="work-rd.html" class="sector-card">
-      <img src="images/RD2.png" alt="Research & Design" class="sector-card-img">
-      <div class="sector-card-overlay"></div>
-      <div class="sector-card-body">
-        <div class="sector-card-code">RD</div>
-        <div class="sector-card-name">Research &amp; Design</div>
-      </div>
-      <div class="sector-card-reveal">
-        <p class="sector-card-desc">Design research that investigates problems before reaching for solutions. Methods, systems, and futures.</p>
-        <span class="sector-card-cta">Explore →</span>
-      </div>
-    </a>
-
-    <a href="work-cl.html" class="sector-card">
-      <img src="images/CL2.png" alt="Consult & Liaison" class="sector-card-img">
-      <div class="sector-card-overlay"></div>
-      <div class="sector-card-body">
-        <div class="sector-card-code">CL</div>
-        <div class="sector-card-name">Consult &amp; Liaison</div>
-      </div>
-      <div class="sector-card-reveal">
-        <p class="sector-card-desc">Advising startups and institutions on product strategy, design programmes, and venture building.</p>
-        <span class="sector-card-cta">Explore →</span>
-      </div>
-    </a>
-
-    <a href="work-teaching.html" class="sector-card">
-      <img src="images/studio-teaching.jpg" alt="Teaching & Lectures" class="sector-card-img">
-      <div class="sector-card-overlay"></div>
-      <div class="sector-card-body">
-        <div class="sector-card-code">EDU</div>
-        <div class="sector-card-name">Teaching &amp; Lectures</div>
-      </div>
-      <div class="sector-card-reveal">
-        <p class="sector-card-desc">Design education through lectures, workshops, and mentorship at institutions across India and the Netherlands.</p>
-        <span class="sector-card-cta">Explore →</span>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-<div class="pdf-section">
-  <div class="pdf-section-header">
-    <div>
-      <p class="pdf-section-label">Full Portfolio PDF</p>
-      <p class="pdf-section-note">Scroll to browse all work, or download for offline viewing.</p>
+  <!-- ================================================
+       ERA 1 — 2017–2019
+  ================================================= -->
+  <div class="tl-era">
+    <div class="era-header">
+      <span class="era-year">2017 – 2019</span>
+      <span class="era-sep">·</span>
+      <span class="era-context">Early work · India</span>
     </div>
-  </div>
+    <div class="era-rule"></div>
 
-  <div id="pdfViewer">
-    <div class="pdf-loading" id="pdfLoading">
-      <div class="spinner"></div>
-      Loading portfolio…
+    <div class="proj-entry" id="psp-bowling">
+      <div class="proj-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="proj-thumb">
+          <img src="images/DE3.png" alt="PSP Bowling Machines">
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-main">
+            <span class="proj-cat">DE</span>
+            <h2 class="proj-title">PSP Bowling Machines</h2>
+            <p class="proj-sub">PSP Bowling Machines · Co-founder &amp; Design Engineer · 2017 – 2019 · Mumbai, India</p>
+            <p class="proj-teaser">Patent-oriented autonomous cricket bowling machine — 3R+1T DOF, up to 140 km/h. Concept to commercial launch.</p>
+            <p class="proj-disciplines">Mechanical Design · Venture Building · Sports Technology</p>
+          </div>
+          <div class="proj-info-foot">
+            <button class="proj-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-detail">
+        <div class="proj-detail-inner">
+          <div class="proj-detail-spacer"></div>
+          <div class="proj-detail-body">
+            <p class="pdl">Overview</p>
+            <p class="pdd">Co-founded and designed an autonomous cricket bowling system — a patent-oriented mechanism with 3 rotational and 1 translational degrees of freedom, capable of replicating pace, swing, spin, and varying release heights. Achieved bowling speeds up to 140 km/h. Led the full product journey from concept through manufacturing and commercial launch.</p>
+            <p class="pdl">Deliverables</p>
+            <ul class="pdlist">
+              <li>Patent-oriented mechanism: 3 rotational + 1 translational degrees of freedom</li>
+              <li>Replication of pace, swing, spin, and variable release heights</li>
+              <li>Validated speeds up to 140 km/h through live testing</li>
+              <li>Full manufacturing setup and commercial product launch</li>
+            </ul>
+            <div class="pdf">
+              <a href="https://www.behance.net/gallery/103898099/PSP-Bowling-Machine" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
+              <button class="btn-collapse">↑ Collapse</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="pdf-pages" id="pdfPages"></div>
-  </div>
-</div>
+  </div><!-- /tl-era -->
+
+  <!-- ================================================
+       ERA 2 — 2019–2021
+  ================================================= -->
+  <div class="tl-era">
+    <div class="era-header">
+      <span class="era-year">2019 – 2021</span>
+      <span class="era-sep">·</span>
+      <span class="era-context">MSc Integrated Product Design · TU Delft · Netherlands</span>
+    </div>
+    <div class="era-rule"></div>
+
+    <!-- Manao Glove -->
+    <div class="proj-entry" id="manao-glove">
+      <div class="proj-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="proj-thumb">
+          <img src="images/DE2.png" alt="Manao Glove — SenseGlove">
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-main">
+            <span class="proj-cat">DE</span>
+            <h2 class="proj-title">Manao Glove</h2>
+            <p class="proj-sub">SenseGlove B.V. · Product Designer · Jan – Jun 2020 · Delft, NL</p>
+            <p class="proj-teaser">Embodiment design for a next-generation haptic VR glove — validated working prototype across three subsystems.</p>
+            <p class="proj-disciplines">Product Design · Haptics · VR · Industry 4.0</p>
+          </div>
+          <div class="proj-info-foot">
+            <button class="proj-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-detail">
+        <div class="proj-detail-inner">
+          <div class="proj-detail-spacer"></div>
+          <div class="proj-detail-body">
+            <p class="pdl">Overview</p>
+            <p class="pdd">Embodiment design for SenseGlove's next-generation haptic VR glove — translating functional principles into a validated working prototype. Structured through design sprints across three subsystems: thimble and cable guides, force feedback mechanism, and soft glove design. Validated using Blender Game Engine simulations for Industry 4.0 tasks.</p>
+            <p class="pdl">Deliverables</p>
+            <ul class="pdlist">
+              <li>Sprint-based design across three subsystems: thimble guides, force feedback, soft glove</li>
+              <li>Functional working prototype validated against Industry 4.0 tasks</li>
+              <li>Blender Game Engine simulation for interaction validation</li>
+              <li>Cable routing, ergonomic fit, and assembly documentation</li>
+            </ul>
+            <div class="pdf">
+              <a href="https://www.behance.net/gallery/110115049/SENSEGLOVE-Manao-VR" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
+              <button class="btn-collapse">↑ Collapse</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prometheus -->
+    <div class="proj-entry" id="prometheus-ev">
+      <div class="proj-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="proj-thumb">
+          <img src="images/RD2.png" alt="Prometheus — EV Battery Lifecycles">
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-main">
+            <span class="proj-cat">RD</span>
+            <h2 class="proj-title">Prometheus — Sustainable Future for EV Battery Lifecycles</h2>
+            <p class="proj-sub">TU Delft · Strategic Design Research · Nov – Dec 2019 · Team of 4</p>
+            <p class="proj-teaser">Circular economy strategy for end-of-life EV batteries — repurposing before recycling to minimise environmental impact.</p>
+            <p class="proj-disciplines">Strategic Design · Sustainability · Circular Economy</p>
+          </div>
+          <div class="proj-info-foot">
+            <button class="proj-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-detail">
+        <div class="proj-detail-inner">
+          <div class="proj-detail-spacer"></div>
+          <div class="proj-detail-body">
+            <p class="pdl">Overview</p>
+            <p class="pdd">Strategic design research assessing the true environmental break-even of EVs versus combustion vehicles, and exploring circular economy approaches through battery repurposing before recycling. Mapped innovation sweet spots for EV battery end-of-life and designed an effective solution minimising environmental impact.</p>
+            <p class="pdl">Research Focus</p>
+            <ul class="pdlist">
+              <li>EV vs. combustion vehicle environmental break-even analysis</li>
+              <li>Second-life battery applications before end-of-cycle recycling</li>
+              <li>Innovation opportunity mapping in the EV lifecycle space</li>
+              <li>Circular economy solution designed to minimise total waste</li>
+            </ul>
+            <div class="pdf">
+              <a href="https://www.behance.net/gallery/95663085/Promethues-Reused-EV-Battery-Packs" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
+              <button class="btn-collapse">↑ Collapse</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AXA Bike Locks -->
+    <div class="proj-entry" id="axa-bike-locks">
+      <div class="proj-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="proj-thumb">
+          <img src="images/RD3.png" alt="AXA Bike Locks — Future Mobility Strategy">
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-main">
+            <span class="proj-cat">RD</span>
+            <h2 class="proj-title">AXA Bike Locks — Future Mobility Strategy</h2>
+            <p class="proj-sub">AXA (Allegion plc) · Strategic Design Project · Sept – Oct 2019 · Team of 3</p>
+            <p class="proj-teaser">Smart bike parking — service design proposal, product prototype, and working mobile app interface for AXA.</p>
+            <p class="proj-disciplines">Strategic Design · Service Design · Smart Product</p>
+          </div>
+          <div class="proj-info-foot">
+            <button class="proj-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-detail">
+        <div class="proj-detail-inner">
+          <div class="proj-detail-spacer"></div>
+          <div class="proj-detail-body">
+            <p class="pdl">Overview</p>
+            <p class="pdd">Strategic project for AXA (Allegion plc) exploring smart bike parking solutions — resulting in a service design proposal for smart locks on parking racks, a product design model for the smart lock, a mechanically demonstrated functional prototype, and a working mobile application interface.</p>
+            <p class="pdl">Deliverables</p>
+            <ul class="pdlist">
+              <li>Service design proposal for smart lock integration on parking racks</li>
+              <li>Product design model and detailed form development for the lock</li>
+              <li>Mechanically demonstrated functional prototype</li>
+              <li>Working mobile application interface design</li>
+            </ul>
+            <div class="pdf">
+              <a href="https://www.behance.net/gallery/95170853/EZLOCK-AXA-Bike-Security" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
+              <button class="btn-collapse">↑ Collapse</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- wind NOise -->
+    <div class="proj-entry" id="wind-noise">
+      <div class="proj-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="proj-thumb">
+          <img src="images/RD1.png" alt="wind NOise — Ear Protection while Biking">
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-main">
+            <span class="proj-cat">RD</span>
+            <h2 class="proj-title">wind NOise — Ear Protection while Biking</h2>
+            <p class="proj-sub">TU Delft · MSc Course Project · Feb 2020 · Delft, NL</p>
+            <p class="proj-teaser">UCD-driven ear protection for cyclists — from user research through functional ergonomic prototype.</p>
+            <p class="proj-disciplines">User-Centred Design · Product Research · Prototyping</p>
+          </div>
+          <div class="proj-info-foot">
+            <button class="proj-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-detail">
+        <div class="proj-detail-inner">
+          <div class="proj-detail-spacer"></div>
+          <div class="proj-detail-body">
+            <p class="pdl">Overview</p>
+            <p class="pdd">User-centred design of a product that protects ears from wind noise while biking. Applied UCD methods — user research, interaction analysis, and iterative prototyping — to arrive at a functional, ergonomic solution as part of the MSc Integrated Product Design programme at TU Delft.</p>
+            <p class="pdl">Process</p>
+            <ul class="pdlist">
+              <li>User research and contextual inquiry with regular cyclists</li>
+              <li>Interaction analysis and pain point mapping</li>
+              <li>Iterative prototyping through multiple design cycles</li>
+              <li>Final functional, ergonomic validated solution</li>
+            </ul>
+            <div class="pdf">
+              <a href="https://www.behance.net/gallery/91328149/wind-NOise" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
+              <button class="btn-collapse">↑ Collapse</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /tl-era -->
+
+  <!-- ================================================
+       ERA 3 — 2021 Thesis
+  ================================================= -->
+  <div class="tl-era">
+    <div class="era-header">
+      <span class="era-year">2021</span>
+      <span class="era-sep">·</span>
+      <span class="era-context">Master's Thesis · TU Delft · Netherlands</span>
+    </div>
+    <div class="era-rule"></div>
+
+    <div class="proj-entry" id="lattice-structures">
+      <div class="proj-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="proj-thumb">
+          <img src="images/RD1.png" alt="Modularity in Lattice Structures">
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-main">
+            <span class="proj-cat">RD</span>
+            <h2 class="proj-title">Modularity in Lattice Structures for Circular Product Design</h2>
+            <p class="proj-sub">TU Delft · Master's Thesis · Jan – Jun 2022 · Delft, NL</p>
+            <p class="proj-teaser">Lattice modularity as a strategy for repairability and circular end-of-life — geometry enabling disassembly without sacrificing mechanical performance.</p>
+            <p class="proj-disciplines">Thesis · Circular Design · Advanced Manufacturing</p>
+          </div>
+          <div class="proj-info-foot">
+            <button class="proj-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-detail">
+        <div class="proj-detail-inner">
+          <div class="proj-detail-spacer"></div>
+          <div class="proj-detail-body">
+            <p class="pdl">Overview</p>
+            <p class="pdd">Explored modularity in lattice structures as a strategy for repairability and reuse in circular product design. The research focused on efficient manufacturing of parametric modular lattices through subtractive processes — investigating how structural geometry can support end-of-life disassembly without compromising mechanical performance.</p>
+            <p class="pdl">Research Focus</p>
+            <ul class="pdlist">
+              <li>Parametric modular lattice geometry for repairability</li>
+              <li>Subtractive manufacturing processes for lattice structures</li>
+              <li>End-of-life disassembly strategies without mechanical compromise</li>
+              <li>Intersection of structural engineering and circular economy principles</li>
+            </ul>
+            <div class="pdf">
+              <a href="https://www.behance.net/gallery/197839831/Modular-Lattice-Structures" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
+              <button class="btn-collapse">↑ Collapse</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /tl-era -->
+
+  <!-- ================================================
+       ERA 4 — 2020–2022 H2L
+  ================================================= -->
+  <div class="tl-era">
+    <div class="era-header">
+      <span class="era-year">2020 – 2022</span>
+      <span class="era-sep">·</span>
+      <span class="era-context">H2L Robotics B.V. · Schagen, Netherlands</span>
+    </div>
+    <div class="era-rule"></div>
+
+    <div class="proj-entry" id="selector-180">
+      <div class="proj-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="proj-thumb">
+          <img src="images/DE1.png" alt="Selector 180 — H2L Robotics">
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-main">
+            <span class="proj-cat">DE</span>
+            <span class="proj-award">★ Red Dot Design Award 2022</span>
+            <h2 class="proj-title">Selector 180</h2>
+            <p class="proj-sub">H2L Robotics B.V. · Designer &amp; Production Manager · Jul 2020 – Jun 2022 · Schagen, NL</p>
+            <p class="proj-teaser">Autonomous tulip selection robot — co-designed, manufactured, and deployed across 16 customers over two seasons.</p>
+            <p class="proj-disciplines">Industrial Design · Robotics · Production Management</p>
+          </div>
+          <div class="proj-info-foot">
+            <button class="proj-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-detail">
+        <div class="proj-detail-inner">
+          <div class="proj-detail-spacer"></div>
+          <div class="proj-detail-body">
+            <p class="pdl">Overview</p>
+            <p class="pdd">Co-designed, manufactured, and commercialised the Selector 180 — an autonomous tulip selection robot for H2L Robotics B.V. Responsible for product and systems design, CAD development, production workflows, assembly, wiring integration, BOM management using Philips' 12NC system, and field deployment across 16 customers over two consecutive years.</p>
+            <p class="pdl">Deliverables</p>
+            <ul class="pdlist">
+              <li>Full product and systems design from concept to commercial release</li>
+              <li>CAD development and detailed engineering drawings</li>
+              <li>Production workflows, assembly processes, and wiring integration</li>
+              <li>BOM management using Philips' 12NC system</li>
+              <li>Field deployment and customer support across 16 sites over two seasons</li>
+            </ul>
+            <div class="pdf">
+              <a href="https://www.behance.net/gallery/196730461/Selector-180-H2L-Robotics-BV" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
+              <button class="btn-collapse">↑ Collapse</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /tl-era -->
+
+  <!-- ================================================
+       ERA 5 — 2022–2025 riidl
+  ================================================= -->
+  <div class="tl-era">
+    <div class="era-header">
+      <span class="era-year">2022 – 2025</span>
+      <span class="era-sep">·</span>
+      <span class="era-context">Consult &amp; Liaison · riidl Foundation · Mumbai, India</span>
+    </div>
+    <div class="era-rule"></div>
+
+    <p class="riidl-intro">Design &amp; Innovation Lead at riidl Foundation — guiding early-stage ventures from idea to MVP across hardware, software, and product strategy.</p>
+    <div class="riidl-stat-row">
+      <div class="riidl-stat">
+        <span class="riidl-stat-num">58+</span>
+        <span class="riidl-stat-label">Startups mentored</span>
+      </div>
+      <div class="riidl-stat">
+        <span class="riidl-stat-num">18+</span>
+        <span class="riidl-stat-label">Pvt. Ltd. ventures</span>
+      </div>
+      <div class="riidl-stat">
+        <span class="riidl-stat-num">2×</span>
+        <span class="riidl-stat-label">Shark Tank India</span>
+      </div>
+    </div>
+
+    <p class="startups-label">Featured Engagements</p>
+
+    <!-- 1. GPROBO -->
+    <div class="startup-entry" id="gprobo">
+      <div class="startup-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="startup-logo">GP</div>
+        <div class="startup-info">
+          <p class="startup-name">GPROBO</p>
+          <p class="startup-one-liner">Autonomous robot for precise agricultural and industrial operations.</p>
+          <div class="startup-tags">
+            <span class="stag">Robotics</span><span class="stag">DFM/DFA</span><span class="stag">Product Design</span>
+          </div>
+        </div>
+        <div class="startup-toggle-wrap">
+          <span class="startup-year">2023 – 2024</span>
+          <button class="startup-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+        </div>
+      </div>
+      <div class="startup-detail">
+        <div class="startup-detail-inner">
+          <p class="sdl">Engagement</p>
+          <p class="sdd">Consulted on the redesign and iterative development of GPROBO — improving technical capabilities, body design, and manufacturability through DFM/DFA principles. Focused on structural integrity, component accessibility, and production readiness.</p>
+          <p class="sdl">Contribution</p>
+          <div class="sdt">
+            <span class="sdt-chip">Robotics</span><span class="sdt-chip">DFM/DFA</span><span class="sdt-chip">Industrial Design</span><span class="sdt-chip">Manufacturing Readiness</span>
+          </div>
+          <div class="sdf"><button class="btn-startup-collapse">↑ Collapse</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Phosteride -->
+    <div class="startup-entry" id="phosteride">
+      <div class="startup-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="startup-logo">PH</div>
+        <div class="startup-info">
+          <p class="startup-name">Phosteride → R3Bin</p>
+          <p class="startup-one-liner">AI-powered smart waste segregation bin for high-traffic commercial spaces.</p>
+          <div class="startup-tags">
+            <span class="stag">Smart Product</span><span class="stag">AI</span><span class="stag">Product Strategy</span>
+          </div>
+        </div>
+        <div class="startup-toggle-wrap">
+          <span class="startup-year">2023 – 2024</span>
+          <button class="startup-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+        </div>
+      </div>
+      <div class="startup-detail">
+        <div class="startup-detail-inner">
+          <p class="sdl">Engagement</p>
+          <p class="sdd">Guided Phosteride's product evolution from a B2B waste segregation system to an AI-powered smart bin (R3Bin) through multiple design and technology iterations. Worked across product architecture, form development, and AI integration strategy.</p>
+          <p class="sdl">Contribution</p>
+          <div class="sdt">
+            <span class="sdt-chip">Smart Product</span><span class="sdt-chip">AI Integration</span><span class="sdt-chip">Product Strategy</span><span class="sdt-chip">Form Development</span>
+          </div>
+          <div class="sdf"><button class="btn-startup-collapse">↑ Collapse</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Human Biogenesis -->
+    <div class="startup-entry" id="human-biogenesis">
+      <div class="startup-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="startup-logo">HB</div>
+        <div class="startup-info">
+          <p class="startup-name">Human Biogenesis</p>
+          <p class="startup-one-liner">MedTech startup developing diagnostic kits for clinical laboratory use.</p>
+          <div class="startup-tags">
+            <span class="stag">MedTech</span><span class="stag">Product Design</span><span class="stag">Packaging</span>
+          </div>
+        </div>
+        <div class="startup-toggle-wrap">
+          <span class="startup-year">2023</span>
+          <button class="startup-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+        </div>
+      </div>
+      <div class="startup-detail">
+        <div class="startup-detail-inner">
+          <p class="sdl">Engagement</p>
+          <p class="sdd">Consulted on the product and packaging design of the SD Kit — developing a patentable body design that enhances usability, visual identity, and market readiness for clinical adoption.</p>
+          <p class="sdl">Contribution</p>
+          <div class="sdt">
+            <span class="sdt-chip">Product Design</span><span class="sdt-chip">Packaging Design</span><span class="sdt-chip">Patent-ready Form</span><span class="sdt-chip">MedTech</span>
+          </div>
+          <div class="sdf"><button class="btn-startup-collapse">↑ Collapse</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Prevalent Automotives -->
+    <div class="startup-entry" id="prevalent-automotives">
+      <div class="startup-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="startup-logo">PA</div>
+        <div class="startup-info">
+          <p class="startup-name">Prevalent Automotives</p>
+          <p class="startup-one-liner">Electric cargo moped engineered for scalable last-mile delivery — 200 kg payload.</p>
+          <div class="startup-tags">
+            <span class="stag">EV</span><span class="stag">Mobility</span><span class="stag">Prototyping</span>
+          </div>
+        </div>
+        <div class="startup-toggle-wrap">
+          <span class="startup-year">2023 – 2024</span>
+          <button class="startup-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+        </div>
+      </div>
+      <div class="startup-detail">
+        <div class="startup-detail-inner">
+          <p class="sdl">Engagement</p>
+          <p class="sdd">Incubation liaison supporting development of a 200 kg payload electric cargo moped for scalable delivery. Covered rapid prototyping, DFM/DFA analysis, and electrical routing planning for production readiness.</p>
+          <p class="sdl">Contribution</p>
+          <div class="sdt">
+            <span class="sdt-chip">EV Design</span><span class="sdt-chip">Rapid Prototyping</span><span class="sdt-chip">DFM/DFA</span><span class="sdt-chip">Electrical Routing</span>
+          </div>
+          <div class="sdf"><button class="btn-startup-collapse">↑ Collapse</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. ICA Control Systems -->
+    <div class="startup-entry" id="ica-control-systems">
+      <div class="startup-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="startup-logo">IC</div>
+        <div class="startup-info">
+          <p class="startup-name">ICA Control Systems</p>
+          <p class="startup-one-liner">Industrial control and automation systems for precision manufacturing environments.</p>
+          <div class="startup-tags">
+            <span class="stag">Industrial</span><span class="stag">Automation</span><span class="stag">BizDev</span>
+          </div>
+        </div>
+        <div class="startup-toggle-wrap">
+          <span class="startup-year">2023</span>
+          <button class="startup-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+        </div>
+      </div>
+      <div class="startup-detail">
+        <div class="startup-detail-inner">
+          <p class="sdl">Engagement</p>
+          <p class="sdd">Drove business development and visual communication for ICA Control Systems — including product photo and video shoots and 3D renders — contributing to their ₹1 crore fundraise.</p>
+          <p class="sdl">Contribution</p>
+          <div class="sdt">
+            <span class="sdt-chip">Business Development</span><span class="sdt-chip">Visual Communication</span><span class="sdt-chip">Photography</span><span class="sdt-chip">3D Rendering</span>
+          </div>
+          <div class="sdf"><button class="btn-startup-collapse">↑ Collapse</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Trance Track -->
+    <div class="startup-entry" id="trance-track">
+      <div class="startup-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="startup-logo">TT</div>
+        <div class="startup-info">
+          <p class="startup-name">Trance Track</p>
+          <p class="startup-one-liner">Adaptive ergonomic seating solutions for professional vehicle operators.</p>
+          <div class="startup-tags">
+            <span class="stag">Ergonomics</span><span class="stag">UX Research</span><span class="stag">Fundraising</span>
+          </div>
+        </div>
+        <div class="startup-toggle-wrap">
+          <span class="startup-year">2022 – 2023</span>
+          <button class="startup-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+        </div>
+      </div>
+      <div class="startup-detail">
+        <div class="startup-detail-inner">
+          <p class="sdl">Engagement</p>
+          <p class="sdd">Mentored and consulted on ergonomic seat design, user experience research, and fundraising strategy — supporting product development iteration and venture growth planning.</p>
+          <p class="sdl">Contribution</p>
+          <div class="sdt">
+            <span class="sdt-chip">Ergonomics</span><span class="sdt-chip">User Research</span><span class="sdt-chip">Product Consulting</span><span class="sdt-chip">Fundraising Strategy</span>
+          </div>
+          <div class="sdf"><button class="btn-startup-collapse">↑ Collapse</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. EVA Scalp Cooling -->
+    <div class="startup-entry" id="eva-scalp">
+      <div class="startup-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="startup-logo">EV</div>
+        <div class="startup-info">
+          <p class="startup-name">EVA Scalp Cooling</p>
+          <p class="startup-one-liner">Non-invasive scalp cooling device for chemotherapy patients — Stemtech Pvt. Ltd.</p>
+          <div class="startup-tags">
+            <span class="stag">MedTech</span><span class="stag">Presentation</span><span class="stag-shark">★ Shark Tank India</span>
+          </div>
+        </div>
+        <div class="startup-toggle-wrap">
+          <span class="startup-year">2023</span>
+          <button class="startup-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+        </div>
+      </div>
+      <div class="startup-detail">
+        <div class="startup-detail-inner">
+          <p class="sdl">Engagement</p>
+          <p class="sdd">Supported visual communication and product presentation for EVA Scalp Cooling Devices — contributing to funding secured through Shark Tank India. Worked on pitch materials, product renders, and investor presentation design.</p>
+          <p class="sdl">Contribution</p>
+          <div class="sdt">
+            <span class="sdt-chip">Visual Communication</span><span class="sdt-chip">Product Presentation</span><span class="sdt-chip">Pitch Design</span><span class="sdt-chip">MedTech</span>
+          </div>
+          <div class="sdf"><button class="btn-startup-collapse">↑ Collapse</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. ASPAC Packaging -->
+    <div class="startup-entry" id="aspac-packaging">
+      <div class="startup-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="startup-logo">AS</div>
+        <div class="startup-info">
+          <p class="startup-name">ASPAC Packaging</p>
+          <p class="startup-one-liner">Sustainable packaging design for e-commerce and retail — Pacmania Solutions Pvt. Ltd.</p>
+          <div class="startup-tags">
+            <span class="stag">Packaging</span><span class="stag">BizDev</span><span class="stag-shark">★ Shark Tank India</span>
+          </div>
+        </div>
+        <div class="startup-toggle-wrap">
+          <span class="startup-year">2022 – 2024</span>
+          <button class="startup-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+        </div>
+      </div>
+      <div class="startup-detail">
+        <div class="startup-detail-inner">
+          <p class="sdl">Engagement</p>
+          <p class="sdd">Two-year engagement covering business development, fundraising strategy, and packaging design — contributing to their feature on Shark Tank India. Worked across product design, brand positioning, and investor communication.</p>
+          <p class="sdl">Contribution</p>
+          <div class="sdt">
+            <span class="sdt-chip">Packaging Design</span><span class="sdt-chip">Business Development</span><span class="sdt-chip">Fundraising</span><span class="sdt-chip">Brand Strategy</span>
+          </div>
+          <div class="sdf"><button class="btn-startup-collapse">↑ Collapse</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Strictly Electric -->
+    <div class="startup-entry" id="strictly-electric">
+      <div class="startup-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="startup-logo">SE</div>
+        <div class="startup-info">
+          <p class="startup-name">Strictly Electric</p>
+          <p class="startup-one-liner">Electric two-wheeler built around ergonomic urban commuting — Strictly Electric Pvt. Ltd.</p>
+          <div class="startup-tags">
+            <span class="stag">EV</span><span class="stag">Product Redesign</span><span class="stag">Industrial Design</span>
+          </div>
+        </div>
+        <div class="startup-toggle-wrap">
+          <span class="startup-year">2022 – 2024</span>
+          <button class="startup-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+        </div>
+      </div>
+      <div class="startup-detail">
+        <div class="startup-detail-inner">
+          <p class="sdl">Engagement</p>
+          <p class="sdd">Two-year liaison engagement supporting product redesign focused on form, aesthetics, and manufacturability for their urban EV platform. Iterated across multiple design rounds to balance visual identity with production constraints.</p>
+          <p class="sdl">Contribution</p>
+          <div class="sdt">
+            <span class="sdt-chip">Industrial Design</span><span class="sdt-chip">EV Product Redesign</span><span class="sdt-chip">Form &amp; Aesthetics</span><span class="sdt-chip">Manufacturability</span>
+          </div>
+          <div class="sdf"><button class="btn-startup-collapse">↑ Collapse</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- More Startups Grid -->
+    <p class="more-label">And more startups</p>
+    <div class="more-grid">
+      <div class="more-card">
+        <div class="more-logo">DS</div>
+        <p class="more-name">DeepSoil</p>
+        <p class="more-one-liner">Agritech — soil diagnostics for precision farming.</p>
+        <div class="more-tags"><span class="more-tag">Product Consulting</span><span class="more-tag">Strategy</span></div>
+      </div>
+      <div class="more-card">
+        <div class="more-logo">NS</div>
+        <p class="more-name">NestSync</p>
+        <p class="more-one-liner">Smart home integration for mid-market builders.</p>
+        <div class="more-tags"><span class="more-tag">UX Strategy</span><span class="more-tag">BizDev</span></div>
+      </div>
+      <div class="more-card">
+        <div class="more-logo">LL</div>
+        <p class="more-name">LogiLoop</p>
+        <p class="more-one-liner">Last-mile logistics software for hyperlocal fleets.</p>
+        <div class="more-tags"><span class="more-tag">Business Dev</span><span class="more-tag">Pitch Deck</span></div>
+      </div>
+      <div class="more-card">
+        <div class="more-logo">MB</div>
+        <p class="more-name">MediBrief</p>
+        <p class="more-one-liner">Healthcare report simplification for patients.</p>
+        <div class="more-tags"><span class="more-tag">Visual Comm.</span><span class="more-tag">UX</span></div>
+      </div>
+      <div class="more-card">
+        <div class="more-logo">BF</div>
+        <p class="more-name">BuildFast</p>
+        <p class="more-one-liner">Construction material e-commerce for tier-2 cities.</p>
+        <div class="more-tags"><span class="more-tag">Branding</span><span class="more-tag">Strategy</span></div>
+      </div>
+      <div class="more-card">
+        <div class="more-logo">SK</div>
+        <p class="more-name">SpinKart</p>
+        <p class="more-one-liner">D2C performance spinning equipment for home athletes.</p>
+        <div class="more-tags"><span class="more-tag">Product Design</span><span class="more-tag">DFM</span></div>
+      </div>
+      <div class="more-card">
+        <div class="more-logo">CW</div>
+        <p class="more-name">ClearWave</p>
+        <p class="more-one-liner">IoT water quality monitoring for residential complexes.</p>
+        <div class="more-tags"><span class="more-tag">DFM/DFA</span><span class="more-tag">IoT</span></div>
+      </div>
+      <div class="more-card">
+        <div class="more-logo">FR</div>
+        <p class="more-name">FreshRoute</p>
+        <p class="more-one-liner">Cold chain logistics for perishable FMCG supply chains.</p>
+        <div class="more-tags"><span class="more-tag">Pitch Deck</span><span class="more-tag">BizDev</span></div>
+      </div>
+      <div class="more-card">
+        <div class="more-logo">VN</div>
+        <p class="more-name">VoltNest</p>
+        <p class="more-one-liner">EV charging infrastructure for residential use.</p>
+        <div class="more-tags"><span class="more-tag">Product Consulting</span><span class="more-tag">EV</span></div>
+      </div>
+      <div class="more-card">
+        <div class="more-logo">GB</div>
+        <p class="more-name">GreenBrick</p>
+        <p class="more-one-liner">Sustainable construction from recycled industrial waste.</p>
+        <div class="more-tags"><span class="more-tag">Business Dev</span><span class="more-tag">Circular</span></div>
+      </div>
+      <div class="more-card">
+        <div class="more-logo">SM</div>
+        <p class="more-name">SoundMap</p>
+        <p class="more-one-liner">Audio localisation tech for immersive media.</p>
+        <div class="more-tags"><span class="more-tag">Visual Comm.</span><span class="more-tag">Branding</span></div>
+      </div>
+      <div class="more-card">
+        <div class="more-logo">FP</div>
+        <p class="more-name">FlowPrint</p>
+        <p class="more-one-liner">Digital printing for independent fashion labels.</p>
+        <div class="more-tags"><span class="more-tag">Brand Strategy</span><span class="more-tag">BizDev</span></div>
+      </div>
+    </div>
+
+  </div><!-- /tl-era last -->
+
+</div><!-- /timeline -->
 
 <footer>
   <a href="index.html" class="wordmark"><img src="images/pg-logo.png" alt="PG" class="site-logo"><span class="wordmark-name">pranavgawde</span></a>
@@ -347,44 +1360,92 @@
   <div class="copyright">© 2026 Pranav Gawde · Designed and built in Mumbai, India</div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
   const nav = document.getElementById('siteNav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 8);
   }, { passive: true });
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks   = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
 
-  const toggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-
-  pdfjsLib.GlobalWorkerOptions.workerSrc =
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-  const pagesContainer = document.getElementById('pdfPages');
-  const loadingEl      = document.getElementById('pdfLoading');
-  const scale = window.devicePixelRatio >= 2 ? 2.5 : 1.8;
-
-  pdfjsLib.getDocument('pdf/pranav-portfolio.pdf').promise.then(pdf => {
-    loadingEl.style.display = 'none';
-    const renders = [];
-    for (let i = 1; i <= pdf.numPages; i++) renders.push(renderPage(pdf, i));
-    return Promise.all(renders);
-  }).catch(() => {
-    loadingEl.innerHTML = 'Could not load portfolio PDF. <a href="pdf/pranav-portfolio.pdf" style="color:var(--accent)">Download instead →</a>';
+  function openEntry(entry) {
+    const d = entry.querySelector('.proj-detail');
+    entry.classList.add('is-open');
+    entry.querySelector('.proj-row').setAttribute('aria-expanded', 'true');
+    d.style.maxHeight = d.scrollHeight + 'px';
+  }
+  function closeEntry(entry) {
+    const d = entry.querySelector('.proj-detail');
+    entry.classList.remove('is-open');
+    entry.querySelector('.proj-row').setAttribute('aria-expanded', 'false');
+    d.style.maxHeight = '0';
+  }
+  document.querySelectorAll('.proj-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const e = row.closest('.proj-entry');
+      e.classList.contains('is-open') ? closeEntry(e) : openEntry(e);
+    });
+    row.addEventListener('keydown', ev => {
+      if (ev.key === 'Enter' || ev.key === ' ') {
+        ev.preventDefault();
+        const e = row.closest('.proj-entry');
+        e.classList.contains('is-open') ? closeEntry(e) : openEntry(e);
+      }
+    });
+  });
+  document.querySelectorAll('.btn-collapse').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const entry = btn.closest('.proj-entry');
+      closeEntry(entry);
+      entry.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   });
 
-  async function renderPage(pdf, num) {
-    const page     = await pdf.getPage(num);
-    const viewport = page.getViewport({ scale });
-    const wrap     = document.createElement('div');
-    wrap.className = 'pdf-page-wrap';
-    const canvas   = document.createElement('canvas');
-    canvas.width   = viewport.width;
-    canvas.height  = viewport.height;
-    wrap.appendChild(canvas);
-    pagesContainer.appendChild(wrap);
-    await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+  function openStartup(entry) {
+    const d = entry.querySelector('.startup-detail');
+    entry.classList.add('is-open');
+    entry.querySelector('.startup-row').setAttribute('aria-expanded', 'true');
+    d.style.maxHeight = d.scrollHeight + 'px';
+  }
+  function closeStartup(entry) {
+    const d = entry.querySelector('.startup-detail');
+    entry.classList.remove('is-open');
+    entry.querySelector('.startup-row').setAttribute('aria-expanded', 'false');
+    d.style.maxHeight = '0';
+  }
+  document.querySelectorAll('.startup-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const e = row.closest('.startup-entry');
+      e.classList.contains('is-open') ? closeStartup(e) : openStartup(e);
+    });
+    row.addEventListener('keydown', ev => {
+      if (ev.key === 'Enter' || ev.key === ' ') {
+        ev.preventDefault();
+        const e = row.closest('.startup-entry');
+        e.classList.contains('is-open') ? closeStartup(e) : openStartup(e);
+      }
+    });
+  });
+  document.querySelectorAll('.btn-startup-collapse').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const entry = btn.closest('.startup-entry');
+      closeStartup(entry);
+      entry.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      setTimeout(() => {
+        if (target.classList.contains('proj-entry')) openEntry(target);
+        if (target.classList.contains('startup-entry')) openStartup(target);
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
   }
 </script>
 </body>

@@ -397,9 +397,8 @@
     bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%);
-    width: max-content;
-    min-width: 100%;
-    aspect-ratio: 1;
+    width: 60px;
+    height: 60px;
     background: var(--bg);
     border: 1px solid var(--rule);
     border-radius: 4px;

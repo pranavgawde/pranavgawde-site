@@ -639,6 +639,32 @@
 
   mapEl.addEventListener('mouseleave', hideCard);
 
+  /* Click/tap to show card (mobile touch support) */
+  mapEl.addEventListener('click', e => {
+    const path = e.target.closest('path');
+    if (!path) { hideCard(); return; }
+    const code = path.getAttribute('data-code');
+    if (code && visited[code]) showCard(code, e.clientX, e.clientY);
+    else hideCard();
+  });
+
+  /* Dismiss both cards on scroll */
+  window.addEventListener('scroll', () => {
+    card.classList.remove('visible');
+    document.getElementById('indiaD3Card').classList.remove('visible');
+  }, { passive: true });
+
+  /* Dismiss both cards when tapping/clicking outside the maps */
+  document.addEventListener('click', e => {
+    const inWorldMap = mapEl.contains(e.target);
+    const indiaWrap  = document.getElementById('indiaD3MapWrap');
+    const inIndiaMap = indiaWrap && indiaWrap.contains(e.target);
+    if (!inWorldMap && !inIndiaMap) {
+      card.classList.remove('visible');
+      document.getElementById('indiaD3Card').classList.remove('visible');
+    }
+  });
+
   /* ---- Corkboard — deterministic random rotation ---- */
   (function () {
     function hash(n) { return ((n * 2654435761) >>> 0) / 0xFFFFFFFF; }
@@ -889,6 +915,20 @@
     });
 
     d3Wrap.addEventListener('mouseleave', () => d3Card.classList.remove('visible'));
+
+    /* Click/tap to show card (mobile touch support) */
+    d3Wrap.addEventListener('click', e => {
+      const p = e.target.closest('path');
+      if (!p) { d3Card.classList.remove('visible'); return; }
+      const stateData = stateGeoMap[p.getAttribute('data-state')];
+      if (stateData) {
+        buildD3Card(stateData);
+        d3Card.classList.add('visible');
+        placeD3Card(e.clientX, e.clientY);
+      } else {
+        d3Card.classList.remove('visible');
+      }
+    });
   }
 </script>
 

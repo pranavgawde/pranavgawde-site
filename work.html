@@ -154,15 +154,11 @@
 
     .proj-cat {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
-      background: rgba(0,117,93,0.08);
-      padding: 0.16rem 0.5rem;
-      display: inline-block;
-      align-self: flex-start;
     }
     .proj-award {
       display: inline-flex;
@@ -519,19 +515,29 @@
     .btn-startup-collapse:hover { color: var(--text); }
 
     /* ===================================================
+       PROJ PHOTOS (expanded panel gallery)
+    =================================================== */
+    .proj-photos {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .proj-photos img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* ===================================================
        FLIP CARD STARTUP GRID
     =================================================== */
-    .startup-grid-lg {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-      padding-top: 0.25rem;
-    }
-    .startup-grid-sm {
+    .startup-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 0.5rem;
+      gap: 0.55rem;
+      padding-top: 0.25rem;
     }
     .flip-card {
       aspect-ratio: 1;
@@ -553,7 +559,7 @@
       inset: 0;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-      border-radius: 10px;
+      border-radius: 0;
       border: 1px solid var(--rule);
       background: var(--bg-soft);
       display: flex;
@@ -568,76 +574,29 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.07);
     }
     .fc-logo {
-      flex: 4;
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12%;
+      padding: 10%;
       overflow: hidden;
     }
     .fc-logo img { width: 100%; height: 100%; object-fit: contain; }
-    .fc-logo-text {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.65rem;
-      letter-spacing: 0.06em;
-      color: var(--text-quiet);
-    }
-    .fc-name {
-      flex: 1;
-      min-height: 0;
+    .many-more-tile {
+      aspect-ratio: 1;
+      border: 1px solid var(--rule);
+      background: var(--bg-soft);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 0.4rem;
-      border-top: 1px solid var(--rule);
       font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
       font-weight: 600;
-      font-size: 0.56rem;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      text-align: center;
-      line-height: 1.25;
-    }
-    .startup-grid-lg .fc-name { font-size: 0.66rem; }
-    /* Front face: logo fills full card, no name */
-    .flip-front .fc-name { display: none; }
-    .flip-front .fc-logo { flex: 1; padding: 0; }
-    .flip-front .fc-logo img { object-fit: cover; }
-    .flip-back-detail {
-      padding: 0.75rem;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      box-sizing: border-box;
-      gap: 0.22rem;
-    }
-    .fc-back-name {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.72rem;
-      color: var(--text);
-      line-height: 1.2;
-    }
-    .fc-back-year {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.54rem;
+      letter-spacing: 0.06em;
       color: var(--text-quiet);
+      text-align: center;
+      padding: 0.5rem;
     }
-    .fc-back-liner {
-      font-size: 0.63rem;
-      line-height: 1.5;
-      color: var(--text-soft);
-      flex: 1;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      line-clamp: 4;
-      -webkit-box-orient: vertical;
-    }
-    .fc-back-tags { display: flex; flex-wrap: wrap; gap: 0.16rem; }
-    .fc-back-tags .stag,
-    .fc-back-tags .stag-shark { font-size: 0.48rem; padding: 0.08rem 0.3rem; }
 
     /* ===================================================
        RESPONSIVE
@@ -650,14 +609,12 @@
       .proj-detail-body { grid-column: 1; padding: 1.5rem; }
       .tl-era { padding-left: 1.5rem; }
       .era-header::before { left: calc(-1.5rem - 5px); }
-      .startup-grid-lg { grid-template-columns: repeat(3, 1fr); }
-      .startup-grid-sm { grid-template-columns: repeat(4, 1fr); }
+      .startup-grid { grid-template-columns: repeat(4, 1fr); }
     }
     @media (max-width: 560px) {
       .timeline { padding: 1.5rem 1.25rem 4rem; }
       .tl-era { margin-left: 8px; }
-      .startup-grid-lg { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
-      .startup-grid-sm { grid-template-columns: repeat(3, 1fr); gap: 0.35rem; }
+      .startup-grid { grid-template-columns: repeat(3, 1fr); gap: 0.35rem; }
     }
   </style>
 </head>
@@ -708,7 +665,7 @@
         </div>
         <div class="proj-info">
           <div class="proj-info-main">
-            <span class="proj-cat">DE</span>
+            <span class="proj-cat">Design &amp; Engineer</span>
             <h2 class="proj-title">PSP Bowling Machines</h2>
             <p class="proj-sub">PSP Bowling Machines · Co-founder &amp; Design Engineer · 2017 – 2019 · Mumbai, India</p>
             <p class="proj-teaser">Patent-oriented autonomous cricket bowling machine — 3R+1T DOF, up to 140 km/h. Concept to commercial launch.</p>
@@ -723,15 +680,11 @@
         <div class="proj-detail-inner">
           <div class="proj-detail-spacer"></div>
           <div class="proj-detail-body">
-            <p class="pdl">Overview</p>
-            <p class="pdd">Co-founded and designed an autonomous cricket bowling system — a patent-oriented mechanism with 3 rotational and 1 translational degrees of freedom, capable of replicating pace, swing, spin, and varying release heights. Achieved bowling speeds up to 140 km/h. Led the full product journey from concept through manufacturing and commercial launch.</p>
-            <p class="pdl">Deliverables</p>
-            <ul class="pdlist">
-              <li>Patent-oriented mechanism: 3 rotational + 1 translational degrees of freedom</li>
-              <li>Replication of pace, swing, spin, and variable release heights</li>
-              <li>Validated speeds up to 140 km/h through live testing</li>
-              <li>Full manufacturing setup and commercial product launch</li>
-            </ul>
+            <div class="proj-photos">
+              <img src="images/work/psp_bowling_machines/1.jpg" alt="PSP Bowling Machines">
+              <img src="images/work/psp_bowling_machines/2.jpg" alt="PSP Bowling Machines">
+              <img src="images/work/psp_bowling_machines/3.jpg" alt="PSP Bowling Machines">
+            </div>
             <div class="pdf">
               <a href="https://www.behance.net/gallery/103898099/PSP-Bowling-Machine" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
               <button class="btn-collapse">↑ Collapse</button>
@@ -761,7 +714,7 @@
         </div>
         <div class="proj-info">
           <div class="proj-info-main">
-            <span class="proj-cat">DE</span>
+            <span class="proj-cat">Design &amp; Engineer</span>
             <h2 class="proj-title">Manao Glove</h2>
             <p class="proj-sub">SenseGlove B.V. · Product Designer · Jan – Jun 2020 · Delft, NL</p>
             <p class="proj-teaser">Embodiment design for a next-generation haptic VR glove — validated working prototype across three subsystems.</p>
@@ -776,15 +729,11 @@
         <div class="proj-detail-inner">
           <div class="proj-detail-spacer"></div>
           <div class="proj-detail-body">
-            <p class="pdl">Overview</p>
-            <p class="pdd">Embodiment design for SenseGlove's next-generation haptic VR glove — translating functional principles into a validated working prototype. Structured through design sprints across three subsystems: thimble and cable guides, force feedback mechanism, and soft glove design. Validated using Blender Game Engine simulations for Industry 4.0 tasks.</p>
-            <p class="pdl">Deliverables</p>
-            <ul class="pdlist">
-              <li>Sprint-based design across three subsystems: thimble guides, force feedback, soft glove</li>
-              <li>Functional working prototype validated against Industry 4.0 tasks</li>
-              <li>Blender Game Engine simulation for interaction validation</li>
-              <li>Cable routing, ergonomic fit, and assembly documentation</li>
-            </ul>
+            <div class="proj-photos">
+              <img src="images/work/Manao_Glove/1.jpg" alt="Manao Glove">
+              <img src="images/work/Manao_Glove/2.jpg" alt="Manao Glove">
+              <img src="images/work/Manao_Glove/3.jpg" alt="Manao Glove">
+            </div>
             <div class="pdf">
               <a href="https://www.behance.net/gallery/110115049/SENSEGLOVE-Manao-VR" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
               <button class="btn-collapse">↑ Collapse</button>
@@ -802,9 +751,9 @@
         </div>
         <div class="proj-info">
           <div class="proj-info-main">
-            <span class="proj-cat">RD</span>
+            <span class="proj-cat">Research &amp; Design</span>
             <h2 class="proj-title">Prometheus — Sustainable Future for EV Battery Lifecycles</h2>
-            <p class="proj-sub">TU Delft · Strategic Design Research · Nov – Dec 2019 · Team of 4</p>
+            <p class="proj-sub">TU Delft · Strategic Design Research · Nov 2019 – Jan 2020 · Team of 4</p>
             <p class="proj-teaser">Circular economy strategy for end-of-life EV batteries — repurposing before recycling to minimise environmental impact.</p>
             <p class="proj-disciplines">Strategic Design · Sustainability · Circular Economy</p>
           </div>
@@ -817,15 +766,10 @@
         <div class="proj-detail-inner">
           <div class="proj-detail-spacer"></div>
           <div class="proj-detail-body">
-            <p class="pdl">Overview</p>
-            <p class="pdd">Strategic design research assessing the true environmental break-even of EVs versus combustion vehicles, and exploring circular economy approaches through battery repurposing before recycling. Mapped innovation sweet spots for EV battery end-of-life and designed an effective solution minimising environmental impact.</p>
-            <p class="pdl">Research Focus</p>
-            <ul class="pdlist">
-              <li>EV vs. combustion vehicle environmental break-even analysis</li>
-              <li>Second-life battery applications before end-of-cycle recycling</li>
-              <li>Innovation opportunity mapping in the EV lifecycle space</li>
-              <li>Circular economy solution designed to minimise total waste</li>
-            </ul>
+            <div class="proj-photos">
+              <img src="images/work/Prometheus/1.jpg" alt="Prometheus EV Battery Lifecycles">
+              <img src="images/work/Prometheus/2.jpg" alt="Prometheus EV Battery Lifecycles">
+            </div>
             <div class="pdf">
               <a href="https://www.behance.net/gallery/95663085/Promethues-Reused-EV-Battery-Packs" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
               <button class="btn-collapse">↑ Collapse</button>
@@ -843,9 +787,9 @@
         </div>
         <div class="proj-info">
           <div class="proj-info-main">
-            <span class="proj-cat">RD</span>
+            <span class="proj-cat">Research &amp; Design</span>
             <h2 class="proj-title">EzLock — Smart Bike Security for AXA</h2>
-            <p class="proj-sub">AXA (Allegion plc) · Strategic Design Project · Sept – Oct 2019 · Team of 3</p>
+            <p class="proj-sub">AXA (Allegion plc) · Strategic Design Project · Sept – Nov 2019 · Team of 4</p>
             <p class="proj-teaser">Smart bike parking — service design proposal, product prototype, and working mobile app interface for AXA.</p>
             <p class="proj-disciplines">Strategic Design · Service Design · Smart Product</p>
           </div>
@@ -858,15 +802,9 @@
         <div class="proj-detail-inner">
           <div class="proj-detail-spacer"></div>
           <div class="proj-detail-body">
-            <p class="pdl">Overview</p>
-            <p class="pdd">Strategic project for AXA (Allegion plc) exploring smart bike parking solutions — resulting in a service design proposal for smart locks on parking racks, a product design model for the smart lock, a mechanically demonstrated functional prototype, and a working mobile application interface.</p>
-            <p class="pdl">Deliverables</p>
-            <ul class="pdlist">
-              <li>Service design proposal for smart lock integration on parking racks</li>
-              <li>Product design model and detailed form development for the lock</li>
-              <li>Mechanically demonstrated functional prototype</li>
-              <li>Working mobile application interface design</li>
-            </ul>
+            <div class="proj-photos">
+              <img src="images/work/EZLock/1.jpg" alt="EzLock AXA Bike Security">
+            </div>
             <div class="pdf">
               <a href="https://www.behance.net/gallery/95170853/EZLOCK-AXA-Bike-Security" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
               <button class="btn-collapse">↑ Collapse</button>
@@ -884,9 +822,9 @@
         </div>
         <div class="proj-info">
           <div class="proj-info-main">
-            <span class="proj-cat">RD</span>
+            <span class="proj-cat">Research &amp; Design</span>
             <h2 class="proj-title">wind NOise — Ear Protection while Biking</h2>
-            <p class="proj-sub">TU Delft · MSc Course Project · Feb 2020 · Delft, NL</p>
+            <p class="proj-sub">TU Delft · Massive Course Project · Aug – Sep 2020 · Delft, NL</p>
             <p class="proj-teaser">UCD-driven ear protection for cyclists — from user research through functional ergonomic prototype.</p>
             <p class="proj-disciplines">User-Centred Design · Product Research · Prototyping</p>
           </div>
@@ -899,15 +837,11 @@
         <div class="proj-detail-inner">
           <div class="proj-detail-spacer"></div>
           <div class="proj-detail-body">
-            <p class="pdl">Overview</p>
-            <p class="pdd">User-centred design of a product that protects ears from wind noise while biking. Applied UCD methods — user research, interaction analysis, and iterative prototyping — to arrive at a functional, ergonomic solution as part of the MSc Integrated Product Design programme at TU Delft.</p>
-            <p class="pdl">Process</p>
-            <ul class="pdlist">
-              <li>User research and contextual inquiry with regular cyclists</li>
-              <li>Interaction analysis and pain point mapping</li>
-              <li>Iterative prototyping through multiple design cycles</li>
-              <li>Final functional, ergonomic validated solution</li>
-            </ul>
+            <div class="proj-photos">
+              <img src="images/work/wind_NOise/1.jpg" alt="wind NOise ear protection">
+              <img src="images/work/wind_NOise/2.jpg" alt="wind NOise ear protection">
+              <img src="images/work/wind_NOise/3.jpg" alt="wind NOise ear protection">
+            </div>
             <div class="pdf">
               <a href="https://www.behance.net/gallery/91328149/wind-NOise" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
               <button class="btn-collapse">↑ Collapse</button>
@@ -920,14 +854,14 @@
     <div class="proj-entry" id="ottoman">
       <div class="proj-row" role="button" tabindex="0" aria-expanded="false">
         <div class="proj-thumb">
-          <img src="images/work/Ottoman.png" alt="Ottoman">
+          <img src="images/work/Stubborn_Ottoman.png" alt="Stubborn Ottoman">
         </div>
         <div class="proj-info">
           <div class="proj-info-main">
-            <span class="proj-cat">DE</span>
-            <h2 class="proj-title">Ottoman</h2>
-            <p class="proj-sub">TU Delft · Product Design Project · 2020 · Delft, NL</p>
-            <p class="proj-teaser">Content coming soon.</p>
+            <span class="proj-cat">Design &amp; Engineer</span>
+            <h2 class="proj-title">Stubborn Ottoman</h2>
+            <p class="proj-sub">TU Delft · Product Design Project · Sep 2019 · Delft, NL</p>
+            <p class="proj-teaser">Expression-based form exploration — an Ottoman as the subject, stubbornness as the emotion driving every design decision.</p>
             <p class="proj-disciplines">Product Design · Furniture · Concept Development</p>
           </div>
           <div class="proj-info-foot">
@@ -939,8 +873,7 @@
         <div class="proj-detail-inner">
           <div class="proj-detail-spacer"></div>
           <div class="proj-detail-body">
-            <p class="pdl">Overview</p>
-            <p class="pdd">Content coming soon.</p>
+            <p class="pdd" style="color:var(--text-quiet);font-style:italic;">Images coming soon.</p>
             <div class="pdf">
               <button class="btn-collapse">↑ Collapse</button>
             </div>
@@ -968,9 +901,9 @@
         </div>
         <div class="proj-info">
           <div class="proj-info-main">
-            <span class="proj-cat">RD</span>
+            <span class="proj-cat">Research &amp; Design</span>
             <h2 class="proj-title">Modularity in Lattice Structures for Circular Product Design</h2>
-            <p class="proj-sub">TU Delft · Master's Thesis · Jan – Jun 2022 · Delft, NL</p>
+            <p class="proj-sub">TU Delft · Master's Thesis · Jan – Jun 2021 · Delft, NL</p>
             <p class="proj-teaser">Lattice modularity as a strategy for repairability and circular end-of-life — geometry enabling disassembly without sacrificing mechanical performance.</p>
             <p class="proj-disciplines">Thesis · Circular Design · Advanced Manufacturing</p>
           </div>
@@ -983,15 +916,9 @@
         <div class="proj-detail-inner">
           <div class="proj-detail-spacer"></div>
           <div class="proj-detail-body">
-            <p class="pdl">Overview</p>
-            <p class="pdd">Explored modularity in lattice structures as a strategy for repairability and reuse in circular product design. The research focused on efficient manufacturing of parametric modular lattices through subtractive processes — investigating how structural geometry can support end-of-life disassembly without compromising mechanical performance.</p>
-            <p class="pdl">Research Focus</p>
-            <ul class="pdlist">
-              <li>Parametric modular lattice geometry for repairability</li>
-              <li>Subtractive manufacturing processes for lattice structures</li>
-              <li>End-of-life disassembly strategies without mechanical compromise</li>
-              <li>Intersection of structural engineering and circular economy principles</li>
-            </ul>
+            <div class="proj-photos">
+              <img src="images/work/Modular_lattice_structures/1.jpg" alt="Modularity in Lattice Structures">
+            </div>
             <div class="pdf">
               <a href="https://www.behance.net/gallery/197839831/Modular-Lattice-Structures" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
               <button class="btn-collapse">↑ Collapse</button>
@@ -1020,7 +947,7 @@
         </div>
         <div class="proj-info">
           <div class="proj-info-main">
-            <span class="proj-cat">DE</span>
+            <span class="proj-cat">Design &amp; Engineer</span>
             <span class="proj-award">★ Red Dot Design Award 2022</span>
             <h2 class="proj-title">Selector 180</h2>
             <p class="proj-sub">H2L Robotics B.V. · Designer &amp; Production Manager · Jul 2020 – Jun 2022 · Schagen, NL</p>
@@ -1036,16 +963,11 @@
         <div class="proj-detail-inner">
           <div class="proj-detail-spacer"></div>
           <div class="proj-detail-body">
-            <p class="pdl">Overview</p>
-            <p class="pdd">Co-designed, manufactured, and commercialised the Selector 180 — an autonomous tulip selection robot for H2L Robotics B.V. Responsible for product and systems design, CAD development, production workflows, assembly, wiring integration, BOM management using Philips' 12NC system, and field deployment across 16 customers over two consecutive years.</p>
-            <p class="pdl">Deliverables</p>
-            <ul class="pdlist">
-              <li>Full product and systems design from concept to commercial release</li>
-              <li>CAD development and detailed engineering drawings</li>
-              <li>Production workflows, assembly processes, and wiring integration</li>
-              <li>BOM management using Philips' 12NC system</li>
-              <li>Field deployment and customer support across 16 sites over two seasons</li>
-            </ul>
+            <div class="proj-photos">
+              <img src="images/work/Selector180/1.jpg" alt="Selector 180 H2L Robotics">
+              <img src="images/work/Selector180/2.jpg" alt="Selector 180 H2L Robotics">
+              <img src="images/work/Selector180/3.jpg" alt="Selector 180 H2L Robotics">
+            </div>
             <div class="pdf">
               <a href="https://www.behance.net/gallery/196730461/Selector-180-H2L-Robotics-BV" target="_blank" rel="noopener" class="link-behance">View on Behance ↗</a>
               <button class="btn-collapse">↑ Collapse</button>
@@ -1067,264 +989,98 @@
     </div>
     <div class="era-rule"></div>
 
-    <p class="riidl-intro">Design &amp; Innovation Lead at riidl Foundation — guiding early-stage ventures from idea to MVP across hardware, software, and product strategy.</p>
-    <div class="riidl-stat-row">
-      <div class="riidl-stat">
-        <span class="riidl-stat-num">58+</span>
-        <span class="riidl-stat-label">Startups mentored</span>
+    <div class="proj-entry" id="innovation-incubation">
+      <div class="proj-row" role="button" tabindex="0" aria-expanded="false">
+        <div class="proj-thumb">
+          <img src="images/work/Innovation_Incubation.png" alt="Innovation &amp; Incubation">
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-main">
+            <span class="proj-cat">Consult &amp; Liaison</span>
+            <h2 class="proj-title">Innovation &amp; Incubation</h2>
+            <p class="proj-sub">riidl Foundation · Design &amp; Innovation Lead · Aug 2022 – Present · Mumbai, India</p>
+            <p class="proj-teaser">Guiding early-stage ventures from idea to MVP across hardware, software, and product strategy.</p>
+            <p class="proj-disciplines">Startup Mentorship · Product Strategy · Hardware Incubation</p>
+          </div>
+          <div class="proj-info-foot">
+            <button class="proj-toggle-btn" aria-label="Expand" tabindex="-1">+</button>
+          </div>
+        </div>
       </div>
-      <div class="riidl-stat">
-        <span class="riidl-stat-num">18+</span>
-        <span class="riidl-stat-label">Pvt. Ltd. ventures</span>
-      </div>
-      <div class="riidl-stat">
-        <span class="riidl-stat-num">2×</span>
-        <span class="riidl-stat-label">Shark Tank India</span>
+      <div class="proj-detail">
+        <div class="proj-detail-inner">
+          <div class="proj-detail-spacer"></div>
+          <div class="proj-detail-body">
+            <div class="riidl-stat-row" style="padding:0 0 1.5rem;">
+              <div class="riidl-stat">
+                <span class="riidl-stat-num">558+</span>
+                <span class="riidl-stat-label">Startup Mentors</span>
+              </div>
+              <div class="riidl-stat">
+                <span class="riidl-stat-num">18+</span>
+                <span class="riidl-stat-label">Pvt. Ltd. ventures</span>
+              </div>
+              <div class="riidl-stat">
+                <span class="riidl-stat-num">2×</span>
+                <span class="riidl-stat-label">Shark Tank India</span>
+              </div>
+            </div>
+            <div class="proj-photos">
+              <img src="images/work/Innovation_Incubation/1.jpg" alt="Innovation &amp; Incubation">
+              <img src="images/work/Innovation_Incubation/2.jpg" alt="Innovation &amp; Incubation">
+              <img src="images/work/Innovation_Incubation/3.jpg" alt="Innovation &amp; Incubation">
+            </div>
+            <div class="startup-grid" style="margin-top:1.5rem;">
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/GPRobo.jpg" alt="GPROBO"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/GPRobo.jpg" alt="GPROBO"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/Human_Biogenesis.jpg" alt="Human Biogenesis"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/Human_Biogenesis.jpg" alt="Human Biogenesis"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/Prevalent.jpg" alt="Prevalent Automotives"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/Prevalent.jpg" alt="Prevalent Automotives"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/TransTrak.jpg" alt="TransTrak"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/TransTrak.jpg" alt="TransTrak"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/Eva_Scalp_Cooling.jpg" alt="EVA Scalp Cooling"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/Eva_Scalp_Cooling.jpg" alt="EVA Scalp Cooling"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/Strictly_Electric.jpeg" alt="Strictly Electric"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/Strictly_Electric.jpeg" alt="Strictly Electric"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/Ayka_Control_Systems.jpg" alt="Ayka Control Systems"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/Ayka_Control_Systems.jpg" alt="Ayka Control Systems"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/Ezpac.jpg" alt="Ezpac"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/Ezpac.jpg" alt="Ezpac"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/Fostride.jpg" alt="Fostride → R3Bin"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/Fostride.jpg" alt="Fostride → R3Bin"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/LADS.jpg" alt="LADS"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/LADS.jpg" alt="LADS"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/24BUY7_Vending_Machines.jpg" alt="24BUY7 Vending Machines"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/24BUY7_Vending_Machines.jpg" alt="24BUY7 Vending Machines"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Warpbay.jpg" alt="WarpBay"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Warpbay.jpg" alt="WarpBay"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/19_Insoles.jpg" alt="19 Insoles"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/19_Insoles.jpg" alt="19 Insoles"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Agrowood.jpg" alt="Agrowood"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Agrowood.jpg" alt="Agrowood"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Austrange_Solutions.jpg" alt="Austrange Solutions"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Austrange_Solutions.jpg" alt="Austrange Solutions"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Bio-Nano-Hub.jpg" alt="Bio Nano Hub"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Bio-Nano-Hub.jpg" alt="Bio Nano Hub"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/C_Square.jpg" alt="C Square"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/C_Square.jpg" alt="C Square"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Charkh_Studio.jpg" alt="Charkh Studio"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Charkh_Studio.jpg" alt="Charkh Studio"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Datalis.jpg" alt="Datalis"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Datalis.jpg" alt="Datalis"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Drone_School_India.jpg" alt="Drone School India"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Drone_School_India.jpg" alt="Drone School India"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Electrion.jpg" alt="Electrion"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Electrion.jpg" alt="Electrion"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Five_Line_Healthcare.jpg" alt="Five Line Healthcare"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Five_Line_Healthcare.jpg" alt="Five Line Healthcare"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Go_Go_Energy.jpg" alt="Go Go Energy"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Go_Go_Energy.jpg" alt="Go Go Energy"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Helo_Health.jpg" alt="Helo Health"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Helo_Health.jpg" alt="Helo Health"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/IndieJeanous.jpg" alt="IndieJeanous"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/IndieJeanous.jpg" alt="IndieJeanous"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Kubra_Technologies.jpg" alt="Kubra Technologies"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Kubra_Technologies.jpg" alt="Kubra Technologies"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/LawAid.jpg" alt="LawAid"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/LawAid.jpg" alt="LawAid"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/PPT_Pro.jpg" alt="PPT Pro"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/PPT_Pro.jpg" alt="PPT Pro"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/PrepSOM.jpg" alt="PrepSOM"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/PrepSOM.jpg" alt="PrepSOM"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Repspeed-AI.jpg" alt="Repspeed AI"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Repspeed-AI.jpg" alt="Repspeed AI"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Rove_Health.jpg" alt="Rove Health"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Rove_Health.jpg" alt="Rove Health"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Rymo.jpg" alt="Rymo"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Rymo.jpg" alt="Rymo"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Saventh.jpg" alt="Saventh"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Saventh.jpg" alt="Saventh"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Svarna_Root.jpg" alt="Svarna Root"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Svarna_Root.jpg" alt="Svarna Root"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Tailors2U.jpg" alt="Tailors2U"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Tailors2U.jpg" alt="Tailors2U"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/The_Colony.jpg" alt="The Colony"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/The_Colony.jpg" alt="The Colony"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/ThermoEase.jpg" alt="ThermoEase"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/ThermoEase.jpg" alt="ThermoEase"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Tutelage.jpg" alt="Tutelage"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Tutelage.jpg" alt="Tutelage"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Vanguard.jpg" alt="Vanguard"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Vanguard.jpg" alt="Vanguard"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Yos_Theory.jpg" alt="Yos Theory"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Yos_Theory.jpg" alt="Yos Theory"></div></div></div></div>
+              <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/devSemble.jpg" alt="devSemble"></div></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/devSemble.jpg" alt="devSemble"></div></div></div></div>
+              <div class="many-more-tile">and many more</div>
+            </div>
+            <div class="pdf" style="margin-top:1.5rem;">
+              <button class="btn-collapse">↑ Collapse</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- Featured Startup Grid: 4×3 = 12 cards -->
-    <div class="startup-grid-lg">
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="fc-logo"><img src="images/work/logos/GPRobo.jpg" alt="GPROBO"></div>
-            <p class="fc-name">GPROBO</p>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-detail">
-              <p class="fc-back-name">GPROBO</p>
-              <p class="fc-back-year">2023 – 2024</p>
-              <p class="fc-back-liner">Consulted on the redesign of GPROBO — improving body design and manufacturability through DFM/DFA principles.</p>
-              <div class="fc-back-tags"><span class="stag">Robotics</span><span class="stag">DFM/DFA</span><span class="stag">Product Design</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="fc-logo"><img src="images/work/logos/Human_Biogenesis.jpg" alt="Human Biogenesis"></div>
-            <p class="fc-name">Human Biogenesis</p>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-detail">
-              <p class="fc-back-name">Human Biogenesis</p>
-              <p class="fc-back-year">2023</p>
-              <p class="fc-back-liner">Patentable body design for the SD Kit — clinical usability and market readiness for adoption.</p>
-              <div class="fc-back-tags"><span class="stag">MedTech</span><span class="stag">Product Design</span><span class="stag">Packaging</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="fc-logo"><img src="images/work/logos/Prevalent.jpg" alt="Prevalent Automotives"></div>
-            <p class="fc-name">Prevalent Automotives</p>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-detail">
-              <p class="fc-back-name">Prevalent Automotives</p>
-              <p class="fc-back-year">2023 – 2024</p>
-              <p class="fc-back-liner">Electric cargo moped — rapid prototyping, DFM/DFA, and electrical routing for 200 kg payload delivery.</p>
-              <div class="fc-back-tags"><span class="stag">EV</span><span class="stag">Mobility</span><span class="stag">Prototyping</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="fc-logo"><span class="fc-logo-text">TT</span></div>
-            <p class="fc-name">TransTrak</p>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-detail">
-              <p class="fc-back-name">TransTrak</p>
-              <p class="fc-back-year">2022 – 2023</p>
-              <p class="fc-back-liner">Ergonomic seat design, UX research, and fundraising strategy for professional vehicle operators.</p>
-              <div class="fc-back-tags"><span class="stag">Ergonomics</span><span class="stag">UX Research</span><span class="stag">Fundraising</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="fc-logo"><img src="images/work/logos/Eva_Scalp_Cooling.jpg" alt="EVA Scalp Cooling"></div>
-            <p class="fc-name">EVA Scalp Cooling</p>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-detail">
-              <p class="fc-back-name">EVA Scalp Cooling</p>
-              <p class="fc-back-year">2023</p>
-              <p class="fc-back-liner">Pitch materials, renders, and investor presentation — funding secured through Shark Tank India.</p>
-              <div class="fc-back-tags"><span class="stag">MedTech</span><span class="stag">Presentation</span><span class="stag-shark">★ Shark Tank India</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="fc-logo"><img src="images/work/logos/Strictly_Electric.jpeg" alt="Strictly Electric"></div>
-            <p class="fc-name">Strictly Electric</p>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-detail">
-              <p class="fc-back-name">Strictly Electric</p>
-              <p class="fc-back-year">2022 – 2024</p>
-              <p class="fc-back-liner">Two-year redesign — form, aesthetics, and manufacturability for an urban EV platform.</p>
-              <div class="fc-back-tags"><span class="stag">EV</span><span class="stag">Product Redesign</span><span class="stag">Industrial Design</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="fc-logo"><img src="images/work/logos/Ayka_Control_Systems.jpg" alt="Ayka Control Systems"></div>
-            <p class="fc-name">Ayka Control Systems</p>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-detail">
-              <p class="fc-back-name">Ayka Control Systems</p>
-              <p class="fc-back-year">2023</p>
-              <p class="fc-back-liner">BizDev, photo/video, and 3D renders contributing to a ₹1 crore fundraise.</p>
-              <div class="fc-back-tags"><span class="stag">Industrial</span><span class="stag">Automation</span><span class="stag">BizDev</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="fc-logo"><img src="images/work/logos/Ezpac.jpg" alt="Ezpac"></div>
-            <p class="fc-name">Ezpac</p>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-detail">
-              <p class="fc-back-name">Ezpac</p>
-              <p class="fc-back-year">2022 – 2024</p>
-              <p class="fc-back-liner">Two-year engagement — packaging, fundraising, and brand strategy leading to Shark Tank India.</p>
-              <div class="fc-back-tags"><span class="stag">Packaging</span><span class="stag">BizDev</span><span class="stag-shark">★ Shark Tank India</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="fc-logo"><img src="images/work/logos/Fostride.jpg" alt="Fostride"></div>
-            <p class="fc-name">Fostride → R3Bin</p>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-detail">
-              <p class="fc-back-name">Fostride → R3Bin</p>
-              <p class="fc-back-year">2023 – 2024</p>
-              <p class="fc-back-liner">Product evolution from B2B waste bin to AI-powered R3Bin — architecture, form, and AI strategy.</p>
-              <div class="fc-back-tags"><span class="stag">Smart Product</span><span class="stag">AI</span><span class="stag">Product Strategy</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="fc-logo"><img src="images/work/logos/LADS.jpg" alt="LADS"></div>
-            <p class="fc-name">LADS</p>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-detail">
-              <p class="fc-back-name">LADS</p>
-              <p class="fc-back-year">2023 – 2024</p>
-              <p class="fc-back-liner">Technology startup building intelligent systems for industry and defence.</p>
-              <div class="fc-back-tags"><span class="stag">Technology</span><span class="stag">Systems Design</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="fc-logo"><img src="images/work/logos/more/24BUY7_Vending_Machines.jpg" alt="24BUY7 Vending Machines"></div>
-            <p class="fc-name">24BUY7 Vending Machines</p>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-detail">
-              <p class="fc-back-name">24BUY7 Vending Machines</p>
-              <p class="fc-back-year">—</p>
-              <p class="fc-back-liner">Content coming soon.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="fc-logo"><img src="images/work/logos/more/Warpbay.jpg" alt="WarpBay"></div>
-            <p class="fc-name">WarpBay</p>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-detail">
-              <p class="fc-back-name">WarpBay</p>
-              <p class="fc-back-year">—</p>
-              <p class="fc-back-liner">Content coming soon.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Smaller Startup Grid: 6 per row -->
-    <div class="startup-grid-sm">
-
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/19_Insoles.jpg" alt="19 Insoles"></div><p class="fc-name">19 Insoles</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/19_Insoles.jpg" alt="19 Insoles"></div><p class="fc-name">19 Insoles</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Agrowood.jpg" alt="Agrowood"></div><p class="fc-name">Agrowood</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Agrowood.jpg" alt="Agrowood"></div><p class="fc-name">Agrowood</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Austrange_Solutions.jpg" alt="Austrange Solutions"></div><p class="fc-name">Austrange Solutions</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Austrange_Solutions.jpg" alt="Austrange Solutions"></div><p class="fc-name">Austrange Solutions</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Bio-Nano-Hub.jpg" alt="Bio Nano Hub"></div><p class="fc-name">Bio Nano Hub</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Bio-Nano-Hub.jpg" alt="Bio Nano Hub"></div><p class="fc-name">Bio Nano Hub</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/C_Square.jpg" alt="C Square"></div><p class="fc-name">C Square</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/C_Square.jpg" alt="C Square"></div><p class="fc-name">C Square</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Charkh_Studio.jpg" alt="Charkh Studio"></div><p class="fc-name">Charkh Studio</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Charkh_Studio.jpg" alt="Charkh Studio"></div><p class="fc-name">Charkh Studio</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Datalis.jpg" alt="Datalis"></div><p class="fc-name">Datalis</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Datalis.jpg" alt="Datalis"></div><p class="fc-name">Datalis</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Drone_School_India.jpg" alt="Drone School India"></div><p class="fc-name">Drone School India</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Drone_School_India.jpg" alt="Drone School India"></div><p class="fc-name">Drone School India</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Electrion.jpg" alt="Electrion"></div><p class="fc-name">Electrion</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Electrion.jpg" alt="Electrion"></div><p class="fc-name">Electrion</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Five_Line_Healthcare.jpg" alt="Five Line Healthcare"></div><p class="fc-name">Five Line Healthcare</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Five_Line_Healthcare.jpg" alt="Five Line Healthcare"></div><p class="fc-name">Five Line Healthcare</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Go_Go_Energy.jpg" alt="Go Go Energy"></div><p class="fc-name">Go Go Energy</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Go_Go_Energy.jpg" alt="Go Go Energy"></div><p class="fc-name">Go Go Energy</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Helo_Health.jpg" alt="Helo Health"></div><p class="fc-name">Helo Health</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Helo_Health.jpg" alt="Helo Health"></div><p class="fc-name">Helo Health</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/IndieJeanous.jpg" alt="IndieJeanous"></div><p class="fc-name">IndieJeanous</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/IndieJeanous.jpg" alt="IndieJeanous"></div><p class="fc-name">IndieJeanous</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Kubra_Technologies.jpg" alt="Kubra Technologies"></div><p class="fc-name">Kubra Technologies</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Kubra_Technologies.jpg" alt="Kubra Technologies"></div><p class="fc-name">Kubra Technologies</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/LawAid.jpg" alt="LawAid"></div><p class="fc-name">LawAid</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/LawAid.jpg" alt="LawAid"></div><p class="fc-name">LawAid</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/PPT_Pro.jpg" alt="PPT Pro"></div><p class="fc-name">PPT Pro</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/PPT_Pro.jpg" alt="PPT Pro"></div><p class="fc-name">PPT Pro</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/PrepSOM.jpg" alt="PrepSOM"></div><p class="fc-name">PrepSOM</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/PrepSOM.jpg" alt="PrepSOM"></div><p class="fc-name">PrepSOM</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Repspeed-AI.jpg" alt="Repspeed AI"></div><p class="fc-name">Repspeed AI</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Repspeed-AI.jpg" alt="Repspeed AI"></div><p class="fc-name">Repspeed AI</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Rove_Health.jpg" alt="Rove Health"></div><p class="fc-name">Rove Health</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Rove_Health.jpg" alt="Rove Health"></div><p class="fc-name">Rove Health</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Rymo.jpg" alt="Rymo"></div><p class="fc-name">Rymo</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Rymo.jpg" alt="Rymo"></div><p class="fc-name">Rymo</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Saventh.jpg" alt="Saventh"></div><p class="fc-name">Saventh</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Saventh.jpg" alt="Saventh"></div><p class="fc-name">Saventh</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Svarna_Root.jpg" alt="Svarna Root"></div><p class="fc-name">Svarna Root</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Svarna_Root.jpg" alt="Svarna Root"></div><p class="fc-name">Svarna Root</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Tailors2U.jpg" alt="Tailors2U"></div><p class="fc-name">Tailors2U</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Tailors2U.jpg" alt="Tailors2U"></div><p class="fc-name">Tailors2U</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/The_Colony.jpg" alt="The Colony"></div><p class="fc-name">The Colony</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/The_Colony.jpg" alt="The Colony"></div><p class="fc-name">The Colony</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/ThermoEase.jpg" alt="ThermoEase"></div><p class="fc-name">ThermoEase</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/ThermoEase.jpg" alt="ThermoEase"></div><p class="fc-name">ThermoEase</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Tutelage.jpg" alt="Tutelage"></div><p class="fc-name">Tutelage</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Tutelage.jpg" alt="Tutelage"></div><p class="fc-name">Tutelage</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Vanguard.jpg" alt="Vanguard"></div><p class="fc-name">Vanguard</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Vanguard.jpg" alt="Vanguard"></div><p class="fc-name">Vanguard</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/Yos_Theory.jpg" alt="Yos Theory"></div><p class="fc-name">Yos Theory</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/Yos_Theory.jpg" alt="Yos Theory"></div><p class="fc-name">Yos Theory</p></div></div></div>
-      <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><div class="fc-logo"><img src="images/work/logos/more/devSemble.jpg" alt="devSemble"></div><p class="fc-name">devSemble</p></div><div class="flip-back"><div class="fc-logo"><img src="images/work/logos/more/devSemble.jpg" alt="devSemble"></div><p class="fc-name">devSemble</p></div></div></div>
-
-    </div>
-
 
   </div><!-- /tl-era last -->
 

@@ -22,6 +22,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     isolation: isolate;
+    padding-top: 80px;
   }
 
   .bg-waves {
@@ -40,8 +41,10 @@
 
   /* ============ NAV ============ */
   .site-nav {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     background: var(--bg);
     z-index: 100;
     border-bottom: 1px solid transparent;
@@ -476,15 +479,8 @@
     }
     .nav-links a { font-size: 0.73rem; }
 
-    /* Fixed nav — stays at top while page scrolls */
-    .site-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
-    /* Push content below the fixed nav (~2 rows + padding ≈ 78px) */
-    body { padding-top: 78px; }
+    /* Mobile nav is slightly shorter (two-row but compact) */
+    body { padding-top: 72px; }
 
     /* Hero roles: stack vertically, drop separators */
     .hero-roles { display: flex; flex-direction: column; gap: 0.15rem; }

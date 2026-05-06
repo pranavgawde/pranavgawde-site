@@ -90,6 +90,12 @@
       }
       .mosaic-cell { grid-column: auto !important; grid-row: auto !important; }
     }
+    @media (max-width: 420px) {
+      .mosaic-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 125px);
+      }
+    }
 
     .mosaic-intro {
       font-family: 'Montserrat', sans-serif;

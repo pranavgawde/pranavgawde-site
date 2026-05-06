@@ -476,6 +476,16 @@
     }
     .nav-links a { font-size: 0.73rem; }
 
+    /* Fixed nav — stays at top while page scrolls */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+    /* Push content below the fixed nav (~2 rows + padding ≈ 78px) */
+    body { padding-top: 78px; }
+
     /* Hero roles: stack vertically, drop separators */
     .hero-roles { display: flex; flex-direction: column; gap: 0.15rem; }
     .hero-roles .role-sep { display: none; }

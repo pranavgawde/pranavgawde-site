@@ -11,7 +11,6 @@
   <script src="js/site.js" defer></script>
   <style>
     .studio-opening {
-      max-width: 700px;
       margin-bottom: 4rem;
     }
     .studio-opening p {
@@ -85,13 +84,9 @@
 
     /* ---- How I work ---- */
     .how-i-work {
-      padding: 2.5rem 0;
+      padding: 2.5rem 0 0;
       border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      margin-bottom: 4rem;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
+      margin-bottom: 2rem;
     }
     .how-i-work .label {
       font-family: 'Montserrat', sans-serif;
@@ -100,13 +95,80 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
-      white-space: nowrap;
-      min-width: 120px;
+      margin-bottom: 1.5rem;
+      display: block;
     }
-    .how-i-work p {
-      font-size: 1.05rem;
+    .work-models {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem;
+      margin-bottom: 4rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 4rem;
+    }
+    .work-model {
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: box-shadow 0.25s ease;
+    }
+    .work-model:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    }
+    .method-image-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: var(--bg-soft);
+    }
+    .method-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s ease;
+    }
+    .work-model:hover .method-image-wrap img {
+      transform: scale(1.04);
+    }
+    /* Cross mark for lean model */
+    .method-cross::before,
+    .method-cross::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      width: 80%;
+      height: 6px;
+      background: rgba(210, 40, 40, 0.88);
+      border-radius: 3px;
+      transform-origin: center;
+      z-index: 2;
+    }
+    .method-cross::before { transform: translateY(-50%) rotate(30deg); }
+    .method-cross::after  { transform: translateY(-50%) rotate(-30deg); }
+    .method-info {
+      padding: 1.4rem 1.5rem 1.6rem;
+    }
+    .method-info h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
       color: var(--text);
-      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+    .work-model.not-this .method-info h4 {
+      color: var(--text-quiet);
+      text-decoration: line-through;
+      text-decoration-color: rgba(210,40,40,0.6);
+    }
+    .method-info p {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--text-soft);
+    }
+    @media (max-width: 700px) {
+      .work-models { grid-template-columns: 1fr; }
     }
 
     /* ---- Who I work with ---- */
@@ -252,7 +314,27 @@
 
   <div class="how-i-work">
     <span class="label">How I work</span>
-    <p>I work in 4–8 week sprints with founders, and on retainer with institutions.</p>
+  </div>
+
+  <div class="work-models">
+    <div class="work-model">
+      <div class="method-image-wrap">
+        <img src="images/agile.png" alt="Agile working model">
+      </div>
+      <div class="method-info">
+        <h4>The Agile Way</h4>
+        <p>I work in 4–8 week sprints with founders, adapting as we learn together. Short cycles, tight feedback loops, and continuous iteration mean we're always moving toward something real — not perfecting something theoretical. The brief evolves. So does the work.</p>
+      </div>
+    </div>
+    <div class="work-model not-this">
+      <div class="method-image-wrap method-cross">
+        <img src="images/lean.png" alt="Lean model — not this">
+      </div>
+      <div class="method-info">
+        <h4>The Lean Way</h4>
+        <p>Lean thinking optimises for removing waste — but in early-stage hardware, you can't always know what's waste until you've tried it. Premature optimisation cuts corners that matter. I'd rather move fast with room to learn than move slow with no room to fail.</p>
+      </div>
+    </div>
   </div>
 
   <p class="section-label">Who I work with</p>
@@ -283,6 +365,10 @@
 
 </div>
 
+<section class="closing">
+  <p class="closing-question">Building something meaningful, manufacturable, scalable?</p>
+</section>
+
 <section class="signoff-band">
   <p class="signoff-text">Let's make it happen.</p>
 </section>
@@ -290,16 +376,22 @@
 <footer>
   <a href="index.html" class="wordmark"><img src="images/pg-logo.png" alt="PG" class="site-logo"><span class="wordmark-name">pranavgawde</span></a>
   <ul class="footer-nav">
-    <li><a href="work.html">Work</a></li>
-    <li><a href="notes.html">Notes</a></li>
-    <li><a href="studio.html">Studio</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="beyond.html">Beyond</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="work.html" data-hover="what I make">Work</a></li>
+    <li><a href="notes.html" data-hover="what I think">Notes</a></li>
+    <li><a href="studio.html" data-hover="how I help">Studio</a></li>
+    <li><a href="about.html" data-hover="the longer story">About</a></li>
+    <li><a href="beyond.html" data-hover="the better story">Beyond</a></li>
+    <li><a href="contact.html" data-hover="let's connect">Contact</a></li>
   </ul>
   <div class="footer-socials">
-    <a href="https://linkedin.com/in/pranavgawde" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://behance.net/pranavgawde" target="_blank" rel="noopener">Behance</a>
+    <div class="social-preview-wrap">
+      <div class="social-preview-card"><img src="images/Linkedin.jpg" alt="LinkedIn preview"></div>
+      <a href="https://linkedin.com/in/pranavgawde" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="social-preview-wrap">
+      <div class="social-preview-card"><img src="images/Behance.jpg" alt="Behance preview"></div>
+      <a href="https://behance.net/pranavgawde" target="_blank" rel="noopener">Behance</a>
+    </div>
   </div>
   <div class="copyright">© 2026 Pranav Gawde · Designed and built in Mumbai, India</div>
 </footer>

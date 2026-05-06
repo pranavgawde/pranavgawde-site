@@ -32,21 +32,37 @@
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = 'rgba(0,117,93,0.09)';
 
+    // Pass 1: base dots (not warped) at low opacity
+    ctx.fillStyle = 'rgba(0,117,93,0.09)';
+    ctx.beginPath();
+    for (let i = 0; i < dots.length; i++) {
+      const d = dots[i];
+      const dx = d.bx - mx, dy = d.by - my;
+      const dist2 = dx * dx + dy * dy;
+      if (dist2 >= WARP_RADIUS * WARP_RADIUS) {
+        ctx.moveTo(d.bx + DOT_R, d.by);
+        ctx.arc(d.bx, d.by, DOT_R, 0, Math.PI * 2);
+      }
+    }
+    ctx.fill();
+
+    // Pass 2: warped dots at enhanced opacity
     for (let i = 0; i < dots.length; i++) {
       const d  = dots[i];
       const dx = d.bx - mx, dy = d.by - my;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      let px = d.bx, py = d.by;
       if (dist < WARP_RADIUS && dist > 0) {
-        const f = (1 - dist / WARP_RADIUS) * WARP_FORCE;
-        px += (dx / dist) * f;
-        py += (dy / dist) * f;
+        const ratio = 1 - dist / WARP_RADIUS;
+        const f  = ratio * WARP_FORCE;
+        const px = d.bx + (dx / dist) * f;
+        const py = d.by + (dy / dist) * f;
+        const alpha = (0.09 + ratio * 0.38).toFixed(2);
+        ctx.fillStyle = `rgba(0,117,93,${alpha})`;
+        ctx.beginPath();
+        ctx.arc(px, py, DOT_R, 0, Math.PI * 2);
+        ctx.fill();
       }
-      ctx.beginPath();
-      ctx.arc(px, py, DOT_R, 0, Math.PI * 2);
-      ctx.fill();
     }
 
     requestAnimationFrame(draw);
@@ -62,17 +78,14 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   dot.className = 'cursor-dot';
   document.body.appendChild(dot);
 
-  // Track position
   document.addEventListener('mousemove', e => {
     dot.style.left = e.clientX + 'px';
     dot.style.top  = e.clientY + 'px';
   });
 
-  // Show / hide when entering / leaving the viewport
   document.addEventListener('mouseenter', () => dot.classList.remove('cursor-hidden'));
   document.addEventListener('mouseleave', () => dot.classList.add('cursor-hidden'));
 
-  // Expand to ring over anything interactive
   const interactive = 'a, button, label, [role="button"], .mosaic-cell, .note-card, .consult-item, .category-card';
   document.addEventListener('mouseover', e => {
     if (e.target.closest(interactive)) dot.classList.add('is-link');
@@ -99,17 +112,18 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   });
 })();
 
-// ── Typewriter tooltips on nav data-hover ───────────────────────────────────
+// ── Typewriter tooltips on nav and footer nav data-hover ────────────────────
 (function () {
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.nav-links a[data-hover]').forEach(link => {
+    document.querySelectorAll('.nav-links a[data-hover], .footer-nav a[data-hover]').forEach(link => {
+      const isFooter = link.closest('.footer-nav') !== null;
       let timer = null;
       let tip   = null;
 
       link.addEventListener('mouseenter', () => {
         const text = link.dataset.hover;
         tip = document.createElement('span');
-        tip.className = 'nav-tooltip';
+        tip.className = isFooter ? 'footer-tip' : 'nav-tooltip';
         link.appendChild(tip);
         let i = 0;
         timer = setInterval(() => {
@@ -128,9 +142,7 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
 
 // ── Active nav link ─────────────────────────────────────────────────────────
 (function () {
-  // Works for both filename URLs (index.html) and clean Vercel URLs (/notes)
   const page = window.location.pathname.split('/').pop() || 'index.html';
-
   document.querySelectorAll('.nav-links a').forEach(a => {
     const href = a.getAttribute('href') || '';
     const match =
@@ -138,5 +150,31 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
       href.replace('.html', '') === page ||
       href.replace('.html', '') === page.replace('.html', '');
     if (match) a.classList.add('active');
+  });
+})();
+
+// ── Wordmark hover: "pranavgawde" → "pranav gawde" ──────────────────────────
+(function () {
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.wordmark').forEach(el => {
+      const nameEl = el.querySelector('.wordmark-name');
+      if (!nameEl) return;
+      el.addEventListener('mouseenter', () => { nameEl.textContent = 'pranav gawde'; });
+      el.addEventListener('mouseleave', () => { nameEl.textContent = 'pranavgawde'; });
+    });
+  });
+})();
+
+// ── Social preview cards (LinkedIn / Behance / Instagram hover) ─────────────
+(function () {
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.social-preview-wrap').forEach(wrap => {
+      const card  = wrap.querySelector('.social-preview-card');
+      const link  = wrap.querySelector('a');
+      if (!card || !link) return;
+
+      wrap.addEventListener('mouseenter', () => { card.style.opacity = '1'; card.style.pointerEvents = 'none'; });
+      wrap.addEventListener('mouseleave', () => { card.style.opacity = '0'; });
+    });
   });
 })();

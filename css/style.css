@@ -341,13 +341,80 @@
     list-style: none;
     justify-content: center;
   }
-  .footer-nav a { color: var(--text-soft); font-size: 0.825rem; }
+  .footer-nav a {
+    color: var(--text-soft);
+    font-size: 0.825rem;
+    position: relative;
+  }
+  .footer-nav a:hover { color: var(--accent); }
+
+  /* Footer underline (same as nav) */
+  .footer-nav a::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--accent);
+    transition: width 0.25s ease;
+  }
+  .footer-nav a:hover::before { width: 100%; }
+
+  /* Footer tooltip — appears ABOVE the link */
+  .footer-tip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text);
+    color: var(--bg);
+    padding: 0.4rem 0.7rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    pointer-events: none;
+    font-family: 'Open Sans', sans-serif;
+    min-width: 1ch;
+  }
+
+  /* Social preview cards */
   .footer-socials {
     display: flex;
     gap: 1.5rem;
     justify-content: flex-end;
   }
   .footer-socials a { color: var(--text-soft); }
+  .social-preview-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .social-preview-card {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    min-width: 100%;
+    aspect-ratio: 1;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+  }
+  .social-preview-wrap:hover .social-preview-card { opacity: 1; }
+  .social-preview-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
   .copyright {
     grid-column: 1 / -1;
     text-align: center;

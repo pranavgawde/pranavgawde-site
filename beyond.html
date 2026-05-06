@@ -349,7 +349,7 @@
 
 <div class="page-header">
   <h1>Beyond</h1>
-  <p class="page-subtitle">If not related to work, you will find me doing…</p>
+  <p class="page-subtitle">Outside work hours, I'm figuring out where to go next — and then actually going.</p>
 </div>
 
 <div class="page-content">
@@ -359,7 +359,7 @@
     <p class="section-label">01 — Wandering</p>
     <h2 class="section-heading">Travelling the world</h2>
     <p class="section-count" id="countryCount"></p>
-    <p class="section-sub">Chasing diverse cultures, strange foods, and the feeling of being completely lost in a new city.</p>
+    <p class="section-sub" style="max-width:none;">Chasing diverse cultures, strange foods, and the feeling of being completely lost in a new city.</p>
 
     <div class="map-wrap">
       <div id="worldMap"></div>
@@ -372,7 +372,7 @@
     <p class="section-label">02 — Home ground</p>
     <h2 class="section-heading">Exploring my Incredible India</h2>
     <p class="section-count">18 states &amp; territories · counting</p>
-    <p class="section-sub">36 states and union territories, hundreds of languages, one lifetime not enough.</p>
+    <p class="section-sub" style="max-width:none;">36 states and union territories, hundreds of languages, one lifetime not enough.</p>
 
     <!--
     <div class="map-wrap" id="indiaMapWrap">
@@ -390,8 +390,8 @@
   <!-- ---- 3. Experiences ---- -->
   <div class="beyond-section">
     <p class="section-label">03 — Living it</p>
-    <h2 class="section-heading">Experiencing the unexperienced</h2>
-    <p class="section-sub">Paper pinned means done. Burnt into the cork means it's still coming for me.</p>
+    <h2 class="section-heading">The world's greatest hits — bucketed, chased, and far from finished.</h2>
+    <p class="section-sub" style="max-width:none;">Paper pinned means done. Burnt into the cork means it's still coming for me.</p>
 
     <div class="corkboard-frame">
       <div class="corkboard">
@@ -496,22 +496,28 @@
 
 
 <section class="signoff-band">
-  <p class="signoff-text">There's always more to discover.</p>
+  <p class="signoff-text">Experience is the <del style="opacity:0.6;text-decoration-color:rgba(255,255,255,0.7);">best</del> only teacher.</p>
 </section>
 
 <footer>
   <a href="index.html" class="wordmark"><img src="images/pg-logo.png" alt="PG" class="site-logo"><span class="wordmark-name">pranavgawde</span></a>
   <ul class="footer-nav">
-    <li><a href="work.html">Work</a></li>
-    <li><a href="notes.html">Notes</a></li>
-    <li><a href="studio.html">Studio</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="beyond.html">Beyond</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="work.html" data-hover="what I make">Work</a></li>
+    <li><a href="notes.html" data-hover="what I think">Notes</a></li>
+    <li><a href="studio.html" data-hover="how I help">Studio</a></li>
+    <li><a href="about.html" data-hover="the longer story">About</a></li>
+    <li><a href="beyond.html" data-hover="the better story">Beyond</a></li>
+    <li><a href="contact.html" data-hover="let's connect">Contact</a></li>
   </ul>
   <div class="footer-socials">
-    <a href="https://linkedin.com/in/pranavgawde" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://behance.net/pranavgawde" target="_blank" rel="noopener">Behance</a>
+    <div class="social-preview-wrap">
+      <div class="social-preview-card"><img src="images/Linkedin.jpg" alt="LinkedIn preview"></div>
+      <a href="https://linkedin.com/in/pranavgawde" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="social-preview-wrap">
+      <div class="social-preview-card"><img src="images/Behance.jpg" alt="Behance preview"></div>
+      <a href="https://behance.net/pranavgawde" target="_blank" rel="noopener">Behance</a>
+    </div>
   </div>
   <div class="copyright">© 2026 Pranav Gawde · Designed and built in Mumbai, India</div>
 </footer>
@@ -715,7 +721,7 @@
       { name: 'Tirupati',   img: 'images/beyond/india/Tirupati-Andhra_Pradesh.jpg' },
     ]},
     'Daman and Diu':       { state: 'Daman & Diu', cities: [
-      { name: 'Daman',      img: 'images/beyond/india/Daman-Gujarat.jpg' },
+      { name: 'Daman',      img: 'images/beyond/india/Daman.jpg' },
     ]},
     'Delhi':               { state: 'Delhi', cities: [
       { name: 'Hauz Khas',  img: 'images/beyond/india/Hauz_Khas-Delhi.jpg' },
@@ -725,6 +731,9 @@
     ]},
     'Gujarat':             { state: 'Gujarat', cities: [
       { name: 'Bhuj',       img: 'images/beyond/india/Bhuj-Gujurat.jpg' },
+    ]},
+    'Punjab':              { state: 'Punjab', cities: [
+      { name: 'Amritsar',   img: 'images/beyond/india/Amritsar-Punjab.jpg' },
     ]},
     'Himachal Pradesh':    { state: 'Himachal Pradesh', cities: [
       { name: 'Manali',     img: 'images/beyond/india/Manali-Himachal.jpg' },

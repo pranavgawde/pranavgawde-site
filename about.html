@@ -58,7 +58,28 @@
       color: var(--text-soft);
     }
 
-    /* ---- Scrolling achievements ticker ---- */
+    /* ---- Key statement highlight animation ---- */
+    .key-stmt {
+      transition: color 0.5s ease, font-weight 0.3s ease;
+    }
+    .key-stmt.is-active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ---- Philosophy tagline ---- */
+    .philosophy-tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.85rem;
+      margin-top: -0.4rem;
+    }
+
+    /* ---- Mega-card carousel ---- */
     .ticker-band {
       background: var(--bg-soft);
       border-top: 1px solid var(--rule);
@@ -71,7 +92,8 @@
       display: flex;
       gap: 1.5rem;
       width: max-content;
-      animation: ticker-scroll 28s linear infinite;
+      animation: ticker-scroll 36s linear infinite;
+      align-items: stretch;
     }
     .ticker-band:hover .ticker-track { animation-play-state: paused; }
 
@@ -80,33 +102,93 @@
       to   { transform: translateX(-50%); }
     }
 
-    .ticker-card {
+    /* One horizontal row: [title — no box] [sub-tile] [sub-tile] [sub-tile] */
+    .mega-card {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1.1rem;
       background: var(--bg);
       border: 1px solid var(--rule);
-      border-radius: 4px;
-      padding: 1.25rem 1.75rem;
-      min-width: 200px;
-      flex-shrink: 0;
-      text-align: center;
+      border-radius: 6px;
+      padding: 1.5rem 1.75rem;
     }
-    .ticker-card .num {
+    .mega-header {
+      flex-shrink: 0;
+      width: 130px;
+      border-right: 2px solid var(--accent);
+      padding-right: 1.1rem;
+    }
+    .mega-num {
+      display: block;
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      font-size: 1.6rem;
+      font-size: 1.65rem;
       color: var(--accent);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      display: block;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      white-space: nowrap;
     }
-    .ticker-card .label {
+    .mega-title {
+      display: block;
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-quiet);
       margin-top: 0.3rem;
-      display: block;
+    }
+    /* Boxed sub-tiles in a horizontal row */
+    .mega-subs {
+      display: flex;
+      flex-direction: row;
+      gap: 0.65rem;
+      flex: 1;
+    }
+    .sub-card {
+      flex: 1;
+      min-width: 90px;
+      background: var(--bg-soft);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 0.85rem 0.6rem 0.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.35rem;
+    }
+    .sub-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .sub-lbl {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+      text-transform: uppercase;
+      text-align: center;
+      width: 100%;
+    }
+    /* 27-years solo text — constrained so it wraps to ~2 lines */
+    .mega-solo-text {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--text-quiet);
+      line-height: 1.65;
+      max-width: 220px;
+      padding-left: 0.3rem;
     }
 
     /* ---- CV section ---- */
@@ -297,7 +379,7 @@
 
 <div class="page-header">
   <h1>About</h1>
-  <p class="page-subtitle">Born in Mumbai. Trained in Delft. Building in India.</p>
+  <p class="page-subtitle">Designed in Europe, Manufactured in India, Deploying across the globe.</p>
 </div>
 
 <div class="page-content">
@@ -308,13 +390,13 @@
       <img src="images/about-sketch.png" alt="Pranav Gawde">
     </div>
     <div class="about-story">
-      <p>I'm based in Mumbai, working at the intersection of product design, mechanical engineering, and early-stage startups. Most of my days are split between hands-on design and engineering work — sketches, CAD, prototypes — and the consulting and mentorship work I do through riidl, one of India's leading design and innovation labs. It's a combination I didn't plan for, but one I've grown to think is exactly right for where Indian product-building is today.</p>
+      <p>I'm based in Mumbai, working at the intersection of product design, mechanical engineering, and early-stage startups. Most of my days are split between hands-on design and engineering work — sketches, CAD, prototypes — and the consulting and mentorship work I do through riidl, one of India's leading design and innovation labs. <span class="key-stmt">It's a combination I didn't plan for, but one I've grown to think is exactly right for where Indian product-building is today.</span></p>
 
-      <p>I grew up in Mumbai and studied mechanical engineering here before leaving for Delft to do my master's in Industrial Design Engineering at TU Delft. The Netherlands years changed how I think — Delft has a particular rigour about design process that I absorbed deeply, and the exposure to European product culture gave me a reference point I still use constantly. I came back to Mumbai by choice. The problems here are harder, the constraints are real, and the opportunity to build things that matter to a billion people is not something you walk away from.</p>
+      <p>I grew up in Mumbai and studied mechanical engineering here before leaving for Delft to do my master's in Industrial Design Engineering at TU Delft. The Netherlands years changed how I think — Delft has a particular rigour about design process that I absorbed deeply, and the exposure to European product culture gave me a reference point I still use constantly. <span class="key-stmt">I came back to Mumbai by choice.</span> <span class="key-stmt">The problems here are harder, the constraints are real, and the opportunity to build things that matter to a billion people is not something you walk away from.</span></p>
 
-      <p>The most formative work I've done has been with early-stage hardware founders — people building physical products who are figuring out manufacturing, user fit, and investor narrative all at once. PSP Bowling Machines taught me that the gap between a working prototype and a shippable product is enormous, and that most founders don't know what they don't know until they're already in that gap. That's where I've learned to be useful — not as someone who knows all the answers, but as someone who's seen enough of the terrain to help teams avoid the expensive mistakes.</p>
+      <p>The most formative work I've done has been with early-stage hardware founders — people building physical products who are figuring out manufacturing, user fit, and investor narrative all at once. PSP Bowling Machines taught me that <span class="key-stmt">the gap between a working prototype and a shippable product is enormous</span>, and that <span class="key-stmt">most founders don't know what they don't know until they're already in that gap.</span> That's where I've learned to be useful — not as someone who knows all the answers, but as someone who's seen enough of the terrain to help teams avoid the expensive mistakes.</p>
 
-      <p>I care about building a culture of real-world product thinking in India — hardware, deep-tech, things you can hold. The startup ecosystem here is still heavily SaaS-oriented, and there's a generation of founders who want to build physical products but don't have enough experienced people around them who've actually done it. A big part of what I do through teaching, through Fab Academy, through the work at riidl, is trying to close that gap — one founder, one programme, one cohort at a time.</p>
+      <p><span class="key-stmt">I care about building a culture of real-world product thinking in India</span> — hardware, deep-tech, things you can hold. The startup ecosystem here is still heavily SaaS-oriented, and <span class="key-stmt">there's a generation of founders who want to build physical products but don't have enough experienced people around them who've actually done it.</span> A big part of what I do through teaching, through Fab Academy, through the work at riidl, is trying to close that gap — one founder, one programme, one cohort at a time.</p>
     </div>
   </div>
 
@@ -322,37 +404,112 @@
   <div class="philosophy">
     <div class="philosophy-item">
       <h3><span>Meaningful</span> Design</h3>
-      <p>Design is a long-term responsibility. The products and services I work on should hold up not just on the day they ship, but for everything that comes after — the repairs, the edge cases, the five-years-later version of the user who bought it. Good design anticipates that. It's not just about solving the brief in front of you; it's about solving it in a way that doesn't create new problems downstream.</p>
+      <p class="philosophy-tagline">Great power involves great responsibility.</p>
+      <p>Design can change lives — and that's precisely the point. Every product I work on carries forward into the world, into homes and hands and habits, long after the design process ends. The power to shape how people experience things comes with responsibility: to think about the repair, the edge case, the five-years-later version of the user who bought it. Good design doesn't just solve the brief — it solves it in a way that doesn't create new problems downstream.</p>
     </div>
     <div class="philosophy-item">
       <h3><span>Minimalist</span> Design</h3>
-      <p>Less is more — not as an aesthetic preference, but as a design principle. The strongest solutions come from clarity and restraint, not from adding features. Every time I add something to a design, I ask whether it's earning its place: does it solve a real problem, or does it just make the thing look more complete? The designs I'm most proud of are the ones where I figured out what to leave out.</p>
+      <p class="philosophy-tagline">Being simple isn't simple!</p>
+      <p>Reduction is the hardest discipline in design. It's easy to add — a feature, a flourish, a fallback. Stripping something down until only the essential remains takes far more rigour, far more iteration, far more courage. The strongest solutions come from clarity and restraint. Every element I add must earn its place: does it solve a real problem, or does it just make the thing look more complete? The designs I'm most proud of are the ones where I figured out what to leave out.</p>
     </div>
   </div>
 
 </div><!-- end page-content -->
 
-<!-- Scrolling achievements ticker -->
+<!-- Mega-card carousel -->
 <div class="ticker-band">
   <div class="ticker-track" id="tickerTrack">
-    <!-- items duplicated for seamless loop -->
-    <div class="ticker-card"><span class="num">100+</span><span class="label">Ventures Supported</span></div>
-    <div class="ticker-card"><span class="num">€500K+</span><span class="label">Raised by Mentees</span></div>
-    <div class="ticker-card"><span class="num">2022</span><span class="label">Red Dot Design Award</span></div>
-    <div class="ticker-card"><span class="num">10+</span><span class="label">Institutions Lectured</span></div>
-    <div class="ticker-card"><span class="num">9 yrs</span><span class="label">Building</span></div>
-    <div class="ticker-card"><span class="num">7 yrs</span><span class="label">Designing</span></div>
-    <div class="ticker-card"><span class="num">4 yrs</span><span class="label">Consulting</span></div>
-    <div class="ticker-card"><span class="num">27 yrs</span><span class="label">Learning</span></div>
-    <!-- duplicate for seamless scroll -->
-    <div class="ticker-card"><span class="num">100+</span><span class="label">Ventures Supported</span></div>
-    <div class="ticker-card"><span class="num">€500K+</span><span class="label">Raised by Mentees</span></div>
-    <div class="ticker-card"><span class="num">2022</span><span class="label">Red Dot Design Award</span></div>
-    <div class="ticker-card"><span class="num">10+</span><span class="label">Institutions Lectured</span></div>
-    <div class="ticker-card"><span class="num">9 yrs</span><span class="label">Building</span></div>
-    <div class="ticker-card"><span class="num">7 yrs</span><span class="label">Designing</span></div>
-    <div class="ticker-card"><span class="num">4 yrs</span><span class="label">Consulting</span></div>
-    <div class="ticker-card"><span class="num">27 yrs</span><span class="label">Learning</span></div>
+
+    <!-- Card 1: 9 years building -->
+    <div class="mega-card">
+      <div class="mega-header">
+        <span class="mega-num">9 years</span>
+        <span class="mega-title">Building</span>
+      </div>
+      <div class="mega-subs">
+        <div class="sub-card"><span class="sub-num">3+</span><span class="sub-lbl">Products Commercialised</span></div>
+        <div class="sub-card"><span class="sub-num">2×</span><span class="sub-lbl">Founder</span></div>
+        <div class="sub-card"><span class="sub-num">1</span><span class="sub-lbl">Provisional Patent in Process</span></div>
+      </div>
+    </div>
+
+    <!-- Card 2: 7 years designing -->
+    <div class="mega-card">
+      <div class="mega-header">
+        <span class="mega-num">7 years</span>
+        <span class="mega-title">Designing</span>
+      </div>
+      <div class="mega-subs">
+        <div class="sub-card"><span class="sub-num">2022</span><span class="sub-lbl">Red Dot Design Award</span></div>
+        <div class="sub-card"><span class="sub-num">10+</span><span class="sub-lbl">Designs Implemented</span></div>
+        <div class="sub-card"><span class="sub-num">10+</span><span class="sub-lbl">Lecture Sessions Taken</span></div>
+      </div>
+    </div>
+
+    <!-- Card 3: 4 years consulting -->
+    <div class="mega-card">
+      <div class="mega-header">
+        <span class="mega-num">4 years</span>
+        <span class="mega-title">Consulting</span>
+      </div>
+      <div class="mega-subs">
+        <div class="sub-card"><span class="sub-num">€500K+</span><span class="sub-lbl">Raised by Mentees</span></div>
+        <div class="sub-card"><span class="sub-num">100+</span><span class="sub-lbl">Innovators Consulted</span></div>
+        <div class="sub-card"><span class="sub-num">10+</span><span class="sub-lbl">Programmes Planned &amp; Executed</span></div>
+      </div>
+    </div>
+
+    <!-- Card 4: 27 years learning -->
+    <div class="mega-card mega-solo">
+      <div class="mega-header">
+        <span class="mega-num">27 years</span>
+        <span class="mega-title">Learning</span>
+      </div>
+      <p class="mega-solo-text">Still going. Every project, every founder, every failed prototype adds something. The day I stop learning is the day I stop being useful.</p>
+    </div>
+
+    <!-- Duplicate set for seamless loop -->
+    <div class="mega-card">
+      <div class="mega-header">
+        <span class="mega-num">9 years</span>
+        <span class="mega-title">Building</span>
+      </div>
+      <div class="mega-subs">
+        <div class="sub-card"><span class="sub-num">3+</span><span class="sub-lbl">Products Commercialised</span></div>
+        <div class="sub-card"><span class="sub-num">2×</span><span class="sub-lbl">Founder</span></div>
+        <div class="sub-card"><span class="sub-num">1</span><span class="sub-lbl">Provisional Patent in Process</span></div>
+      </div>
+    </div>
+    <div class="mega-card">
+      <div class="mega-header">
+        <span class="mega-num">7 years</span>
+        <span class="mega-title">Designing</span>
+      </div>
+      <div class="mega-subs">
+        <div class="sub-card"><span class="sub-num">2022</span><span class="sub-lbl">Red Dot Design Award</span></div>
+        <div class="sub-card"><span class="sub-num">10+</span><span class="sub-lbl">Designs Implemented</span></div>
+        <div class="sub-card"><span class="sub-num">10+</span><span class="sub-lbl">Lecture Sessions Taken</span></div>
+      </div>
+    </div>
+    <div class="mega-card">
+      <div class="mega-header">
+        <span class="mega-num">4 years</span>
+        <span class="mega-title">Consulting</span>
+      </div>
+      <div class="mega-subs">
+        <div class="sub-card"><span class="sub-num">€500K+</span><span class="sub-lbl">Raised by Mentees</span></div>
+        <div class="sub-card"><span class="sub-num">100+</span><span class="sub-lbl">Innovators Consulted</span></div>
+        <div class="sub-card"><span class="sub-num">10+</span><span class="sub-lbl">Programmes Planned &amp; Executed</span></div>
+      </div>
+    </div>
+    <div class="mega-card">
+      <div class="mega-header">
+        <span class="mega-num">27 years</span>
+        <span class="mega-title">Learning</span>
+      </div>
+      <p class="mega-solo-text">Still going. Every project, every founder, every failed prototype adds something. The day I stop learning is the day I stop being useful.</p>
+    </div>
+
   </div>
 </div>
 
@@ -469,22 +626,31 @@
 </div>
 
 <section class="signoff-band">
-  <p class="signoff-text">Let's make it happen.</p>
+  <p class="signoff-text">
+    <span class="signoff-sanskrit">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।</span>
+    <span class="signoff-translation">You have the right to perform your duties, but never to the results.</span>
+  </p>
 </section>
 
 <footer>
   <a href="index.html" class="wordmark"><img src="images/pg-logo.png" alt="PG" class="site-logo"><span class="wordmark-name">pranavgawde</span></a>
   <ul class="footer-nav">
-    <li><a href="work.html">Work</a></li>
-    <li><a href="notes.html">Notes</a></li>
-    <li><a href="studio.html">Studio</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="beyond.html">Beyond</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="work.html" data-hover="what I make">Work</a></li>
+    <li><a href="notes.html" data-hover="what I think">Notes</a></li>
+    <li><a href="studio.html" data-hover="how I help">Studio</a></li>
+    <li><a href="about.html" data-hover="the longer story">About</a></li>
+    <li><a href="beyond.html" data-hover="the better story">Beyond</a></li>
+    <li><a href="contact.html" data-hover="let's connect">Contact</a></li>
   </ul>
   <div class="footer-socials">
-    <a href="https://linkedin.com/in/pranavgawde" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://behance.net/pranavgawde" target="_blank" rel="noopener">Behance</a>
+    <div class="social-preview-wrap">
+      <div class="social-preview-card"><img src="images/Linkedin.jpg" alt="LinkedIn preview"></div>
+      <a href="https://linkedin.com/in/pranavgawde" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="social-preview-wrap">
+      <div class="social-preview-card"><img src="images/Behance.jpg" alt="Behance preview"></div>
+      <a href="https://behance.net/pranavgawde" target="_blank" rel="noopener">Behance</a>
+    </div>
   </div>
   <div class="copyright">© 2026 Pranav Gawde · Designed and built in Mumbai, India</div>
 </footer>
@@ -498,6 +664,39 @@
   const toggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
   toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+  // Key statement random highlight
+  (function () {
+    const stmts = document.querySelectorAll('.key-stmt');
+    if (!stmts.length) return;
+    let current = -1;
+    function cycle() {
+      if (current >= 0) stmts[current].classList.remove('is-active');
+      let next;
+      do { next = Math.floor(Math.random() * stmts.length); } while (next === current && stmts.length > 1);
+      stmts[next].classList.add('is-active');
+      current = next;
+      setTimeout(cycle, 2400 + Math.random() * 2000);
+    }
+    setTimeout(cycle, 1200);
+  })();
 </script>
+
+<style>
+  .signoff-sanskrit {
+    display: block;
+    font-size: 1.15em;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.5em;
+  }
+  .signoff-translation {
+    display: block;
+    font-size: 0.55em;
+    font-weight: 400;
+    opacity: 0.88;
+    font-style: italic;
+    letter-spacing: 0.02em;
+  }
+</style>
 </body>
 </html>

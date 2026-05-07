@@ -95,7 +95,7 @@
       animation: ticker-scroll 36s linear infinite;
       align-items: stretch;
     }
-    .ticker-band:hover .ticker-track { animation-play-state: paused; }
+    .ticker-track.paused { animation-play-state: paused; }
 
     @keyframes ticker-scroll {
       from { transform: translateX(0); }
@@ -675,6 +675,31 @@
   const toggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
   toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+  // Ticker: click to pause 5s, click anywhere or timeout to resume
+  (function () {
+    const track = document.getElementById('tickerTrack');
+    if (!track) return;
+    let resumeTimer = null;
+    function resume() {
+      track.classList.remove('paused');
+      clearTimeout(resumeTimer);
+      resumeTimer = null;
+    }
+    track.closest('.ticker-band').addEventListener('click', function (e) {
+      if (track.classList.contains('paused')) {
+        resume();
+      } else {
+        track.classList.add('paused');
+        resumeTimer = setTimeout(resume, 5000);
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (resumeTimer && !e.target.closest('.ticker-band')) {
+        resume();
+      }
+    });
+  })();
 
   // Key statement random highlight
   (function () {

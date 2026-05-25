@@ -301,10 +301,35 @@
     font-weight: 500;
     font-size: clamp(1.05rem, 2.2vw, 1.35rem);
     color: var(--text);
-    white-space: nowrap;
   }
 
+  .cta-link {
+    display: inline-block;
+    margin-top: 1.75rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    padding: 0.65rem 1.75rem;
+    text-decoration: none;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .cta-link:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+  .cta-arrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
+  }
+  .cta-link:hover .cta-arrow { transform: translateX(4px); }
+
   .signoff-band {
+    display: block;
+    text-decoration: none;
     background: var(--accent);
     padding: 2rem;
     text-align: center;
@@ -437,6 +462,8 @@
     .hero-portrait { max-width: 220px; margin: 0 auto; }
     .hero-text { align-items: flex-start; }
     .hero-tagline { max-width: 100%; }
+    .hero-roles { display: flex; flex-direction: column; align-items: flex-start; gap: 0.15rem; }
+    .hero-roles .role-sep { display: none; }
 
     .prose-section { padding: 3rem 1.5rem; }
     .prose-section p { font-size: 1rem; }
@@ -448,10 +475,10 @@
     .closing-question { white-space: normal; }
     .signoff-band { padding: 1.5rem; }
 
-    /* Nav stays visible — no hamburger */
+    /* Nav stays visible on tablet — no hamburger */
     .menu-toggle { display: none; }
-    .nav-links { gap: 1.25rem; }
-    .nav-links a { font-size: 0.82rem; }
+    .nav-links { gap: 1.1rem; }
+    .nav-links a { font-size: 0.78rem; }
 
     footer {
       grid-template-columns: 1fr;
@@ -459,29 +486,81 @@
       text-align: center;
     }
     .footer-nav, .footer-socials { justify-content: center; }
-    .footer-nav { flex-wrap: nowrap; gap: 0.75rem; }
+    .footer-nav { flex-wrap: wrap; gap: 0.75rem; }
   }
 
-  /* ---- Phone nav: two-row compact layout (≤600px) ---- */
-  @media (max-width: 600px) {
+  /* ---- Phone nav: hamburger menu (≤640px) ---- */
+  @media (max-width: 640px) {
     .nav-inner {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 0.7rem 1.5rem;
-      gap: 0.35rem;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.25rem;
+      flex-wrap: nowrap;
     }
+
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      font-size: 1.2rem;
+      padding: 0;
+    }
+
     .nav-links {
-      gap: 0.75rem;
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+      padding: 0.5rem 0 0.75rem;
+    }
+    .nav-links.open {
+      display: flex;
+    }
+    .nav-links li {
+      border-top: 1px solid var(--rule);
+    }
+    .nav-links a {
+      display: block;
+      padding: 0.7rem 0;
+      font-size: 0.88rem;
+    }
+
+    /* Wrap wordmark + toggle, then nav drops below */
+    .nav-inner {
       flex-wrap: wrap;
     }
-    .nav-links a { font-size: 0.73rem; }
+    .wordmark { flex: 1; }
 
-    /* Mobile nav is slightly shorter (two-row but compact) */
-    body { padding-top: 72px; }
+    body { padding-top: 62px; }
 
     /* Hero roles: stack vertically, drop separators */
     .hero-roles { display: flex; flex-direction: column; gap: 0.15rem; }
     .hero-roles .role-sep { display: none; }
+
+    /* Better mobile hero spacing */
+    .hero { padding: 3rem 1.25rem 2rem; }
+    .hero-portrait { max-width: 160px; }
+    .hero-name { font-size: clamp(1.9rem, 8vw, 2.4rem); }
+
+    /* Mosaic needs more breathing room on small screens */
+    .mosaic-section { padding: 1.5rem 1rem 3rem; }
+
+    /* Closing section text shouldn't overflow */
+    .closing { padding: 3rem 1.25rem 1.5rem; }
+    .closing-question { font-size: 0.95rem; }
+
+    /* Page header tighter on mobile */
+    .page-header { padding: 3rem 1.25rem 2rem; }
+    .page-content { padding: 2rem 1.25rem 3rem; }
+  }
+
+  /* ---- Very small phones ---- */
+  @media (max-width: 380px) {
+    .hero-name { font-size: 1.75rem; }
+    .hero-tagline { font-size: 1rem; }
   }
 
   /* Fade-in on load */
@@ -584,4 +663,75 @@
       padding-left: 0;
       font-size: 0.92rem;
     }
+  }
+
+  /* ============ SOCIAL PROFILE CARDS (contact page) ============ */
+  .social-profile-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .social-profile-card {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.22,1,0.36,1);
+  }
+  .social-profile-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 6px 20px rgba(0,117,93,0.12);
+    transform: translateY(-2px);
+    color: var(--text);
+  }
+  .spc-thumb {
+    width: 90px;
+    height: 64px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: var(--bg-soft);
+  }
+  .spc-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+  .social-profile-card:hover .spc-thumb img { transform: scale(1.06); }
+  .spc-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+    padding: 0.75rem 1rem;
+  }
+  .spc-platform {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--text);
+    transition: color 0.2s ease;
+  }
+  .social-profile-card:hover .spc-platform { color: var(--accent); }
+  .spc-handle {
+    font-size: 0.72rem;
+    color: var(--text-quiet);
+    letter-spacing: 0.01em;
+  }
+  .spc-arrow {
+    font-size: 0.9rem;
+    color: var(--accent);
+    padding: 0 1rem;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .social-profile-card:hover .spc-arrow {
+    opacity: 1;
+    transform: translateX(0);
   }

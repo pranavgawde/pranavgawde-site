@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fostering Robotics in Polytechnic Education — Pranav Gawde, Consultant</title>
+<meta name="description" content="A consultancy report by Pranav Gawde on building a robotics lab and course programme at KJ Somaiya Polytechnic, Mumbai.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-brand" href="https://pranavgawde.in"><span class="br"></span>pranavgawde.in</a>
+  <div class="nav-tabs">
+    <button class="ntab on" onclick="goTab('overview',this)"><span class="n">00</span>Overview</button>
+    <button class="ntab" onclick="goTab('lab',this)"><span class="n">01</span>Lab Blueprint</button>
+    <button class="ntab" onclick="goTab('course',this)"><span class="n">02</span>Course Structure</button>
+  </div>
+</nav>
+
+<!-- ═══════════ 00 OVERVIEW ═══════════ -->
+<div id="tab-overview" class="page on">
+<div class="w">
+
+  <div class="hero fade">
+    <h1>Fostering <em>robotics</em> in polytechnic education.</h1>
+  </div>
+
+  <div class="stat-row fade">
+    <div class="stat"><div class="stat-n">4 wk</div><div class="stat-l">Bootstrap course</div></div>
+    <div class="stat"><div class="stat-n">2000</div><div class="stat-l">Sq ft · Phase 1</div></div>
+    <div class="stat"><div class="stat-n">30–40</div><div class="stat-l">Students concurrent</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Lab phases</div></div>
+    <div class="stat"><div class="stat-n">₹2.5L</div><div class="stat-l">To begin today</div></div>
+  </div>
+
+  <!-- Executive Summary accordion — open by default -->
+  <div class="acc open" data-grp="overview">
+    <div class="acc-head" onclick="tog(this,'overview')">
+      <div class="acc-hl"><div><div class="acc-title">Executive Summary</div><div class="acc-summary">KJ Somaiya Polytechnic · May 2026</div></div></div>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p class="exec-quote">"KJ Somaiya Polytechnic has the intent and ecosystem to build something genuinely useful. What it currently lacks is a technically grounded plan. This document is that plan."</p>
+      <div class="exec-findings">
+        <div class="finding">
+          <div class="finding-n">Finding 01</div>
+          <p><strong>The current approach is hardware-first, understanding-last.</strong> Buying robot arms before students can explain a control loop is the most common and most expensive mistake in institutional robotics.</p>
+          <div class="finding-rec"><span class="finding-rec-label">Approach</span>This plan reverses the order deliberately. Software proficiency and conceptual understanding come before any physical equipment is touched.</div>
+        </div>
+        <div class="finding">
+          <div class="finding-n">Finding 02</div>
+          <p><strong>Start before the lab is built.</strong> A 4-week Bootstrap course using ₹2.5L of DIY kits can run in any classroom. Students arrive at the lab already knowing what a sensor feels like.</p>
+          <div class="finding-rec"><span class="finding-rec-label">Action</span>Order 12 DIY kits and start within 30 days. <a href="#" onclick="goTabTo('course');return false;">View the Bootstrap course plan →</a></div>
+        </div>
+        <div class="finding">
+          <div class="finding-n">Finding 03</div>
+          <p><strong>2000 sq ft is workable if zoned deliberately.</strong> Six defined stations support 30–40 concurrent students. The layout is specified station by station.</p>
+          <div class="finding-rec"><span class="finding-rec-label">See it</span>Every zone is specified station by station, with equipment, student capacity, and sq ft. <a href="#" onclick="goTabTo('lab');return false;">View the 2000 sq ft draft floor plan →</a></div>
+        </div>
+        <div class="finding">
+          <div class="finding-n">Finding 04</div>
+          <p><strong>Phase 1 Foundation Lab costs ~₹11L.</strong> Most of the learning stack is open-source software on commodity hardware.</p>
+          <div class="finding-rec"><span class="finding-rec-label">Funding</span>Begin without waiting on CSR. Make the ask at Month 3, once a live TurtleBot SLAM demo is running — not Month 0. Mphasis is the right first target. <a href="budget.html">View full budget →</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Plan at a Glance accordion — closed by default, phases mutually exclusive inside -->
+  <div class="acc" data-grp="overview" style="margin-bottom:48px">
+    <div class="acc-head" onclick="tog(this,'overview')">
+      <div class="acc-hl"><div><div class="acc-title">The Plan at a Glance</div><div class="acc-summary">Three phases · independently fundable · ₹2.5L to ₹1Cr+</div></div></div>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="acc" data-grp="phases">
+        <div class="acc-head" onclick="tog(this,'phases')">
+          <div class="acc-hl"><span class="acc-tag tag-g">Phase 0 · ₹2.5–3L</span><div><div class="acc-title">Bootstrap — Start before the lab exists</div><div class="acc-summary">4-week course · 12 DIY kits · any classroom</div></div></div>
+          <span class="acc-chevron">▼</span>
+        </div>
+        <div class="acc-body">
+          <p>A classroom course using robotics DIY kits. No lab construction needed. Students assemble, program, and compete with physical robots in 4 weeks. By the time Phase 1 lab opens, they already understand sensors, actuators, and control logic.</p>
+          <div class="item-list">
+            <div class="item"><strong>Who:</strong> Any student, any background. School students, polytechnic freshers, faculty.</div>
+            <div class="item"><strong>What:</strong> 12 DIY 4-in-1 robotics kits. Sensor packs. Shared laptops.</div>
+            <div class="item"><strong>Outcome:</strong> Students can name every robot component, write a basic control loop, and have built and raced a physical robot.</div>
+          </div>
+        </div>
+      </div>
+      <div class="acc" data-grp="phases">
+        <div class="acc-head" onclick="tog(this,'phases')">
+          <div class="acc-hl"><span class="acc-tag tag-b">Phase 1 · ₹11–13L</span><div><div class="acc-title">Foundation Lab — 2000 sq ft, software-first</div><div class="acc-summary">Months 1–6 · 30–40 students · 6 stations</div></div></div>
+          <span class="acc-chevron">▼</span>
+        </div>
+        <div class="acc-body">
+          <p>Six zoned stations covering simulation, electronics, mobile robotics, computer vision, fabrication (PCB milling + laser cutting), and discussion. Everything runs on open-source software.</p>
+          <div class="item-list">
+            <div class="item"><strong>Anchor equipment:</strong> 10 Ubuntu laptops, 3 TurtleBot 3, RPLidar A1, Bambu Lab A1 Mini, xTool D1 Pro 20W laser, CNC PCB mill, Arduino + ESP32 + XIAO kits, Intel RealSense D435i.</div>
+            <div class="item"><strong>Unlocks:</strong> Foundation 12-week course (Track 1).</div>
+            <div class="item"><strong>CSR pitch window:</strong> Month 3, once lab is live and demoable.</div>
+          </div>
+        </div>
+      </div>
+      <div class="acc" data-grp="phases">
+        <div class="acc-head" onclick="tog(this,'phases')">
+          <div class="acc-hl"><span class="acc-tag tag-b">Phase 2 · ₹29–35L</span><div><div class="acc-title">Applied Lab — expand to 4000 sq ft, add arms and AI</div><div class="acc-summary">Months 6–18 · 60+ students · CSR funded</div></div></div>
+          <span class="acc-chevron">▼</span>
+        </div>
+        <div class="acc-body">
+          <p>Robot arms, GPU workstation, Jetson AGX Orin, PLC automation rig, advanced fabrication. A myCobot doing live pick-and-place is a 10-minute CSR story.</p>
+          <div class="item-list">
+            <div class="item"><strong>Anchor equipment:</strong> 2× myCobot 280 Pi, RTX 4070 GPU workstation, 2× Jetson AGX Orin, Siemens S7-1200 PLC, TurtleBot 4, Bantam Tools PCB mill, xTool S1 laser upgrade.</div>
+            <div class="item"><strong>Unlocks:</strong> Applied Systems 16-week course (Track 2).</div>
+          </div>
+        </div>
+      </div>
+      <div class="acc" data-grp="phases">
+        <div class="acc-head" onclick="tog(this,'phases')">
+          <div class="acc-hl"><span class="acc-tag tag-p">Phase 3 · ₹60–90L</span><div><div class="acc-title">Industry Lab — 6000 sq ft, cobot, drone, research</div><div class="acc-summary">Year 2+ · Industry-grade · Startup launchpad</div></div></div>
+          <span class="acc-chevron">▼</span>
+        </div>
+        <div class="acc-body">
+          <p>Universal Robots UR5e cobot, drone program, research-grade measurement. The lab becomes a reference for polytechnic robotics in Maharashtra. Projects enter riidl incubation and national competitions.</p>
+          <div class="item-list">
+            <div class="item"><strong>Critical note:</strong> The most important Phase 3 investment is a full-time lab engineer at ₹5–6L/yr. Hardware without stewardship becomes a graveyard within 18 months.</div>
+            <div class="item"><strong>India-focus:</strong> Projects should target Indian problems — agri-robotics, assistive tech, SME automation.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════ 01 LAB BLUEPRINT ═══════════ -->
+<div id="tab-lab" class="page">
+<div class="w">
+
+  <!-- Lab Visualisations accordion — open by default -->
+  <div class="acc open" data-grp="lab" style="margin-top:32px">
+    <div class="acc-head" onclick="tog(this,'lab')">
+      <div class="acc-hl"><div><div class="acc-title">Lab Visualisations</div><div class="acc-summary">Phase 1 · 2000 sq ft &nbsp;·&nbsp; Phase 2–3 · 4000–6000 sq ft</div></div></div>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body" style="padding:0">
+      <div class="lab-visual-tabs" style="border-top:none">
+        <button class="lvt on-g" onclick="switchLabImg(1,this)">
+          <span class="pn">Phase 1 · 2000 sq ft</span>
+          <span class="pt">Foundation Lab</span>
+          <span class="ps">Zones A–F · 30–40 students</span>
+        </button>
+        <button class="lvt" onclick="switchLabImg(2,this)">
+          <span class="pn">Phase 2–3 · 4000–6000 sq ft</span>
+          <span class="pt">Full Lab — All Zones</span>
+          <span class="ps">Bay 1 + Bay 2 · 60+ students</span>
+        </button>
+      </div>
+      <div id="lv-1" class="lv-panel on">
+        <div class="lab-img-wrap">
+          <img src="images/lab-phase1.png" alt="Phase 1 Robotics Lab — 2000 sq ft isometric view showing Zones A through F" loading="lazy">
+          <div class="lab-img-caption">
+            <p><strong>Phase 1 Foundation Lab · ~2000 sq ft</strong> · Zones A (Software), B (Electronics), C (Arena), D (Perception), E (Fabrication), F (Discussion) · Smithy Shop, Ground Floor</p>
+          </div>
+        </div>
+      </div>
+      <div id="lv-2" class="lv-panel">
+        <div class="lab-img-wrap">
+          <img src="images/lab-phase2.png" alt="Phase 2–3 Full Robotics Lab — 4000–6000 sq ft isometric view" loading="lazy">
+          <div class="lab-img-caption">
+            <p><strong>Phase 2–3 Full Lab · 4000–6000 sq ft</strong> · Bay 1 (Phase 1 zones) + Bay 2 (Robot arms, PLC, GPU compute, Drone cage, UR5e Cobot)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floor Plan accordion -->
+  <div class="acc" data-grp="lab">
+    <div class="acc-head" onclick="tog(this,'lab')">
+      <div class="acc-hl"><div><div class="acc-title">Floor Plan · Phase 1</div><div class="acc-summary">Top-down zone layout · 2000 sq ft · 6 zones</div></div></div>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+
+      <div class="floor-plan-wrap" style="margin-bottom:0">
+        <svg viewBox="0 0 640 560" role="img" xmlns="http://www.w3.org/2000/svg">
+          <title>KJ Somaiya Polytechnic Robotics Lab Phase 1 Floor Plan</title>
+          <desc>Top-down floor plan showing six zones across 2000 sq ft</desc>
+          <rect x="10" y="10" width="620" height="530" rx="5" fill="none" stroke="#1a1a1a" stroke-width="1.5" opacity="0.12"/>
+          <!-- Zone A -->
+          <rect x="14" y="14" width="290" height="185" rx="3" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.2"/>
+          <rect x="14" y="14" width="290" height="22" rx="3" fill="#185FA5"/>
+          <text x="159" y="29" text-anchor="middle" fill="#fff" font-family="DM Mono,monospace" font-size="10" letter-spacing="0.08em">A — SOFTWARE &amp; SIMULATION</text>
+          <rect x="24" y="46" width="44" height="28" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+          <rect x="76" y="46" width="44" height="28" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+          <rect x="128" y="46" width="44" height="28" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+          <rect x="180" y="46" width="44" height="28" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+          <rect x="232" y="46" width="44" height="28" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+          <rect x="24" y="86" width="44" height="28" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+          <rect x="76" y="86" width="44" height="28" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+          <rect x="128" y="86" width="44" height="28" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+          <rect x="180" y="86" width="44" height="28" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+          <rect x="232" y="86" width="44" height="28" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+          <text x="159" y="140" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#0C447C">10 workstations · Ubuntu 22.04 · ROS 2</text>
+          <text x="159" y="157" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#185FA5">10–12 students · ~400 sq ft</text>
+          <!-- Zone B -->
+          <rect x="312" y="14" width="318" height="185" rx="3" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1.2"/>
+          <rect x="312" y="14" width="318" height="22" rx="3" fill="#3B6D11"/>
+          <text x="471" y="29" text-anchor="middle" fill="#fff" font-family="DM Mono,monospace" font-size="10" letter-spacing="0.08em">B — ELECTRONICS &amp; MCU</text>
+          <rect x="320" y="44" width="302" height="14" rx="2" fill="#C0DD97" stroke="#3B6D11" stroke-width="0.5"/>
+          <rect x="320" y="68" width="302" height="14" rx="2" fill="#C0DD97" stroke="#3B6D11" stroke-width="0.5"/>
+          <rect x="322" y="92" width="38" height="26" rx="2" fill="#27500A" opacity="0.7"/>
+          <path d="M328 105 q5-7 10 0 q5 7 10 0" fill="none" stroke="#9FE1CB" stroke-width="1"/>
+          <rect x="370" y="92" width="38" height="26" rx="2" fill="#27500A" opacity="0.7"/>
+          <path d="M376 105 q5-7 10 0 q5 7 10 0" fill="none" stroke="#9FE1CB" stroke-width="1"/>
+          <circle cx="440" cy="105" r="6" fill="#BA7517" opacity="0.7"/>
+          <circle cx="456" cy="105" r="6" fill="#BA7517" opacity="0.7"/>
+          <circle cx="472" cy="105" r="6" fill="#BA7517" opacity="0.7"/>
+          <text x="471" y="140" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#27500A">Arduino · ESP32 · XIAO · RPi · Pico</text>
+          <text x="471" y="157" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#3B6D11">8–10 students · ~350 sq ft</text>
+          <!-- Zone C -->
+          <rect x="14" y="207" width="616" height="168" rx="3" fill="#FAEEDA" stroke="#854F0B" stroke-width="1.2"/>
+          <rect x="14" y="207" width="616" height="22" rx="3" fill="#854F0B"/>
+          <text x="322" y="222" text-anchor="middle" fill="#fff" font-family="DM Mono,monospace" font-size="10" letter-spacing="0.08em">C — MOBILE ROBOTICS ARENA</text>
+          <line x1="70" y1="237" x2="70" y2="367" stroke="#BA7517" stroke-width="0.4" stroke-dasharray="3 4" opacity="0.5"/>
+          <line x1="130" y1="237" x2="130" y2="367" stroke="#BA7517" stroke-width="0.4" stroke-dasharray="3 4" opacity="0.5"/>
+          <line x1="190" y1="237" x2="190" y2="367" stroke="#BA7517" stroke-width="0.4" stroke-dasharray="3 4" opacity="0.5"/>
+          <line x1="250" y1="237" x2="250" y2="367" stroke="#BA7517" stroke-width="0.4" stroke-dasharray="3 4" opacity="0.5"/>
+          <line x1="310" y1="237" x2="310" y2="367" stroke="#BA7517" stroke-width="0.4" stroke-dasharray="3 4" opacity="0.5"/>
+          <line x1="370" y1="237" x2="370" y2="367" stroke="#BA7517" stroke-width="0.4" stroke-dasharray="3 4" opacity="0.5"/>
+          <line x1="430" y1="237" x2="430" y2="367" stroke="#BA7517" stroke-width="0.4" stroke-dasharray="3 4" opacity="0.5"/>
+          <line x1="490" y1="237" x2="490" y2="367" stroke="#BA7517" stroke-width="0.4" stroke-dasharray="3 4" opacity="0.5"/>
+          <line x1="550" y1="237" x2="550" y2="367" stroke="#BA7517" stroke-width="0.4" stroke-dasharray="3 4" opacity="0.5"/>
+          <line x1="22" y1="302" x2="622" y2="302" stroke="#BA7517" stroke-width="0.4" stroke-dasharray="3 4" opacity="0.5"/>
+          <circle cx="140" cy="285" r="15" fill="#EF9F27" stroke="#854F0B" stroke-width="1.2"/>
+          <circle cx="140" cy="285" r="5" fill="#854F0B" opacity="0.5"/>
+          <circle cx="320" cy="265" r="15" fill="#EF9F27" stroke="#854F0B" stroke-width="1.2"/>
+          <circle cx="320" cy="265" r="5" fill="#854F0B" opacity="0.5"/>
+          <circle cx="490" cy="310" r="15" fill="#EF9F27" stroke="#854F0B" stroke-width="1.2"/>
+          <circle cx="490" cy="310" r="5" fill="#854F0B" opacity="0.5"/>
+          <path d="M140 285 m-28 0 a28 28 0 0 1 56 0" fill="none" stroke="#EF9F27" stroke-width="0.7" stroke-dasharray="2 3" opacity="0.5"/>
+          <path d="M320 265 m-28 0 a28 28 0 0 1 56 0" fill="none" stroke="#EF9F27" stroke-width="0.7" stroke-dasharray="2 3" opacity="0.5"/>
+          <path d="M490 310 m-28 0 a28 28 0 0 1 56 0" fill="none" stroke="#EF9F27" stroke-width="0.7" stroke-dasharray="2 3" opacity="0.5"/>
+          <text x="322" y="350" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#633806">3 TurtleBot 3 · RPLidar SLAM · Tape grid · Obstacle props</text>
+          <text x="322" y="366" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#854F0B">6–8 students · ~450 sq ft</text>
+          <!-- Zone D -->
+          <rect x="14" y="383" width="198" height="154" rx="3" fill="#FAECE7" stroke="#993C1D" stroke-width="1.2"/>
+          <rect x="14" y="383" width="198" height="22" rx="3" fill="#993C1D"/>
+          <text x="113" y="398" text-anchor="middle" fill="#fff" font-family="DM Mono,monospace" font-size="9" letter-spacing="0.06em">D — PERCEPTION &amp; VISION</text>
+          <rect x="95" y="415" width="34" height="22" rx="3" fill="#D85A30" opacity="0.8"/>
+          <circle cx="112" cy="426" r="7" fill="#71291e" opacity="0.9"/>
+          <line x1="112" y1="437" x2="112" y2="456" stroke="#993C1D" stroke-width="1.2"/>
+          <line x1="103" y1="456" x2="121" y2="456" stroke="#993C1D" stroke-width="1.2"/>
+          <text x="113" y="488" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#71291e">RealSense D435i · OpenCV · YOLO</text>
+          <text x="113" y="504" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#993C1D">4–6 students · ~250 sq ft</text>
+          <!-- Zone E -->
+          <rect x="220" y="383" width="240" height="154" rx="3" fill="#F3EDF8" stroke="#5a2d82" stroke-width="1.2"/>
+          <rect x="220" y="383" width="240" height="22" rx="3" fill="#5a2d82"/>
+          <text x="340" y="398" text-anchor="middle" fill="#fff" font-family="DM Mono,monospace" font-size="9" letter-spacing="0.06em">E — FABRICATION CORNER</text>
+          <rect x="232" y="416" width="42" height="46" rx="3" fill="#AFA9EC" stroke="#5a2d82" stroke-width="0.8"/>
+          <text x="253" y="443" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#3C3489">3D print</text>
+          <rect x="283" y="416" width="44" height="46" rx="3" fill="#AFA9EC" stroke="#5a2d82" stroke-width="0.8"/>
+          <text x="305" y="443" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#3C3489">xTool laser</text>
+          <rect x="336" y="416" width="42" height="46" rx="3" fill="#AFA9EC" stroke="#5a2d82" stroke-width="0.8"/>
+          <text x="357" y="443" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#3C3489">PCB mill</text>
+          <text x="340" y="488" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#3C3489">3D printer · xTool laser · PCB mill · KiCad</text>
+          <text x="340" y="504" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5a2d82">3–4 students · ~300 sq ft</text>
+          <!-- Zone F -->
+          <rect x="468" y="383" width="162" height="154" rx="3" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+          <rect x="468" y="383" width="162" height="22" rx="3" fill="#5F5E5A"/>
+          <text x="549" y="398" text-anchor="middle" fill="#fff" font-family="DM Mono,monospace" font-size="9" letter-spacing="0.06em">F — DISCUSSION</text>
+          <rect x="478" y="416" width="142" height="56" rx="2" fill="#fff" stroke="#5F5E5A" stroke-width="0.8"/>
+          <line x1="486" y1="430" x2="530" y2="430" stroke="#185FA5" stroke-width="0.8" opacity="0.5"/>
+          <line x1="486" y1="440" x2="548" y2="440" stroke="#185FA5" stroke-width="0.8" opacity="0.4"/>
+          <line x1="486" y1="450" x2="520" y2="450" stroke="#3B6D11" stroke-width="0.8" opacity="0.5"/>
+          <text x="549" y="495" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#444441">Whiteboard · stools · projector</text>
+          <text x="549" y="511" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5F5E5A">Shared · ~250 sq ft</text>
+          <!-- dividers -->
+          <line x1="304" y1="14" x2="304" y2="199" stroke="#1a1a1a" stroke-width="0.8" opacity="0.1"/>
+          <line x1="14" y1="199" x2="630" y2="199" stroke="#1a1a1a" stroke-width="0.8" opacity="0.1"/>
+          <line x1="14" y1="375" x2="630" y2="375" stroke="#1a1a1a" stroke-width="0.8" opacity="0.1"/>
+          <line x1="212" y1="375" x2="212" y2="537" stroke="#1a1a1a" stroke-width="0.6" opacity="0.08"/>
+          <line x1="460" y1="375" x2="460" y2="537" stroke="#1a1a1a" stroke-width="0.6" opacity="0.08"/>
+          <!-- entrance -->
+          <rect x="280" y="535" width="80" height="5" rx="2" fill="#1a1a1a" opacity="0.1"/>
+          <text x="320" y="550" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#999">↑ main entrance</text>
+        </svg>
+      </div>
+      <div class="zone-legend">
+        <span class="zl-chip" style="background:#E6F1FB;color:#185FA5">A · Software</span>
+        <span class="zl-chip" style="background:#EAF3DE;color:#3B6D11">B · Electronics</span>
+        <span class="zl-chip" style="background:#FAEEDA;color:#854F0B">C · Arena</span>
+        <span class="zl-chip" style="background:#FAECE7;color:#993C1D">D · Perception</span>
+        <span class="zl-chip" style="background:#F3EDF8;color:#5a2d82">E · Fabrication</span>
+        <span class="zl-chip" style="background:#F1EFE8;color:#5F5E5A">F · Discussion</span>
+      </div>
+
+      <!-- Zone detail accordions — mutually exclusive -->
+      <div class="acc" data-grp="zones">
+        <div class="acc-head" onclick="tog(this,'zones')">
+          <div class="acc-hl"><span class="acc-tag" style="background:#E6F1FB;color:#185FA5">Zone A</span><div><div class="acc-title">Software &amp; Simulation</div><div class="acc-summary">~400 sq ft · 10–12 students · 10 workstations</div></div></div>
+          <span class="acc-chevron">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="stat-mini"><div class="sm"><div class="sm-n">10</div><div class="sm-l">Workstations</div></div><div class="sm"><div class="sm-n">~₹2K/mo</div><div class="sm-l">Optional cloud</div></div><div class="sm"><div class="sm-n">400</div><div class="sm-l">Sq ft</div></div></div>
+          <div class="zp-body"><div class="zp-col"><div class="zp-sec">Hardware</div><div class="zp-item"><strong>10×</strong> i5 12th Gen laptops, Ubuntu 22.04, 8GB, 512GB</div><div class="zp-item">Managed network switch + Cat6 cabling</div><div class="zp-item"><strong>2×</strong> UPS for critical workstations</div></div><div class="zp-col"><div class="zp-sec">Software</div><div class="zp-item">ROS 2 + Gazebo · SLAM Toolbox · Nav2 <em style="color:var(--g);font-style:normal">(free)</em></div><div class="zp-item">VS Code + GitHub Copilot <em style="color:var(--g);font-style:normal">(student — free)</em></div><div class="zp-item">NVIDIA Isaac Sim <em style="color:var(--g);font-style:normal">(academic — free)</em></div><div class="zp-item">Cloud compute for heavy sim / ML training <em style="color:var(--muted);font-style:normal">(~₹2,000/mo, optional)</em></div></div></div>
+        </div>
+      </div>
+
+      <div class="acc" data-grp="zones">
+        <div class="acc-head" onclick="tog(this,'zones')">
+          <div class="acc-hl"><span class="acc-tag" style="background:#EAF3DE;color:#3B6D11">Zone B</span><div><div class="acc-title">Electronics &amp; Microcontrollers</div><div class="acc-summary">~350 sq ft · 8–10 students · 7 MCU platforms</div></div></div>
+          <span class="acc-chevron">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="stat-mini"><div class="sm"><div class="sm-n">8</div><div class="sm-l">MCU platforms</div></div><div class="sm"><div class="sm-n">2</div><div class="sm-l">Benches</div></div><div class="sm"><div class="sm-n">350</div><div class="sm-l">Sq ft</div></div></div>
+          <div class="zp-body"><div class="zp-col"><div class="zp-sec">Microcontrollers</div><div class="zp-item"><strong>Arduino Uno R3</strong> ×10 kits</div><div class="zp-item"><strong>STM32 Nucleo-F446RE</strong> ×2 — industry-standard ARM, CAN bus, FPU</div><div class="zp-item"><strong>Seeed XIAO ESP32C3</strong> — ultra-compact Wi-Fi + BLE</div><div class="zp-item"><strong>Seeed XIAO RP2040</strong> — MicroPython, fast I/O</div><div class="zp-item"><strong>ESP32 DevKit</strong> — dual-core 240MHz</div><div class="zp-item"><strong>RPi Pico W</strong> · <strong>RPi 4B</strong> ×4</div></div><div class="zp-col"><div class="zp-sec">Test &amp; Measurement</div><div class="zp-item">Rigol DS1054Z oscilloscope ×2</div><div class="zp-item">Bench PSU 30V/5A ×3</div><div class="zp-item">Multimeters ×6 · Logic analyser ×2</div><div class="zp-item">Hakko FX-888D soldering ×3</div></div></div>
+        </div>
+      </div>
+
+      <div class="acc" data-grp="zones">
+        <div class="acc-head" onclick="tog(this,'zones')">
+          <div class="acc-hl"><span class="acc-tag" style="background:#FAEEDA;color:#854F0B">Zone C</span><div><div class="acc-title">Mobile Robotics Arena</div><div class="acc-summary">~450 sq ft · 6–8 students · 3 TurtleBots</div></div></div>
+          <span class="acc-chevron">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="stat-mini"><div class="sm"><div class="sm-n">3</div><div class="sm-l">TurtleBots</div></div><div class="sm"><div class="sm-n">SLAM</div><div class="sm-l">Capable</div></div><div class="sm"><div class="sm-n">450</div><div class="sm-l">Sq ft</div></div></div>
+          <div class="zp-body"><div class="zp-col"><div class="zp-sec">Robots</div><div class="zp-item"><strong>TurtleBot 3 Burger ×3</strong> — ROS 2, diff drive, RPLidar + RPi 4B</div><div class="zp-item"><strong>RPLidar A1M8 ×2</strong> — standalone for custom builds</div><div class="zp-item">Custom DIY frames ×2</div></div><div class="zp-col"><div class="zp-sec">Floor Setup</div><div class="zp-item">Tape grid 1m×1m squares</div><div class="zp-item">Foldable foam obstacle props</div><div class="zp-item">SLAM Toolbox + Nav2 (free)</div></div></div>
+        </div>
+      </div>
+
+      <div class="acc" data-grp="zones">
+        <div class="acc-head" onclick="tog(this,'zones')">
+          <div class="acc-hl"><span class="acc-tag" style="background:#FAECE7;color:#993C1D">Zone D</span><div><div class="acc-title">Perception &amp; Vision</div><div class="acc-summary">~250 sq ft · 4–6 students · 2 depth cameras</div></div></div>
+          <span class="acc-chevron">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="stat-mini"><div class="sm"><div class="sm-n">2</div><div class="sm-l">Depth cameras</div></div><div class="sm"><div class="sm-n">YOLO</div><div class="sm-l">Detect</div></div><div class="sm"><div class="sm-n">250</div><div class="sm-l">Sq ft</div></div></div>
+          <div class="zp-body"><div class="zp-col"><div class="zp-sec">Hardware</div><div class="zp-item"><strong>Intel RealSense D435i ×2</strong></div><div class="zp-item">USB webcams ×4 · LED lighting rig</div><div class="zp-item">Object detection demo shelf</div></div><div class="zp-col"><div class="zp-sec">Software</div><div class="zp-item">OpenCV · YOLOv8 · Roboflow (free)</div><div class="zp-item">Open3D for point cloud</div></div></div>
+        </div>
+      </div>
+
+      <div class="acc" data-grp="zones">
+        <div class="acc-head" onclick="tog(this,'zones')">
+          <div class="acc-hl"><span class="acc-tag" style="background:#F3EDF8;color:#5a2d82">Zone E</span><div><div class="acc-title">Fabrication Corner</div><div class="acc-summary">~300 sq ft · 3–4 students · ventilation required</div></div></div>
+          <span class="acc-chevron">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="stat-mini"><div class="sm"><div class="sm-n">3</div><div class="sm-l">Machines</div></div><div class="sm"><div class="sm-n">2 hr</div><div class="sm-l">PCB turnaround</div></div><div class="sm"><div class="sm-n">300</div><div class="sm-l">Sq ft</div></div></div>
+          <div class="zp-body"><div class="zp-col"><div class="zp-sec">Machines</div><div class="zp-item"><strong>Bambu Lab A1 Mini</strong> FDM printer</div><div class="zp-item"><strong>xTool D1 Pro 20W</strong> laser + enclosure + honeycomb</div><div class="zp-item"><strong>CNC 3018 Pro</strong> PCB mill + isolation bits</div></div><div class="zp-col"><div class="zp-sec">Electronics Fab</div><div class="zp-item">KiCad (free) · Fusion 360 edu</div><div class="zp-item">Hakko FX-888D ×3 · SMD rework</div><div class="zp-item">Copper PCB blanks · Acrylic sheets</div></div></div>
+        </div>
+      </div>
+
+      <div class="acc" data-grp="zones">
+        <div class="acc-head" onclick="tog(this,'zones')">
+          <div class="acc-hl"><span class="acc-tag" style="background:#F1EFE8;color:#5F5E5A">Zone F</span><div><div class="acc-title">Discussion + Project Wall</div><div class="acc-summary">~250 sq ft · shared / flexible · CSR demo area</div></div></div>
+          <span class="acc-chevron">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="stat-mini"><div class="sm"><div class="sm-n">3</div><div class="sm-l">Whiteboards</div></div><div class="sm"><div class="sm-n">CSR</div><div class="sm-l">Demo area</div></div><div class="sm"><div class="sm-n">250</div><div class="sm-l">Sq ft</div></div></div>
+          <div class="zp-body"><div class="zp-col"><div class="zp-sec">Fixtures</div><div class="zp-item">3× large whiteboards (4×3 ft)</div><div class="zp-item">Project display boards · Component shelf</div><div class="zp-item">Flexible stool seating</div></div><div class="zp-col"><div class="zp-sec">Use Cases</div><div class="zp-item">Daily standup · Design reviews</div><div class="zp-item">CSR visit demos (this is where funders stand)</div><div class="zp-item">Demo Day presentations · Guest talks</div></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Rollout Timeline accordion -->
+  <div class="acc" data-grp="lab" style="margin-bottom:32px">
+    <div class="acc-head" onclick="tog(this,'lab')">
+      <div class="acc-hl"><div><div class="acc-title">Rollout Timeline</div><div class="acc-summary">Bootstrap → Foundation → Applied → Industry</div></div></div>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="tl-cards">
+        <div class="tli-card g"><div class="tli-period">Weeks 1–4</div><div class="tli-title">Phase 0 Bootstrap Course runs</div><div class="tli-desc">12 DIY kits. Any classroom. First cohort of 20–30 students. Smithy Shop renovation begins in parallel.</div></div>
+        <div class="tli-card g"><div class="tli-period">Month 1–3</div><div class="tli-title">Phase 1 Lab comes online</div><div class="tli-desc">Laptops, TurtleBots, electronics benches, fabrication corner installed. Foundation 12-week course begins.</div></div>
+        <div class="tli-card g"><div class="tli-period">Month 3</div><div class="tli-title">CSR Demo Day</div><div class="tli-desc">Invite Mphasis and other CSR prospects for a 10-minute live demo: TurtleBot SLAM, CV detection, 3D-printed part in hand. This is the moment to ask for Phase 2 funding.</div></div>
+        <div class="tli-card b"><div class="tli-period">Months 6–18</div><div class="tli-title">Phase 2 Applied Lab builds out</div><div class="tli-desc">Robot arm station, GPU workstation, PLC rig installed. Applied 16-week course begins. Robocon team formed.</div></div>
+        <div class="tli-card p"><div class="tli-period">Year 2+</div><div class="tli-title">Phase 3 Industry Lab</div><div class="tli-desc">UR5e cobot, drone program, lab engineer full-time. Lab becomes a reference point for polytechnic robotics in Maharashtra.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reference cards at bottom -->
+  <div class="note-grid" style="margin-bottom:48px">
+    <div class="note-card">
+      <div class="note-icon">📊</div>
+      <div>
+        <div class="note-title">Budget & Equipment Costs</div>
+        <div class="note-desc">Itemised ₹ costs, priority ratings, and phase totals.</div>
+        <a class="note-link" href="budget.html">Open Budget Document →</a>
+      </div>
+    </div>
+    <div class="note-card">
+      <div class="note-icon">📖</div>
+      <div>
+        <div class="note-title">Robotics Terms & Concepts</div>
+        <div class="note-desc">Glossary of 20+ terms with plain-English explanations.</div>
+        <a class="note-link" href="terms.html">Open Glossary →</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════ 02 COURSE STRUCTURE ═══════════ -->
+<div id="tab-course" class="page">
+<div class="w">
+
+  <div style="margin-top:32px;margin-bottom:20px">
+    <div class="note-card">
+      <div class="note-icon">📖</div>
+      <div>
+        <div class="note-title">Robotics Terms & Concepts</div>
+        <div class="note-desc">Glossary of 20+ terms with plain-English explanations and analogies.</div>
+        <a class="note-link" href="terms.html">Open Glossary →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout o" style="margin-bottom:20px">
+    <div class="ct">Lab Dependency — Track Sequencing</div>
+    <p><strong>Track 0</strong> needs only a classroom and 12 DIY kits. <strong>Track 1</strong> requires Phase 1 lab. <strong>Track 2</strong> requires Phase 2 lab. Each course track is deliberately unlocked by the corresponding lab phase.</p>
+  </div>
+
+  <!-- Track accordions — mutually exclusive, Track 0 open by default -->
+  <div class="acc open" data-grp="tracks">
+    <div class="acc-head" onclick="tog(this,'tracks')">
+      <div class="acc-hl"><span class="acc-tag tag-g">Track 0</span><div><div class="acc-title">Bootstrap — 4 Weeks</div><div class="acc-summary">No lab needed · DIY kits only · any classroom</div></div></div>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="callout g"><div class="ct">Who This Is For</div><p>Anyone — before the lab exists. School students (Grade 9–12), polytechnic freshers, faculty, curious adults. <strong>No prior knowledge assumed.</strong></p></div>
+      <table class="ctable"><thead><tr><th>Week</th><th>Topic</th><th>Activity</th><th></th></tr></thead><tbody>
+        <tr><td class="wk">W1</td><td class="tp">What Is a Robot?</td><td>Unbox and name every component. First motion. Sense-Think-Act model.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">W1</td><td class="tp">First Sensor Loop</td><td>Ultrasonic sensor. If distance &lt;20cm → stop. First control loop ever written.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">W2</td><td class="tp">Line Follower Challenge</td><td>Draw a track. Program kit with IR sensors. Teams compete. Discuss tuning.</td><td><span class="badge bpr">Project</span></td></tr>
+        <tr><td class="wk">W2</td><td class="tp">Python via Kit</td><td>Block coding → 10 lines of Python doing the same task. Instant visual feedback.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">W3</td><td class="tp">Mini Hackathon</td><td>3-hour sprint: proximity alarm, object sorter, or automatic trigger. Present in 2 min.</td><td><span class="badge bpr">Project</span></td></tr>
+        <tr><td class="wk">W4</td><td class="tp">What Comes Next</td><td>Demo videos of TurtleBot SLAM, robot arm, simulation. Sign-ups for Track 1.</td><td><span class="badge bth">Theory</span></td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+  <div class="acc" data-grp="tracks">
+    <div class="acc-head" onclick="tog(this,'tracks')">
+      <div class="acc-hl"><span class="acc-tag tag-b">Track 1</span><div><div class="acc-title">Foundation — 12 Weeks</div><div class="acc-summary">Requires Phase 1 lab · 30–40 students</div></div></div>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="callout b"><div class="ct">Who This Is For</div><p>Polytechnic students, diploma holders, engineers upskilling. <strong>No prior robotics knowledge assumed.</strong> Bootstrap Track 0 recommended but not required.</p></div>
+      <table class="ctable"><thead><tr><th>Week</th><th>Topic</th><th>Lab Activity</th><th></th></tr></thead><tbody>
+        <tr><td class="wk">W1</td><td class="tp">Electronics & Circuits</td><td>Ohm's law, breadboard, first LED blink. Multimeter. Read a datasheet.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">W2</td><td class="tp">Arduino & Microcontrollers</td><td>C++ basics. Control a servo. Compare Arduino vs XIAO ESP32C3 vs Pico.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">W3</td><td class="tp">Sensors Deep Dive</td><td>Ultrasonic, IR, ToF, IMU, encoder. Calibration. Build distance alarm on XIAO.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">W4</td><td class="tp">Actuators & Mechanisms</td><td>Servo, stepper, DC, BLDC. Gear ratios. Build 2-DOF pan-tilt mechanism.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">W5</td><td class="tp">PCB Design Mini-Module</td><td>KiCad: design 2-layer sensor breakout. CNC mill it in-house. Solder, test.</td><td><span class="badge bpr">Project</span></td></tr>
+        <tr><td class="wk">W6</td><td class="tp">Control Systems & PID</td><td>Open vs closed loop. PID intuitively then mathematically. Line follower — tune live.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">W7</td><td class="tp">Linux & Python for Robotics</td><td>Terminal, SSH, PySerial. Raspberry Pi setup. SSH into TurtleBot.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">W8</td><td class="tp">ROS 2 Introduction</td><td>Nodes, topics, services. TurtleSim. Write first publisher + subscriber node.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">W9</td><td class="tp">Gazebo Simulation</td><td>Load URDF. Spawn robot. Add LiDAR + camera. Drive with keyboard.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">W10</td><td class="tp">Computer Vision</td><td>OpenCV: colour detection, edge, blob tracking. Ball-following robot.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">W11</td><td class="tp">Navigation & SLAM</td><td>SLAM Toolbox on TurtleBot 3. Build a real map of the lab room.</td><td><span class="badge bth">Theory</span></td></tr>
+        <tr><td class="wk">W12</td><td class="tp">Mini Project + Demo Day</td><td>Teams of 3. Choose task. Build in 1 week. Public demo. Explain what failed.</td><td><span class="badge bpr">Project</span></td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+  <div class="acc" data-grp="tracks" style="margin-bottom:48px">
+    <div class="acc-head" onclick="tog(this,'tracks')">
+      <div class="acc-hl"><span class="acc-tag tag-p">Track 2</span><div><div class="acc-title">Applied Systems — 16 Weeks</div><div class="acc-summary">Requires Phase 2 lab · portfolio-grade projects</div></div></div>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="callout p"><div class="ct">Who This Is For</div><p>Students who have completed Foundation Track. Final year diploma, B.E./B.Tech, working engineers upskilling. <strong>Projects must be portfolio-grade.</strong></p></div>
+      <table class="ctable"><thead><tr><th>Module</th><th>Topic</th><th>What Happens</th><th></th></tr></thead><tbody>
+        <tr><td class="wk">M1</td><td class="tp">Robot Arm Kinematics</td><td>DH parameters, FK/IK from scratch. MoveIt 2. First pick-and-place on myCobot.</td><td><span class="badge bth">Theory</span></td></tr>
+        <tr><td class="wk">M2</td><td class="tp">MoveIt 2 & Motion Planning</td><td>OMPL planners (RRT, RRTConnect). Cartesian path. Collision objects.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">M3</td><td class="tp">Navigation Stack — Nav2</td><td>Cost maps, planners. Debug nav failures on TurtleBot 4.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">M4</td><td class="tp">Sensor Fusion & EKF</td><td>robot_localization. Fuse odometry + IMU + LiDAR. Compare with/without.</td><td><span class="badge bth">Theory</span></td></tr>
+        <tr><td class="wk">M5</td><td class="tp">ML for Perception</td><td>Collect dataset (Roboflow). Train YOLOv8. Deploy on Jetson Orin. ROS 2 node.</td><td><span class="badge bpr">Project</span></td></tr>
+        <tr><td class="wk">M6</td><td class="tp">PCB Design for Robots</td><td>KiCad: custom motor controller. Bantam mill. Solder, test, document for IP.</td><td><span class="badge bpr">Project</span></td></tr>
+        <tr><td class="wk">M7</td><td class="tp">PLC & Industrial Automation</td><td>TIA Portal ladder logic. Automate conveyor belt with safety interlock.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">M8</td><td class="tp">Isaac Sim</td><td>GPU workstation. Synthetic data. Train grasping policy. Sim-to-real gap.</td><td><span class="badge bha">Hands-on</span></td></tr>
+        <tr><td class="wk">M9–16</td><td class="tp">Capstone Project</td><td>Full system: mechanical + electronics + software + perception. India-problem focus. Industry panel review.</td><td><span class="badge bpr">Project</span></td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bio">
+      <div class="fb-name">Pranav Gawde</div>
+      <div class="fb-role">Product Designer · Hardware Startup Consultant<br>TU Delft MSc in Design for Interaction · Red Dot Award 2022<br>Advisor, riidl Somaiya Vidyavihar, Mumbai</div>
+      <div class="fb-contact"><a href="https://pranavgawde.in">pranavgawde.in</a> &nbsp;·&nbsp; gawde.design@gmail.com<br>Mumbai, India</div>
+    </div>
+    <div>
+      <div class="fp-label">Reference Documents</div>
+      <div class="fp-links">
+        <a href="terms.html">Robotics Terms &amp; Concepts Glossary</a>
+        <a href="budget.html">Budget &amp; Equipment — All Phases</a>
+        <a href="https://pranavgawde.in">pranavgawde.in — Consultancy Portfolio</a>
+      </div>
+      <div class="fp-label" style="margin-top:20px">Document</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.8">Consultancy Report<br>KJ Somaiya Polytechnic, Mumbai<br>Prepared May 2026</div>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Pranav Gawde · Consultancy Report — KJ Somaiya Polytechnic Robotics Lab</div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robotics Terms & Concepts — Pranav Gawde</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f9f8f6;--white:#fff;--ink:#1a1a1a;--ink2:#505050;--muted:#999;--rule:#e4e1db;--g:#2a6049;--gbg:#eef4f1;--b:#1a3f6e;--bbg:#eaf0f8;--p:#5a2d82;--pbg:#f3edf8;--o:#8b4513;--obg:#fdf5ee;--serif:'EB Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:15px;line-height:1.7}
+.nav{background:rgba(249,248,246,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:50px}
+.nav a{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none}.nav a:hover{color:var(--ink)}
+.nav .title{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.w{max-width:960px;margin:0 auto;padding:0 32px}
+.hero{padding:56px 0 40px;border-bottom:1px solid var(--rule);margin-bottom:40px}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+h1{font-family:var(--serif);font-size:clamp(32px,5vw,52px);font-weight:400;line-height:1.1;margin-bottom:16px}
+h1 em{font-style:italic}
+.hero-sub{font-size:13px;color:var(--ink2);max-width:480px;line-height:1.8}
+.search-wrap{position:relative;margin-bottom:16px}.search-wrap input{width:100%;padding:11px 14px 11px 36px;border:1px solid var(--rule);background:var(--white);font-family:var(--sans);font-size:13px;color:var(--ink);outline:none;transition:border-color .15s}.search-wrap input:focus{border-color:var(--ink)}.search-wrap input::placeholder{color:var(--muted)}.si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.filt-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.fb{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--rule);background:var(--white);color:var(--muted);cursor:pointer;transition:all .12s}.fb:hover,.fb.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.count{font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:16px}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:48px}
+.tc{background:var(--white);padding:20px;transition:background .15s;position:relative}.tc:hover{background:var(--bg)}
+.tc::before{content:'';position:absolute;top:0;left:0;width:0;height:3px;transition:width .3s}.tc:hover::before{width:100%;background:var(--ink)}
+.th{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}
+.tn{font-size:14px;font-weight:500;color:var(--ink)}
+.tt{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;flex-shrink:0}
+.tg{background:var(--gbg);color:var(--g)}.tb{background:var(--bbg);color:var(--b)}.tp{background:var(--pbg);color:var(--p)}.to{background:var(--obg);color:var(--o)}.td{background:#f2f2f2;color:var(--muted)}
+.tdesc{font-size:12px;color:var(--ink2);line-height:1.65;margin-bottom:10px}
+.tana{font-size:11px;color:var(--ink2);line-height:1.6;background:var(--bg);border-left:2px solid var(--rule);padding:8px 10px}
+.tana strong{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+footer{border-top:1px solid var(--rule);padding:28px 32px;max-width:960px;margin:0 auto;font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer a{color:var(--ink);text-decoration:none}
+@media(max-width:600px){.w{padding:0 16px}.tgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="home.html">← Back to Main Report</a>
+  <span class="title">Terms & Concepts</span>
+  <a href="https://pranavgawde.in">pranavgawde.in</a>
+</nav>
+<div class="w">
+  <div class="hero">
+    <div class="eyebrow">Reference · Robotics Lab Consultancy · KJ Somaiya Polytechnic</div>
+    <h1>Robotics Terms<br>&amp; <em>Concepts</em></h1>
+    <p class="hero-sub">20+ terms explained plainly with real-world analogies. For students, faculty, and administrators — not just engineers.</p>
+  </div>
+  <div class="search-wrap"><span class="si">⌕</span><input type="text" id="si" placeholder="Search… e.g. SLAM, PID, ROS, sensor fusion"></div>
+  <div class="filt-row">
+    <button class="fb on" onclick="fc('all',this)">All</button>
+    <button class="fb" onclick="fc('core',this)">Core Robotics</button>
+    <button class="fb" onclick="fc('prog',this)">Programming</button>
+    <button class="fb" onclick="fc('perc',this)">Perception</button>
+    <button class="fb" onclick="fc('plan',this)">Planning & AI</button>
+    <button class="fb" onclick="fc('sim',this)">Simulation & HW</button>
+  </div>
+  <p class="count">Showing <span id="cnt">20</span> terms</p>
+  <div class="tgrid" id="tg"></div>
+</div>
+<footer>
+  <span>pranavgawde.in &middot; Consultancy Reference · Terms & Concepts</span>
+  <span><a href="home.html">Main Report</a> &nbsp;&middot;&nbsp; <a href="budget.html">Budget Document</a></span>
+</footer>
+<script>
+const terms=[
+  {t:"Control Systems",c:"core",tag:"Core",tc:"tg",d:"The backbone that tells a robot how to act to reach a desired state. Uses sensors to measure current state, compare to a setpoint, and calculate corrective actions — continuously, in real time.",a:"A car's cruise control. Set 60 km/h, the system checks speed and adjusts throttle. A robot's control system does this for joints, velocity, and position — all at once."},
+  {t:"SLAM",c:"core",tag:"Core",tc:"tg",d:"Simultaneous Localisation and Mapping. A robot figures out where it is in a space AND builds a map at the same time — without prior knowledge of the environment.",a:"Blindfolded in an unknown building, feeling walls to sketch a map while tracking your own position. A chicken-and-egg problem solved with probabilistic math."},
+  {t:"ROS 2",c:"prog",tag:"Programming",tc:"tb",d:"Robot Operating System 2. Not an OS — middleware. Standardises how software nodes communicate: publish sensor data, subscribe to commands, call services, sync timing.",a:"The internet protocol for robot software. Each part (camera, arm, planner) speaks via standardised messages. Without it, every team reinvents inter-process communication."},
+  {t:"C++ for Robotics",c:"prog",tag:"Programming",tc:"tb",d:"The dominant language for performance-critical robotics. Real-time control loops at 1kHz, deterministic timing, bare-metal hardware access. Python handles prototyping; C++ handles production.",a:"Python is the sketchbook. C++ is the machine. A robotics engineer needs both."},
+  {t:"Kinematics",c:"core",tag:"Core",tc:"tg",d:"Forward kinematics: given joint angles, where is the end-effector? Inverse kinematics (IK): given a desired position, what joint angles are needed? IK often has multiple or zero solutions.",a:"FK: shoulder 30°, elbow 90° — where is your wrist? IK: to grab that cup, what angles do you need? IK is much harder to solve mathematically."},
+  {t:"Dynamics",c:"core",tag:"Core",tc:"tg",d:"The physics of forces, torques, inertia, and gravity affecting a robot's motion. Kinematics asks 'where?'; dynamics asks 'how much force?' for each movement.",a:"Kinematics tells you where your arm goes. Dynamics tells you how much muscle force to hold it there. Gravity and mass matter enormously in real robots."},
+  {t:"PID Controller",c:"core",tag:"Core",tc:"tg",d:"Proportional-Integral-Derivative controller. Most widely used control algorithm. P: proportional to current error. I: corrects accumulated past error. D: dampens rate of change.",a:"Parallel parking: steer hard when far from kerb (P), adjust for drift over time (I), ease corrections as you approach (D). Most robots use PID for joint-level control."},
+  {t:"Motion Planning",c:"plan",tag:"Planning & AI",tc:"tp",d:"Computing a collision-free path from start to goal in configuration space. Algorithms: RRT, A*, RRT-Connect, trajectory optimisation.",a:"Google Maps for robot joints. 'Arm here, needs to be there, don't hit the table' — motion planning computes every joint angle along the safe route."},
+  {t:"Sensor Fusion",c:"perc",tag:"Perception",tc:"to",d:"Combining multiple sensors (camera + LiDAR + IMU + GPS) to produce estimates more accurate than any single sensor. Tools: Kalman Filter, factor graphs.",a:"Humans fuse vision, balance, and touch to walk. A robot fusing camera + IMU + wheel odometry is doing the same — redundancy and cross-validation."},
+  {t:"State Estimation",c:"core",tag:"Core",tc:"tg",d:"Continuously estimating a robot's state (position, velocity, joint angles) from noisy measurements using probabilistic methods: EKF, Particle Filters, Factor Graphs.",a:"You never know exactly where you are — you estimate. State estimation is the robot's best mathematical guess at every millisecond given imperfect sensors."},
+  {t:"Perception",c:"perc",tag:"Perception",tc:"to",d:"How a robot understands its environment: cameras, LiDAR, depth sensors, IMUs. Includes object detection, pose estimation, point cloud processing, scene understanding.",a:"The robot's eyes and brain. Without good perception, planning is flying blind. Garbage in, garbage out — perception quality determines everything downstream."},
+  {t:"Point Cloud",c:"perc",tag:"Perception",tc:"to",d:"A 3D set of XYZ coordinates captured by LiDAR or depth cameras. Processing includes filtering, registration, segmentation, feature extraction. Libraries: PCL, Open3D.",a:"LiDAR gives millions of laser dots in 3D space. Processing turns that raw cloud into: wall, floor, person, obstacle."},
+  {t:"Embodied AI",c:"plan",tag:"Planning & AI",tc:"tp",d:"AI that physically interacts with the world. A robot reasoning, planning, and acting in 3D environments using policies trained via reinforcement or imitation learning.",a:"ChatGPT lives in a computer. Embodied AI lives in a robot that must pick up a cup without spilling it. The physical world has no undo button. That's what makes it hard."},
+  {t:"Reinforcement Learning",c:"plan",tag:"Planning & AI",tc:"tp",d:"Training a robot by trial-and-error with rewards. Explore actions, get feedback, learn a policy maximising cumulative reward. Algorithms: PPO, SAC, TD3.",a:"Teaching a dog to sit: reward when it does, nothing when it doesn't. RL does this millions of times in simulation until the robot learns without hand-coded rules."},
+  {t:"Simulation",c:"sim",tag:"Simulation",tc:"td",d:"Physics simulators for testing robots before touching hardware. Gazebo (open-source, ROS-native) and NVIDIA Isaac Sim (GPU-accelerated, photorealistic) allow safe training and debugging at scale.",a:"A flight simulator before the real cockpit. Engineers who test only on real hardware waste expensive robots and risk injuries."},
+  {t:"URDF",c:"sim",tag:"Simulation",tc:"td",d:"Unified Robot Description Format. XML file describing a robot's physical structure: links, joints, geometry, inertia properties, sensor positions. Used by ROS, Gazebo, MoveIt.",a:"The robot's blueprint file. Without it, simulation and planning don't know the robot's shape. Every ROS robot starts with a URDF."},
+  {t:"Hardware Integration",c:"sim",tag:"Hardware",tc:"td",d:"Making software talk to physical components — motors, sensors, microcontrollers, buses (CAN, EtherCAT, SPI, I2C). Often 20% of project time and 80% of debugging.",a:"Brilliant software that can't command a motor is useless. Hardware integration is the bridge. It's unglamorous, critical, and always takes longer than expected."},
+  {t:"Teleoperation",c:"core",tag:"Core",tc:"tg",d:"Remote human control of a robot via joystick, VR controller, or haptic device. Used for data collection, hazardous environments, and fallback when autonomy fails.",a:"Mars rovers are teleoperated from Earth. Surgical robots by surgeons. Modern robotics also uses teleoperation to collect demonstration data for training autonomous policies."},
+  {t:"Trajectory Optimisation",c:"plan",tag:"Planning & AI",tc:"tp",d:"Computing a smooth, optimal path over time satisfying physical constraints (joint limits, velocity, torque) while minimising cost (time, energy, jerk). Tools: TrajOpt, CHOMP, Drake.",a:"Motion planning finds a valid path. Trajectory optimisation makes it smooth, fast, and physically feasible — the difference between jerky and fluid motion."},
+  {t:"Microcontroller (MCU)",c:"prog",tag:"Programming",tc:"tb",d:"A computer on a chip: processor, memory, I/O pins. Arduino, ESP32, Seeed XIAO, STM32, Raspberry Pi Pico. The interface between software code and physical hardware.",a:"Every robot has at least one. It takes 'turn motor at 50% speed' from code and turns electrons into movement. Understanding MCUs is the hardware entry point for students."}
+];
+let cat='all',q='';
+function fc(c,btn){cat=c;document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');render()}
+function render(){
+  const f=terms.filter(t=>(cat==='all'||t.c===cat)&&(!q||t.t.toLowerCase().includes(q)||t.d.toLowerCase().includes(q)||t.a.toLowerCase().includes(q)));
+  document.getElementById('cnt').textContent=f.length;
+  document.getElementById('tg').innerHTML=f.map((t,i)=>`<div class="tc" style="animation-delay:${i*.03}s"><div class="th"><span class="tn">${t.t}</span><span class="tt ${t.tc}">${t.tag}</span></div><p class="tdesc">${t.d}</p><div class="tana"><strong>// Analogy</strong>${t.a}</div></div>`).join('')||'<div style="padding:40px;text-align:center;color:var(--muted);font-size:13px;grid-column:1/-1">No terms matched.</div>';
+}
+document.getElementById('si').addEventListener('input',e=>{q=e.target.value;render()});
+render();
+</script>
+</body>
+</html>

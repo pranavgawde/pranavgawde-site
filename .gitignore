@@ -9,12 +9,14 @@ Thumbs.db
 .claude/
 
 # Original prototype files (reference only, not deployed)
-home.html
-manao-glove.html
-psp-bowling.html
-selector-180.html
+/home.html
+/manao-glove.html
+/psp-bowling.html
+/selector-180.html
 
-# Original composite image (cropped versions are in images/)
+# Unused images (deleted)
+android-chrome-192x192.png
+images/og-preview.jpg
 images/studio-services.png
 
 # Planning and handoff docs

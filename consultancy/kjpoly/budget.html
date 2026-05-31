@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budget & Equipment — Robotics Lab — Pranav Gawde</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f9f8f6;--white:#fff;--ink:#1a1a1a;--ink2:#505050;--muted:#999;--rule:#e4e1db;--g:#2a6049;--gbg:#eef4f1;--b:#1a3f6e;--bbg:#eaf0f8;--p:#5a2d82;--pbg:#f3edf8;--serif:'EB Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:14px;line-height:1.7}
+.nav{background:rgba(249,248,246,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:50px}
+.nav a{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none}.nav a:hover{color:var(--ink)}
+.nav .title{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.w{max-width:960px;margin:0 auto;padding:0 32px}
+.hero{padding:48px 0 36px;border-bottom:1px solid var(--rule);margin-bottom:36px}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+h1{font-family:var(--serif);font-size:clamp(30px,4vw,48px);font-weight:400;line-height:1.1;margin-bottom:14px}h1 em{font-style:italic}
+.hero-sub{font-size:13px;color:var(--ink2);max-width:520px;line-height:1.8}
+/* PHASE TABS */
+.ph-tabs{display:flex;border:1px solid var(--rule);margin-bottom:28px;overflow:hidden}
+.ph-tab{flex:1;padding:13px 12px;background:var(--white);border:none;border-right:1px solid var(--rule);cursor:pointer;text-align:left;transition:background .15s}
+.ph-tab:last-child{border-right:none}.ph-tab:hover{background:var(--bg)}
+.ph-tab.on-g{background:var(--gbg);border-bottom:2px solid var(--g)}.ph-tab.on-b{background:var(--bbg);border-bottom:2px solid var(--b)}.ph-tab.on-p{background:var(--pbg);border-bottom:2px solid var(--p)}
+.ph-tab .pn{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
+.ph-tab.on-g .pn{color:var(--g)}.ph-tab.on-b .pn{color:var(--b)}.ph-tab.on-p .pn{color:var(--p)}
+.ph-tab .pt{font-size:13px;font-weight:500;color:var(--ink);display:block;margin-bottom:1px}.ph-tab .ps{font-size:11px;color:var(--muted)}
+.ph-panel{display:none}.ph-panel.on{display:block}
+/* SUMMARY ROW */
+.sum-row{display:flex;flex-wrap:wrap;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:24px}
+.sum-box{background:var(--white);padding:16px 20px;flex:1;min-width:110px}
+.sum-n{font-family:var(--serif);font-size:26px;line-height:1;margin-bottom:4px}
+.sum-l{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+/* NOTE */
+.note{padding:14px 18px;margin-bottom:20px;border-left:3px solid var(--rule);background:var(--white);font-size:12px;color:var(--ink2);line-height:1.7}
+.note strong{color:var(--ink);font-weight:500}.note.g{border-left-color:var(--g)}.note.b{border-left-color:var(--b)}.note.p{border-left-color:var(--p)}
+/* TABLE */
+.bt{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:8px}
+.bt th{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:8px 10px;text-align:left;border-bottom:2px solid var(--rule);background:var(--bg)}
+.bt td{padding:9px 10px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:top}
+.bt tr:last-child td{border-bottom:none}
+.bt tr:hover td{background:var(--bg)}
+.bt tfoot td{font-family:var(--mono);font-size:11px;background:var(--bg);border-top:2px solid var(--rule);border-bottom:none;padding:10px}
+.bn{color:var(--ink);font-weight:500}.bs{display:block;color:var(--muted);font-size:11px;margin-top:1px}
+.bv{font-family:var(--mono);color:var(--g);white-space:nowrap;font-size:11px}
+.bvb{color:var(--b)}.bvp{color:var(--p)}
+.pm{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px}
+.m1{background:#fdecea;color:#c0392b}.m2{background:#fff8e1;color:#856404}.m3{background:#f0f0f0;color:var(--muted)}
+/* FOOTER */
+footer{border-top:1px solid var(--rule);padding:24px 32px;max-width:960px;margin:40px auto 0;font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer a{color:var(--ink);text-decoration:none}
+@media(max-width:600px){.w{padding:0 16px}.ph-tabs{flex-direction:column}.ph-tab{border-right:none;border-bottom:1px solid var(--rule)}.sum-row{flex-direction:column}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="home.html">← Back to Main Report</a>
+  <span class="title">Budget & Equipment</span>
+  <a href="https://pranavgawde.in">pranavgawde.in</a>
+</nav>
+<div class="w">
+  <div class="hero">
+    <div class="eyebrow">Reference · Robotics Lab Consultancy · KJ Somaiya Polytechnic</div>
+    <h1>Budget &amp;<br><em>Equipment Costs</em></h1>
+    <p class="hero-sub">Itemised equipment lists for all phases. All prices in Indian Rupees (₹), approximate 2025–26 Indian market rates, ex-GST. Actual costs vary by vendor, quantity, and import duty.</p>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="sum-row">
+    <div class="sum-box"><div class="sum-n" style="color:var(--g)">₹2.5–3L</div><div class="sum-l">Phase 0 · Bootstrap</div></div>
+    <div class="sum-box"><div class="sum-n" style="color:var(--g)">₹11–13L</div><div class="sum-l">Phase 1 · Foundation</div></div>
+    <div class="sum-box"><div class="sum-n" style="color:var(--b)">₹29–35L</div><div class="sum-l">Phase 2 · Applied</div></div>
+    <div class="sum-box"><div class="sum-n" style="color:var(--p)">₹60–90L</div><div class="sum-l">Phase 3 · Industry</div></div>
+    <div class="sum-box"><div class="sum-n">₹1Cr+</div><div class="sum-l">Total programme</div></div>
+  </div>
+
+  <!-- PHASE TABS -->
+  <div class="ph-tabs">
+    <button class="ph-tab on-g" onclick="ph(0,this)"><span class="pn">Phase 00</span><span class="pt">Bootstrap</span><span class="ps">₹2.5–3L · Classroom</span></button>
+    <button class="ph-tab" onclick="ph(1,this)"><span class="pn">Phase 01</span><span class="pt">Foundation Lab</span><span class="ps">₹11–13L · 2000 sq ft</span></button>
+    <button class="ph-tab" onclick="ph(2,this)"><span class="pn">Phase 02</span><span class="pt">Applied Lab</span><span class="ps">₹29–35L · 4000 sq ft</span></button>
+    <button class="ph-tab" onclick="ph(3,this)"><span class="pn">Phase 03</span><span class="pt">Industry Lab</span><span class="ps">₹60–90L · 6000 sq ft</span></button>
+  </div>
+
+  <!-- PANEL 0 -->
+  <div id="p0" class="ph-panel on">
+    <div class="note g"><strong>Phase 0 — Bootstrap Course.</strong> Runs before any lab is built. Just a classroom, 12 DIY kits, and shared laptops. Kits are reusable across cohorts. Total investment pays for itself after 2 cohorts.</div>
+    <table class="bt"><thead><tr><th>Item</th><th>Qty</th><th>Unit (₹)</th><th>Total (₹)</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td><span class="bn">Robotics DIY Kit — 4-in-1</span><span class="bs">Rover, arm, SLAM, CV modes. e.g. Yahboom DOFBOT / Makeblock mBot2</span></td><td>12</td><td class="bv">6,500</td><td class="bv">78,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Supplementary Sensor Pack per kit</span><span class="bs">IR, ultrasonic HC-SR04, MPU-6050 IMU, encoder disc</span></td><td>12</td><td class="bv">800</td><td class="bv">9,600</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Laptop — shared (i5, 8GB) for kit programming</span><span class="bs">Can use existing college machines</span></td><td>5</td><td class="bv">30,000</td><td class="bv">1,50,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">USB Charging Hub + Extension Strips</span></td><td>3</td><td class="bv">2,500</td><td class="bv">7,500</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Printed Lab Workbook (20 copies)</span></td><td>20</td><td class="bv">300</td><td class="bv">6,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Instructor Kit + Spare Components</span></td><td>1</td><td class="bv">15,000</td><td class="bv">15,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Venue / Room Setup (one-time)</span></td><td>1</td><td class="bv">10,000</td><td class="bv">10,000</td><td><span class="pm m3">Nice</span></td></tr>
+    </tbody>
+    <tfoot><tr><td colspan="3"><strong>Phase 0 Total</strong></td><td class="bv" style="font-size:14px;font-weight:600">~₹2,76,000</td><td></td></tr><tr><td colspan="5" style="color:var(--muted);font-size:10px">Rounded budget: ₹2.5–3 lakhs · Kits reusable across cohorts · Can reuse college laptops</td></tr></tfoot>
+    </table>
+  </div>
+
+  <!-- PANEL 1 -->
+  <div id="p1" class="ph-panel">
+    <div class="note g"><strong>Phase 1 — Foundation Lab.</strong> 2000 sq ft. All software free/open-source. No annual licence costs. Must-have minimum: ~₹8L. Full list: ~₹13L.</div>
+    <table class="bt"><thead><tr><th>Item</th><th>Qty</th><th>Unit (₹)</th><th>Total (₹)</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td><span class="bn">Laptop — i5 12th Gen, 8GB, 512GB SSD (Ubuntu 22.04)</span><span class="bs">Core simulation + coding workstations</span></td><td>10</td><td class="bv">45,000</td><td class="bv">4,50,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Arduino Uno R3 Starter Kit</span><span class="bs">Breadboard, jumpers, sensors, servos included</span></td><td>10</td><td class="bv">2,500</td><td class="bv">25,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Raspberry Pi 4B 4GB (case + SD + PSU)</span></td><td>4</td><td class="bv">7,500</td><td class="bv">30,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Seeed XIAO ESP32C3 (pack of 5)</span><span class="bs">Ultra-compact Wi-Fi + BLE; excellent for sensor nodes</span></td><td>3 packs</td><td class="bv">2,200</td><td class="bv">6,600</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Seeed XIAO RP2040 (pack of 5)</span><span class="bs">Tiny form, MicroPython, fast I/O</span></td><td>2 packs</td><td class="bv">2,000</td><td class="bv">4,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">ESP32 DevKit V1 (30-pin)</span></td><td>10</td><td class="bv">600</td><td class="bv">6,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Raspberry Pi Pico W (pack of 5)</span></td><td>2 packs</td><td class="bv">2,500</td><td class="bv">5,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">TurtleBot 3 Burger (ROS 2-ready, official)</span><span class="bs">Diff-drive + RPLidar A1 + RPi 4B included</span></td><td>3</td><td class="bv">42,000</td><td class="bv">1,26,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">RPLidar A1M8 — standalone</span><span class="bs">For SLAM on custom robot builds</span></td><td>2</td><td class="bv">10,000</td><td class="bv">20,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Intel RealSense D435i Depth Camera</span><span class="bs">RGB + depth + IMU; official ROS 2 driver</span></td><td>2</td><td class="bv">22,000</td><td class="bv">44,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Sensor Kit (ultrasonic, IR, ToF, IMU, encoder)</span></td><td>2 kits</td><td class="bv">4,500</td><td class="bv">9,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">MG996R Servo Motors</span></td><td>20</td><td class="bv">280</td><td class="bv">5,600</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">NEMA 17 Stepper + A4988 Driver (sets)</span></td><td>5</td><td class="bv">700</td><td class="bv">3,500</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">DC Motor + L298N Driver Kit</span></td><td>8</td><td class="bv">400</td><td class="bv">3,200</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Bambu Lab A1 Mini FDM Printer</span><span class="bs">Fast, auto-calibrating, student-safe</span></td><td>1</td><td class="bv">32,000</td><td class="bv">32,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Bambu Lab AMS Lite Filament Hub</span></td><td>1</td><td class="bv">15,000</td><td class="bv">15,000</td><td><span class="pm m3">Nice</span></td></tr>
+      <tr><td><span class="bn">xTool D1 Pro 20W Laser + Enclosure + Honeycomb</span><span class="bs">Wood, acrylic, PCB substrate, micro engraving; desktop compact</span></td><td>1</td><td class="bv">55,000</td><td class="bv">55,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">CNC 3018 Pro PCB Mill + Isolation Routing Bits</span><span class="bs">In-house PCB fabrication, no chemical etching</span></td><td>1</td><td class="bv">15,000</td><td class="bv">15,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Hakko FX-888D Soldering Station</span></td><td>3</td><td class="bv">6,500</td><td class="bv">19,500</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">SMD Hot Air Rework Station</span></td><td>1</td><td class="bv">4,500</td><td class="bv">4,500</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Rigol DS1054Z Oscilloscope (4-ch, 50MHz)</span></td><td>2</td><td class="bv">20,000</td><td class="bv">40,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Digital Multimeter — Mastech MS8268</span></td><td>6</td><td class="bv">1,500</td><td class="bv">9,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Bench PSU — 30V 5A Dual-Channel</span></td><td>3</td><td class="bv">4,500</td><td class="bv">13,500</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Logic Analyser — KINGST LA2016 16-ch</span></td><td>2</td><td class="bv">3,500</td><td class="bv">7,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Component Storage Wall (bins + pegboard)</span></td><td>1 setup</td><td class="bv">18,000</td><td class="bv">18,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Workbenches — ESD-safe, heavy-duty</span></td><td>6</td><td class="bv">9,500</td><td class="bv">57,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Whiteboards — large (4×3 ft)</span></td><td>3</td><td class="bv">5,000</td><td class="bv">15,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Networking — Managed Switch + Cat6 Cabling</span></td><td>1 setup</td><td class="bv">8,000</td><td class="bv">8,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">UPS for Critical Workstations</span></td><td>2</td><td class="bv">8,000</td><td class="bv">16,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Fire Extinguisher (CO₂) + First Aid Kit</span></td><td>1 set</td><td class="bv">5,000</td><td class="bv">5,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Consumables — 6-month opening stock</span><span class="bs">PLA/PETG filament, solder, acrylic, PCB blanks, hook-up wire</span></td><td>—</td><td class="bv">—</td><td class="bv">35,000</td><td><span class="pm m1">Must</span></td></tr>
+    </tbody>
+    <tfoot><tr><td colspan="3"><strong>Phase 1 Total (Must + Should)</strong></td><td class="bv" style="font-size:14px;font-weight:600">~₹11,00,000</td><td></td></tr><tr><td colspan="5" style="color:var(--muted);font-size:10px">Must-only minimum: ~₹8L · Full list incl. Nice-to-have: ~₹13L · All figures ex-GST</td></tr></tfoot>
+    </table>
+  </div>
+
+  <!-- PANEL 2 -->
+  <div id="p2" class="ph-panel">
+    <div class="note b"><strong>Phase 2 — Applied Lab.</strong> Assumes Phase 1 operational. Renovation is the largest single variable. Present renovation costs separately in CSR proposals. Must-only: ~₹20L. Full: ~₹32L.</div>
+    <table class="bt"><thead><tr><th>Item</th><th>Qty</th><th>Unit (₹)</th><th>Total (₹)</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td><span class="bn">myCobot 280 Pi — 6-DOF Robot Arm</span><span class="bs">ROS 2, MoveIt 2 support, safe for students; includes gripper</span></td><td>2</td><td class="bv bvb">70,000</td><td class="bv bvb">1,40,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">GPU Workstation — RTX 4070, 64GB RAM, 2TB NVMe</span><span class="bs">Isaac Sim, ML training, YOLO, point cloud processing</span></td><td>1</td><td class="bv bvb">2,20,000</td><td class="bv bvb">2,20,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">NVIDIA Jetson AGX Orin 64GB Dev Kit</span><span class="bs">275 TOPS edge AI; on-robot neural inference</span></td><td>2</td><td class="bv bvb">75,000</td><td class="bv bvb">1,50,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Robot Arm Safety Enclosure + E-stop</span></td><td>2</td><td class="bv bvb">18,000</td><td class="bv bvb">36,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Siemens S7-1200 PLC + I/O Modules + TIA Portal Edu</span></td><td>1</td><td class="bv bvb">95,000</td><td class="bv bvb">95,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">3-Station Motorised Conveyor Belt Rig</span><span class="bs">PLC-controlled; proximity sensors + counter</span></td><td>1</td><td class="bv bvb">45,000</td><td class="bv bvb">45,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Siemens TP700 HMI Touchscreen Panel</span></td><td>1</td><td class="bv bvb">35,000</td><td class="bv bvb">35,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Pneumatic Actuator Demo Kit</span></td><td>1</td><td class="bv bvb">22,000</td><td class="bv bvb">22,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">TurtleBot 4 Standard Platform</span><span class="bs">Full Nav2, Intel RealSense D435 + OAK-D, RPLidar S2</span></td><td>1</td><td class="bv bvb">1,10,000</td><td class="bv bvb">1,10,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Livox Mid-360 3D LiDAR</span></td><td>1</td><td class="bv bvb">95,000</td><td class="bv bvb">95,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Custom AMR Platform Build</span><span class="bs">Al frame + BLDC hub motors + Jetson Nano + encoders</span></td><td>1</td><td class="bv bvb">65,000</td><td class="bv bvb">65,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Elegoo Saturn 3 Ultra Resin Printer</span></td><td>1</td><td class="bv bvb">35,000</td><td class="bv bvb">35,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Bantam Tools Desktop PCB Mill</span><span class="bs">±25µm precision; professional in-house fabrication</span></td><td>1</td><td class="bv bvb">95,000</td><td class="bv bvb">95,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">xTool S1 20W Enclosed Laser Cutter</span><span class="bs">Upgrade from D1 Pro; full enclosure, pass-through</span></td><td>1</td><td class="bv bvb">85,000</td><td class="bv bvb">85,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Rigol DHO924S Oscilloscope 250MHz 4ch</span></td><td>2</td><td class="bv bvb">45,000</td><td class="bv bvb">90,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Keysight U1242C TRMS Multimeter</span></td><td>4</td><td class="bv bvb">8,000</td><td class="bv bvb">32,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Rigol DG1022Z Waveform Generator</span></td><td>1</td><td class="bv bvb">18,000</td><td class="bv bvb">18,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Wi-Fi 6 Industrial Access Points</span></td><td>3</td><td class="bv bvb">12,000</td><td class="bv bvb">36,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">NAS — Network-Attached Storage 20TB</span><span class="bs">Dataset storage, model checkpoints, project backups</span></td><td>1</td><td class="bv bvb">25,000</td><td class="bv bvb">25,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">MATLAB Student Suite — 10 licences (1 yr)</span></td><td>1</td><td class="bv bvb">85,000</td><td class="bv bvb">85,000</td><td><span class="pm m3">Nice</span></td></tr>
+      <tr><td><span class="bn">Lab Renovation — additional 2000 sq ft</span><span class="bs">Partitions, flooring, lighting, power points, signage</span></td><td>1</td><td class="bv bvb">6,00,000</td><td class="bv bvb">6,00,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Electrical Upgrade — 3-phase, earthing, UPS infra</span></td><td>1</td><td class="bv bvb">1,20,000</td><td class="bv bvb">1,20,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Air Conditioning / Climate Control Upgrade</span></td><td>1</td><td class="bv bvb">80,000</td><td class="bv bvb">80,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">ESD Flooring Tiles (200 sq ft, electronics zone)</span></td><td>200</td><td class="bv bvb">500</td><td class="bv bvb">1,00,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Consumables + Spares — 12-month supply</span><span class="bs">Resin, PCB blanks, SMD components, cables, filament</span></td><td>1</td><td class="bv bvb">75,000</td><td class="bv bvb">75,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Contingency + Buffer (~10%)</span><span class="bs">Import duties, shipping, unplanned repairs, tooling</span></td><td>1</td><td class="bv bvb">2,00,000</td><td class="bv bvb">2,00,000</td><td><span class="pm m1">Must</span></td></tr>
+    </tbody>
+    <tfoot><tr><td colspan="3"><strong>Phase 2 Total (Must + Should)</strong></td><td class="bv bvb" style="font-size:14px;font-weight:600">~₹29,00,000</td><td></td></tr><tr><td colspan="5" style="color:var(--muted);font-size:10px">Must-only: ~₹20L · Full list: ~₹32L · Renovation is largest variable · Ex-GST approximations</td></tr></tfoot>
+    </table>
+  </div>
+
+  <!-- PANEL 3 -->
+  <div id="p3" class="ph-panel">
+    <div class="note p"><strong>Phase 3 — Industry Lab.</strong> The most important line item is a full-time Lab Engineer (₹5–6L/yr). Hardware without stewardship becomes a graveyard within 18 months. UR cobot alone is ₹22L.</div>
+    <table class="bt"><thead><tr><th>Item</th><th>Qty</th><th>Unit (₹)</th><th>Total (₹)</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td><span class="bn">Universal Robots UR5e Cobot (complete)</span><span class="bs">Industry-standard, safe, ROS 2 driver, 5kg payload</span></td><td>1</td><td class="bv bvp">22,00,000</td><td class="bv bvp">22,00,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Robotiq 2F-85 Adaptive Gripper</span><span class="bs">Force-controlled, 85mm stroke, UR compatible</span></td><td>1</td><td class="bv bvp">3,20,000</td><td class="bv bvp">3,20,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">UR Safety Fencing + Safety Scanner (Sick nanoscan3)</span></td><td>1 set</td><td class="bv bvp">2,80,000</td><td class="bv bvp">2,80,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">ATI Axia80 Force-Torque Sensor</span></td><td>1</td><td class="bv bvp">1,80,000</td><td class="bv bvp">1,80,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Custom Quadrotor Drone Build (F550 + Pixhawk 6C + LiPo)</span></td><td>3</td><td class="bv bvp">35,000</td><td class="bv bvp">1,05,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">Indoor Drone Safety Cage 5×5m</span><span class="bs">Safety netting + aluminium frame</span></td><td>1</td><td class="bv bvp">85,000</td><td class="bv bvp">85,000</td><td><span class="pm m2">Should</span></td></tr>
+      <tr><td><span class="bn">High-Speed Camera — Chronos 2.1</span><span class="bs">Motion analysis, impact testing, gait study</span></td><td>1</td><td class="bv bvp">3,50,000</td><td class="bv bvp">3,50,000</td><td><span class="pm m3">Nice</span></td></tr>
+      <tr><td><span class="bn">Motion Capture System — 8-camera minimal</span><span class="bs">Optitrack or equivalent; ground-truth for robot position</span></td><td>1</td><td class="bv bvp">12,00,000</td><td class="bv bvp">12,00,000</td><td><span class="pm m3">Nice</span></td></tr>
+      <tr><td><span class="bn">Lab Engineer — Full-time Annual Salary</span><span class="bs">Keeps lab running, mentors students, maintains ROS environments</span></td><td>1 FTE</td><td class="bv bvp">6,00,000</td><td class="bv bvp">6,00,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Space Build-out 4000→6000 sq ft</span><span class="bs">New zone, electrical, compressed air, safety infrastructure</span></td><td>1</td><td class="bv bvp">9,00,000</td><td class="bv bvp">9,00,000</td><td><span class="pm m1">Must</span></td></tr>
+      <tr><td><span class="bn">Annual Operating Budget — consumables, repairs, licences</span></td><td>1 yr</td><td class="bv bvp">5,00,000</td><td class="bv bvp">5,00,000</td><td><span class="pm m1">Must</span></td></tr>
+    </tbody>
+    <tfoot><tr><td colspan="3"><strong>Phase 3 Total (Must items)</strong></td><td class="bv bvp" style="font-size:14px;font-weight:600">~₹60,00,000</td><td></td></tr><tr><td colspan="5" style="color:var(--muted);font-size:10px">Full list incl. motion capture + high-speed camera: ~₹90L · Lab engineer is the highest-ROI spend · Ex-GST approximations</td></tr></tfoot>
+    </table>
+  </div>
+
+</div><!-- /wrap -->
+<footer>
+  <span>pranavgawde.in &middot; Consultancy Reference &middot; Budget &amp; Equipment &middot; May 2026</span>
+  <span><a href="home.html">Main Report</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms Glossary</a></span>
+</footer>
+<script>
+function ph(n,btn){
+  document.querySelectorAll('.ph-panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.ph-tab').forEach(b=>b.classList.remove('on-g','on-b','on-p'));
+  document.getElementById('p'+n).classList.add('on');
+  const cls=n<2?'on-g':n===2?'on-b':'on-p';
+  btn.classList.add(cls);
+}
+</script>
+</body>
+</html>

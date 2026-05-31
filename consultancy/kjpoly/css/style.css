@@ -298,12 +298,55 @@ footer { border-top:1px solid var(--rule); padding:40px 32px; max-width:860px; m
 
 /* MOBILE */
 @media (max-width:640px) {
-  .w, .w-lg { padding:0 16px; }
-  .hero { padding:48px 0 36px; }
+  /* Layout */
+  .w, .w-lg { padding:0 14px; }
+  .hero { padding:36px 0 24px; }
+  .hero h1 { font-size:clamp(28px,8vw,36px); margin-bottom:12px; }
+
+  /* Nav — allow horizontal scroll on tabs so they don't squish */
   .nav-brand { padding:0 12px; font-size:9px; }
-  .ntab { padding:0 12px; font-size:9px; }
-  .exec-findings, .footer-inner, .zp-body, .two-col, .note-grid { grid-template-columns:1fr; }
-  .phase-strip, .lab-visual-tabs { flex-direction:column; }
+  .nav-tabs { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .ntab { padding:0 12px; font-size:9px; letter-spacing:.1em; flex-shrink:0; }
+
+  /* Accordion — more breathing room, prevent overflow */
+  .acc-head { padding:14px 16px; gap:8px; }
+  .acc-body { padding:16px 16px 18px; }
+  .acc-hl { flex-wrap:wrap; gap:6px; }
+  .acc-title { font-size:13px; }
+  .acc-summary { font-size:11px; }
+  .acc-tag { font-size:8px; }
+
+  /* Stats */
+  .stat-row { flex-direction:column; }
+  .stat-mini { flex-direction:column; }
+  .stat { padding:14px 16px; }
+  .sm { padding:8px 12px; }
+
+  /* Findings grid */
+  .exec-findings { grid-template-columns:1fr; gap:8px; }
+  .finding { padding:16px; }
+
+  /* Zone body, footer, other 2-col grids */
+  .footer-inner, .zp-body, .two-col, .note-grid { grid-template-columns:1fr; }
+
+  /* Phase strip (legacy) */
+  .phase-strip { flex-direction:column; }
   .ph-btn, .lvt { border-right:none; border-bottom:1px solid var(--rule); }
-  .stat-row, .stat-mini { flex-direction:column; }
+
+  /* Timeline cards */
+  .tli-card { padding:14px 16px; }
+  .tli-card .tli-title { font-size:17px; }
+
+  /* Curriculum tables — hide badge column, compact padding */
+  .ctable th:last-child, .ctable td:last-child { display:none; }
+  .ctable td, .ctable th { padding:8px 8px; }
+  .tp { font-size:12px; }
+
+  /* Floor plan SVG — let it shrink */
+  .floor-plan-wrap { padding:12px; }
+  .zone-legend { padding:10px 12px; gap:5px; }
+  .zl-chip { font-size:8px; padding:3px 8px; }
+
+  /* Footer */
+  footer { padding:28px 14px; }
 }

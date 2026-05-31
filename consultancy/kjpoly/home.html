@@ -148,31 +148,33 @@
       <span class="acc-chevron">▼</span>
     </div>
     <div class="acc-body" style="padding:0">
-      <div class="lab-visual-tabs" style="border-top:none">
-        <button class="lvt on-g" onclick="switchLabImg(1,this)">
-          <span class="pn">Phase 1 · 2000 sq ft</span>
-          <span class="pt">Foundation Lab</span>
-          <span class="ps">Zones A–F · 30–40 students</span>
-        </button>
-        <button class="lvt" onclick="switchLabImg(2,this)">
-          <span class="pn">Phase 2–3 · 4000–6000 sq ft</span>
-          <span class="pt">Full Lab — All Zones</span>
-          <span class="ps">Bay 1 + Bay 2 · 60+ students</span>
-        </button>
-      </div>
-      <div id="lv-1" class="lv-panel on">
-        <div class="lab-img-wrap">
-          <img src="images/lab-phase1.png" alt="Phase 1 Robotics Lab — 2000 sq ft isometric view showing Zones A through F" loading="lazy">
-          <div class="lab-img-caption">
-            <p><strong>Phase 1 Foundation Lab · ~2000 sq ft</strong> · Zones A (Software), B (Electronics), C (Arena), D (Perception), E (Fabrication), F (Discussion) · Smithy Shop, Ground Floor</p>
+      <!-- Phase 1 — open by default -->
+      <div class="acc open">
+        <div class="acc-head" onclick="tog(this)">
+          <div class="acc-hl"><span class="acc-tag tag-g">Phase 1 · 2000 sq ft</span><div><div class="acc-title">Foundation Lab</div><div class="acc-summary">Zones A–F · 30–40 students</div></div></div>
+          <span class="acc-chevron">▼</span>
+        </div>
+        <div class="acc-body" style="padding:0">
+          <div class="lab-img-wrap" style="border-top:none">
+            <img src="images/lab-phase1.png" alt="Phase 1 Robotics Lab — 2000 sq ft isometric view showing Zones A through F" loading="lazy">
+            <div class="lab-img-caption">
+              <p><strong>Phase 1 Foundation Lab · ~2000 sq ft</strong> · Zones A (Software), B (Electronics), C (Arena), D (Perception), E (Fabrication), F (Discussion) · Smithy Shop, Ground Floor</p>
+            </div>
           </div>
         </div>
       </div>
-      <div id="lv-2" class="lv-panel">
-        <div class="lab-img-wrap">
-          <img src="images/lab-phase2.png" alt="Phase 2–3 Full Robotics Lab — 4000–6000 sq ft isometric view" loading="lazy">
-          <div class="lab-img-caption">
-            <p><strong>Phase 2–3 Full Lab · 4000–6000 sq ft</strong> · Bay 1 (Phase 1 zones) + Bay 2 (Robot arms, PLC, GPU compute, Drone cage, UR5e Cobot)</p>
+      <!-- Phase 2–3 — closed by default -->
+      <div class="acc">
+        <div class="acc-head" onclick="tog(this)">
+          <div class="acc-hl"><span class="acc-tag tag-b">Phase 2–3 · 4000–6000 sq ft</span><div><div class="acc-title">Full Lab — All Zones</div><div class="acc-summary">Bay 1 + Bay 2 · 60+ students</div></div></div>
+          <span class="acc-chevron">▼</span>
+        </div>
+        <div class="acc-body" style="padding:0">
+          <div class="lab-img-wrap" style="border-top:none">
+            <img src="images/lab-phase2.png" alt="Phase 2–3 Full Robotics Lab — 4000–6000 sq ft isometric view" loading="lazy">
+            <div class="lab-img-caption">
+              <p><strong>Phase 2–3 Full Lab · 4000–6000 sq ft</strong> · Bay 1 (Phase 1 zones) + Bay 2 (Robot arms, PLC, GPU compute, Drone cage, UR5e Cobot)</p>
+            </div>
           </div>
         </div>
       </div>

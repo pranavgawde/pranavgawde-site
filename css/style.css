@@ -327,6 +327,14 @@
   }
   .cta-link:hover .cta-arrow { transform: translateX(4px); }
 
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .cta-buttons .cta-link { margin-top: 1.75rem; }
+
   .signoff-band {
     display: block;
     text-decoration: none;

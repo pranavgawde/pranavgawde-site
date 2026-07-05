@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startup Tool Library — Startup Tools, Terms &amp; Frameworks for Founders | Pranav Gawde</title>
+  <meta name="description" content="A free library of startup tools, frameworks and terms for founders — validation, legal setup, launch, metrics, fundraising and scale. What each one is, when it matters, and how to use it, step by step.">
+  <link rel="canonical" href="https://pranavgawde.in/startuptools">
+  <meta property="og:title" content="Startup Tool Library — Pranav Gawde">
+  <meta property="og:description" content="Startup tools, frameworks and terms across the founder journey — from first idea to unicorn: what they are, when they matter, and how to use them.">
+  <meta property="og:url" content="https://pranavgawde.in/startuptools">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pranav Gawde">
+  <meta name="author" content="Pranav Gawde">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ===== PAGE HEADER ===== */
+    .dt-header {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 4rem 2rem 2rem;
+    }
+    .dt-kicker {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .dt-header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .dt-header .dt-lede {
+      max-width: 640px;
+      color: var(--text-soft);
+      font-size: 1.02rem;
+    }
+    .dt-count-line {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      margin-top: 1.25rem;
+    }
+    .dt-count-line strong { color: var(--accent); }
+
+    /* ===== TOOLBAR ===== */
+    .dt-toolbar {
+      position: sticky;
+      top: 64px;
+      z-index: 50;
+      background: rgba(250, 250, 247, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .dt-toolbar-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.9rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .dt-search {
+      flex: 1 1 260px;
+      position: relative;
+    }
+    .dt-search input {
+      width: 100%;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.95rem;
+      padding: 0.6rem 2.4rem 0.6rem 1rem;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .dt-search input:focus { border-color: var(--accent); }
+    .dt-search .dt-search-icon {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-quiet);
+      pointer-events: none;
+      font-size: 0.9rem;
+    }
+    .dt-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .dt-chip {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.42rem 0.85rem;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text-soft);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .dt-chip:hover { border-color: var(--accent); color: var(--accent); }
+    .dt-chip.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .dt-chip .chip-n { opacity: 0.65; font-weight: 500; margin-left: 0.25em; }
+
+    /* ===== STAGE SECTIONS ===== */
+    .dt-main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.5rem 2rem 5rem;
+    }
+    .dt-stage { margin-top: 3rem; }
+    .dt-stage-head {
+      display: flex;
+      align-items: baseline;
+      gap: 0.9rem;
+      border-bottom: 2px solid var(--text);
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    .dt-stage-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .dt-stage-head h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.25rem, 3vw, 1.6rem);
+      letter-spacing: -0.01em;
+    }
+    .dt-stage-count {
+      margin-left: auto;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-quiet);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .dt-stage-desc {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      max-width: 640px;
+      margin: 0.75rem 0 1.25rem;
+    }
+
+    /* ===== TOOL CARDS (accordion) ===== */
+    .dt-tool {
+      border-bottom: 1px solid var(--rule);
+    }
+    .dt-tool summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      padding: 1rem 0.25rem;
+      transition: background 0.15s ease;
+    }
+    .dt-tool summary::-webkit-details-marker { display: none; }
+    .dt-tool summary:hover { background: var(--bg-soft); }
+    .dt-tool-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+      transition: color 0.2s ease;
+    }
+    .dt-tool summary:hover .dt-tool-name,
+    .dt-tool[open] .dt-tool-name { color: var(--accent); }
+    .dt-tool-aka {
+      font-size: 0.8rem;
+      color: var(--text-quiet);
+      font-style: italic;
+    }
+    .dt-tool-toggle {
+      margin-left: auto;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1.1rem;
+      line-height: 1;
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+    .dt-tool[open] .dt-tool-toggle { transform: rotate(45deg); }
+
+    .dt-tool-body {
+      padding: 0.25rem 0.25rem 1.75rem;
+      max-width: 720px;
+    }
+    .dt-tool-desc { color: var(--text); margin-bottom: 1rem; }
+    .dt-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 1.1rem 0 0.4rem;
+    }
+    .dt-tool-when { color: var(--text-soft); font-size: 0.95rem; }
+    .dt-tool-steps {
+      margin: 0.25rem 0 0 1.25rem;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+    .dt-tool-steps li { margin-bottom: 0.35rem; padding-left: 0.25rem; }
+    .dt-tool-steps li::marker {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+    .dt-tool-link {
+      display: inline-block;
+      margin-top: 1.1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      border-bottom: 1.5px solid var(--accent);
+      padding-bottom: 1px;
+      transition: opacity 0.2s ease;
+    }
+    .dt-tool-link:hover { opacity: 0.75; color: var(--accent-dark); }
+    .dt-tool-tags { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .dt-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      background: var(--bg-soft);
+      border-radius: 3px;
+      padding: 0.2rem 0.5rem;
+    }
+    .dt-tag-stage { color: var(--accent); background: rgba(0, 117, 93, 0.08); }
+
+    .dt-empty {
+      text-align: center;
+      color: var(--text-quiet);
+      padding: 4rem 1rem;
+      display: none;
+    }
+    .dt-empty.visible { display: block; }
+
+    .dt-suggest {
+      max-width: var(--max-width);
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+    }
+    .dt-suggest-box {
+      background: var(--bg-soft);
+      border-left: 3px solid var(--accent);
+      padding: 1.5rem 1.75rem;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+    }
+    .dt-suggest-box a { color: var(--accent); font-weight: 600; }
+
+    mark.dt-hl { background: rgba(0, 117, 93, 0.16); color: inherit; border-radius: 2px; padding: 0 1px; }
+
+    @media (max-width: 700px) {
+      .dt-header { padding: 3rem 1.25rem 1.5rem; }
+      .dt-toolbar { top: 56px; }
+      .dt-toolbar-inner { padding: 0.75rem 1.25rem; }
+      .dt-main { padding: 1rem 1.25rem 4rem; }
+      .dt-suggest { padding: 0 1.25rem; }
+      .dt-filters { width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 0.25rem; -webkit-overflow-scrolling: touch; }
+      .dt-stage-count { display: none; }
+      .dt-tool summary { flex-wrap: wrap; row-gap: 0.1rem; }
+      .dt-tool-aka { flex-basis: 100%; order: 3; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="../index.html" class="wordmark"><img src="../images/pg-logo.png" alt="Pranav Gawde logo" class="site-logo"><span class="wordmark-name">pranavgawde</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../work.html" data-hover="what I make">Work</a></li>
+      <li><a href="../notes.html" data-hover="what I think">Notes</a></li>
+      <li><a href="../consultancy.html" data-hover="how I help">Consultancy</a></li>
+      <li><a href="../about.html" data-hover="the longer story">About</a></li>
+      <li><a href="../beyond.html" data-hover="the better story">Beyond</a></li>
+      <li><a href="../contact.html" data-hover="let's connect">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="dt-header">
+  <p class="dt-kicker">From first idea to unicorn</p>
+  <h1>Startup Tool Library</h1>
+  <p class="dt-lede">The business tools, frameworks, and terms every founder should know — from validating your first idea to running a boardroom. Each entry tells you what it is, when it matters, and how to actually use it. Sector-agnostic, India-aware.</p>
+  <p class="dt-count-line"><strong id="dtTotalCount">0</strong> tools · <span id="dtVisibleNote">across 6 stages of the startup journey</span></p>
+</header>
+
+<div class="dt-toolbar" id="dtToolbar">
+  <div class="dt-toolbar-inner">
+    <div class="dt-search">
+      <input type="search" id="dtSearch" placeholder="Search — e.g. CAC, term sheet, ESOP, grant…" aria-label="Search startup tools">
+      <span class="dt-search-icon">⌕</span>
+    </div>
+    <div class="dt-filters" id="dtFilters" role="group" aria-label="Filter by stage"></div>
+  </div>
+</div>
+
+<main class="dt-main" id="dtMain"></main>
+
+<p class="dt-empty" id="dtEmpty">No tools match that search. Try a broader term — or tell me what's missing.</p>
+
+<section class="dt-suggest">
+  <div class="dt-suggest-box">
+    Missing something every founder should know? This library grows over time — <a href="../contact.html">tell me what to add</a> and I'll write it up.
+  </div>
+</section>
+
+<footer>
+  <a href="../index.html" class="wordmark"><img src="../images/pg-logo.png" alt="Pranav Gawde logo" class="site-logo"><span class="wordmark-name">pranavgawde</span></a>
+  <ul class="footer-nav">
+    <li><a href="../work.html" data-hover="what I make">Work</a></li>
+    <li><a href="../notes.html" data-hover="what I think">Notes</a></li>
+    <li><a href="../consultancy.html" data-hover="how I help">Consultancy</a></li>
+    <li><a href="../about.html" data-hover="the longer story">About</a></li>
+    <li><a href="../beyond.html" data-hover="the better story">Beyond</a></li>
+    <li><a href="../contact.html" data-hover="let's connect">Contact</a></li>
+  </ul>
+  <div class="footer-socials">
+    <div class="social-preview-wrap">
+      <div class="social-preview-card"><img src="../images/Linkedin.jpg" alt="Pranav Gawde on LinkedIn"></div>
+      <a href="https://linkedin.com/in/pranavgawde" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="social-preview-wrap">
+      <div class="social-preview-card"><img src="../images/Behance.jpg" alt="Pranav Gawde on Behance"></div>
+      <a href="https://behance.net/pranavgawde" target="_blank" rel="noopener">Behance</a>
+    </div>
+  </div>
+  <div class="copyright">© 2026 Pranav Gawde · Designed and built in Mumbai, India</div>
+</footer>
+
+<script src="../js/startuptools-data.js"></script>
+<script>
+  // Nav behaviour (same as rest of site)
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  (function () {
+    const STAGES = [
+      { name: 'Ideate & Validate',
+        desc: 'From raw idea to evidence. Talk to real customers, size the market, and prove someone wants this — before you build much of anything.' },
+      { name: 'Set Up & Legal',
+        desc: 'Incorporate, split equity, protect your IP, and get the paperwork right. Boring until it isn\'t — most founder disasters trace back here.' },
+      { name: 'Build & Launch',
+        desc: 'Turn the validated idea into a shipped product with its first go-to-market: roadmap, positioning, pricing, and the launch itself.' },
+      { name: 'Traction & Metrics',
+        desc: 'Measure what matters. Unit economics, retention, and the numbers that tell you honestly whether you\'ve found product-market fit.' },
+      { name: 'Funding & Finance',
+        desc: 'Fuel the machine — from grants and angels to term sheets and cap tables, plus the financial discipline to survive between rounds.' },
+      { name: 'Grow & Scale',
+        desc: 'Post-PMF problems: hiring, culture, boards, expansion, and eventually exits. The founder\'s job changes — these tools change with it.' }
+    ];
+
+    const tools = (window.STARTUP_TOOLS || []).slice();
+    const main = document.getElementById('dtMain');
+    const filterWrap = document.getElementById('dtFilters');
+    const searchInput = document.getElementById('dtSearch');
+    const emptyEl = document.getElementById('dtEmpty');
+    let activeStage = 'All';
+    let query = '';
+
+    document.getElementById('dtTotalCount').textContent = tools.length;
+
+    function inStage(t, stageName) {
+      return (t.stages || [t.category]).indexOf(stageName) !== -1;
+    }
+
+    // Build filter chips
+    const chipDefs = [{ name: 'All', count: tools.length }].concat(
+      STAGES.map(s => ({ name: s.name, count: tools.filter(t => inStage(t, s.name)).length }))
+    );
+    chipDefs.forEach(def => {
+      const b = document.createElement('button');
+      b.className = 'dt-chip' + (def.name === 'All' ? ' active' : '');
+      b.innerHTML = def.name + '<span class="chip-n">' + def.count + '</span>';
+      b.addEventListener('click', () => {
+        activeStage = def.name;
+        filterWrap.querySelectorAll('.dt-chip').forEach(c => c.classList.remove('active'));
+        b.classList.add('active');
+        render();
+      });
+      filterWrap.appendChild(b);
+    });
+
+    function esc(s) {
+      return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    }
+    function highlight(text) {
+      const safe = esc(text);
+      if (!query) return safe;
+      const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
+      return safe.replace(re, '<mark class="dt-hl">$1</mark>');
+    }
+    function matches(t) {
+      if (!query) return true;
+      const hay = [t.name, t.description, t.whenToUse, (t.aka || []).join(' '), (t.tags || []).join(' ')].join(' ').toLowerCase();
+      return hay.indexOf(query.toLowerCase()) !== -1;
+    }
+
+    function toolCard(t, stageName, isFirstRender) {
+      const otherStages = (t.stages || []).filter(s => s !== stageName);
+      const d = document.createElement('details');
+      d.className = 'dt-tool';
+      if (isFirstRender) d.id = t.id;
+      d.innerHTML =
+        '<summary>' +
+          '<span class="dt-tool-name">' + highlight(t.name) + '</span>' +
+          (t.aka && t.aka.length ? '<span class="dt-tool-aka">also: ' + highlight(t.aka.join(', ')) + '</span>' : '') +
+          '<span class="dt-tool-toggle" aria-hidden="true">+</span>' +
+        '</summary>' +
+        '<div class="dt-tool-body">' +
+          '<p class="dt-tool-desc">' + highlight(t.description) + '</p>' +
+          '<p class="dt-label">When to use it</p>' +
+          '<p class="dt-tool-when">' + highlight(t.whenToUse) + '</p>' +
+          '<p class="dt-label">How to run it</p>' +
+          '<ol class="dt-tool-steps">' + t.steps.map(s => '<li>' + esc(s) + '</li>').join('') + '</ol>' +
+          (t.link && t.link.url
+            ? '<a class="dt-tool-link" href="' + esc(t.link.url) + '" target="_blank" rel="noopener">Go deeper: ' + esc(t.link.label) + ' →</a>'
+            : '') +
+          (t.tags && t.tags.length || otherStages.length
+            ? '<div class="dt-tool-tags">' +
+              (t.tags || []).map(tag => '<span class="dt-tag">' + esc(tag) + '</span>').join('') +
+              otherStages.map(s => '<span class="dt-tag dt-tag-stage">also in: ' + esc(s) + '</span>').join('') +
+              '</div>'
+            : '') +
+        '</div>';
+      return d;
+    }
+
+    function render() {
+      main.innerHTML = '';
+      let visible = 0;
+      const renderedIds = {};
+      STAGES.forEach((stage, i) => {
+        if (activeStage !== 'All' && activeStage !== stage.name) return;
+        const stageTools = tools.filter(t => inStage(t, stage.name) && matches(t));
+        if (!stageTools.length) return;
+        visible += stageTools.length;
+
+        const sec = document.createElement('section');
+        sec.className = 'dt-stage';
+        const head = document.createElement('div');
+        head.className = 'dt-stage-head';
+        head.innerHTML =
+          '<span class="dt-stage-num">0' + (i + 1) + '</span>' +
+          '<h2>' + stage.name + '</h2>' +
+          '<span class="dt-stage-count">' + stageTools.length + ' tools</span>';
+        sec.appendChild(head);
+        const desc = document.createElement('p');
+        desc.className = 'dt-stage-desc';
+        desc.textContent = stage.desc;
+        sec.appendChild(desc);
+        stageTools.forEach(t => {
+          const first = !renderedIds[t.id];
+          renderedIds[t.id] = true;
+          sec.appendChild(toolCard(t, stage.name, first));
+        });
+        main.appendChild(sec);
+      });
+
+      emptyEl.classList.toggle('visible', visible === 0);
+      document.getElementById('dtVisibleNote').textContent = query || activeStage !== 'All'
+        ? visible + ' shown'
+        : 'across 6 stages of the startup journey';
+    }
+
+    let debounce;
+    searchInput.addEventListener('input', () => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        query = searchInput.value.trim();
+        render();
+      }, 120);
+    });
+
+    render();
+
+    // Deep link: /designtools#tool-id opens and scrolls to that tool
+    if (location.hash) {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target && target.classList.contains('dt-tool')) {
+        target.open = true;
+        target.scrollIntoView({ block: 'center' });
+      }
+    }
+  })();
+</script>
+</body>
+</html>
